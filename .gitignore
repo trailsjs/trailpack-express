@@ -2,14 +2,9 @@
 # https://docs.npmjs.com/misc/faq#should-i-check-my-node-modules-folder-into-git
 node_modules
 ### Yeoman template
-node_modules/
 bower_components/
 *.log
 
 build/
 dist/
 
-=======
-# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
-node_modules
->>>>>>> 1e73b226912d96521a794d912c4526e1d4533787

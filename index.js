@@ -22,7 +22,7 @@ module.exports = class Express4 extends Trailpack {
 	 * server trailpacks are installed (e.g. express)
 	 */
 	validate () {
-		if (_.contains(_.keys(this.app.packs), 'express4', 'koa', 'koa2', 'restify')) {
+		if (_.contains(_.keys(this.app.config.main.packs), 'express4', 'koa', 'koa2', 'restify')) {
 			return Promise.reject(new Error('There is another web services trailpack installed that conflicts with trailpack-hapi!'))
 		}
 
@@ -49,4 +49,5 @@ module.exports = class Express4 extends Trailpack {
 			pkg: require('./package')
 		})
 	}
+
 }
