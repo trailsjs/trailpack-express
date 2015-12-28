@@ -17,37 +17,37 @@ const _ = require('lodash')
  */
 module.exports = class Express4 extends Trailpack {
 
-	/**
-	 * Ensure that config/web is valid, and that no other competing web
-	 * server trailpacks are installed (e.g. express)
-	 */
-	validate () {
-		if (_.contains(_.keys(this.app.config.main.packs), 'express4', 'koa', 'koa2', 'restify')) {
-			return Promise.reject(new Error('There is another web services trailpack installed that conflicts with trailpack-hapi!'))
-		}
+  /**
+   * Ensure that config/web is valid, and that no other competing web
+   * server trailpacks are installed (e.g. express)
+   */
+  validate() {
+    if (_.contains(_.keys(this.app.config.main.packs), 'express4', 'koa', 'koa2', 'restify')) {
+      return Promise.reject(new Error('There is another web services trailpack installed that conflicts with trailpack-hapi!'))
+    }
 
-		return Promise.resolve()
-	}
+    return Promise.resolve()
+  }
 
-	/**
-	 * Start Express4 Server
-	 */
-	initialize () {
-		const server = lib.Server.createServer(this.app.config.web)
+  /**
+   * Start Express4 Server
+   */
+  initialize() {
+    const server = lib.Server.createServer(this.app.config.web)
 
-		lib.Server.registerMethods(this.app, server)
-		lib.Server.registerRoutes(this.app, server)
-		lib.Server.registerViews(this.app, server)
+    lib.Server.registerMethods(this.app, server)
+    lib.Server.registerRoutes(this.app, server)
+    lib.Server.registerViews(this.app, server)
 
-		return lib.Server.start(server)
-	}
+    return lib.Server.start(server)
+  }
 
-	constructor (app, config) {
-		super(app, {
-			config: require('./config'),
-			api: require('./api'),
-			pkg: require('./package')
-		})
-	}
+  constructor(app, config) {
+    super(app, {
+      config: require('./config'),
+      api: require('./api'),
+      pkg: require('./package')
+    })
+  }
 
 }
