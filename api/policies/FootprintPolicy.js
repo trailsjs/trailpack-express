@@ -6,37 +6,37 @@
  * Validate footprint requests; namely, that the path parameters represent
  * actual and correct models anda actions.
  *
- * @see http://hapijs.com/api#request-object
+ * @see http://expressjs.com/en/4x/api.html#req
  */
 module.exports = {
-  create (request, reply) {
-
+  create (req, res, next) {
+    next()
   },
-  find (request, reply) {
-
+  find (req, res, next) {
+    next()
   },
-  findOne (request, reply) {
-
+  findOne (req, res, next) {
+    next()
   },
-  update (request, reply) {
-
+  update (req, res, next) {
+    next()
   },
-  destroy (request, reply) {
-
+  destroy (req, res, next) {
+    next()
   },
-  createAssociation (request, reply) {
-
+  createAssociation (req, res, next) {
+    next()
   },
-  findAssociation (request, reply) {
-
+  findAssociation (req, res, next) {
+    next()
   },
-  findOneAssociation (request, reply) {
-
+  findOneAssociation (req, res, next) {
+    next()
   },
-  updateAssociation (request, reply) {
-
+  updateAssociation (req, res, next) {
+    next()
   },
-  destroyAssociation (request, reply) {
-
+  destroyAssociation (req, res, next) {
+    next()
   }
 }
