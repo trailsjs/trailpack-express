@@ -29,9 +29,7 @@ module.exports = {
 }
 ```
 
-Then simply write your views in a directory called 'templates'!
-
-This feature has been tested with Jade and Handlebars. TODO: Put this in yeoman?
+Then simply write your views in a directory called 'views'!
 
 ## Configuration
 See [`config/web.js`](https://github.com/trailsjs/trails-example-app/blob/master/config/web.js) for an example.

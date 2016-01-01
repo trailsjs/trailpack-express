@@ -30,4 +30,3 @@ describe('express4 controllers', () => {
     })
   })
 })
-

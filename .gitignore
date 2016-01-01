@@ -1,6 +1,7 @@
 /.idea
 # https://docs.npmjs.com/misc/faq#should-i-check-my-node-modules-folder-into-git
 node_modules
+/.tmp
 ### Yeoman template
 bower_components/
 *.log

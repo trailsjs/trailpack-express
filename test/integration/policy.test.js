@@ -20,7 +20,7 @@ describe('express4 policies', () => {
         })
       })
     })
-    describe('intersept', () => {
+    describe('intercept', () => {
       it('should return {result: \'intercept\'} on GET /default/policyIntercept', (done) => {
         utils.request('GET', '/default/policyIntercept', null, function (err, data) {
           assert.deepEqual(JSON.parse(data), {result: 'intercept'})
@@ -30,4 +30,3 @@ describe('express4 policies', () => {
     })
   })
 })
-
