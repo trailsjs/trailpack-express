@@ -13,7 +13,10 @@ module.exports = {
     }
 
     if (method == 'POST' || method == 'PUT') {
-      options.headers = {'Content-Type': 'application/json; charset=utf-8'}
+      options.headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json; charset=utf-8'
+      }
     }
 
     const callback = function (response) {

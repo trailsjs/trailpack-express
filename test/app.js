@@ -3,6 +3,12 @@ const smokesignals = require('smokesignals')
 
 const Api = require('./api')
 
+const AppConfigLocales = {
+  en: {
+    helloworld: 'hello world'
+  }
+}
+
 const App = {
   pkg: {
     name: 'express4-trailpack-test',
@@ -49,7 +55,12 @@ const App = {
       prefix: '/api/v1'
     },
     i18n: {
-      lng: 'en'
+      lng: 'en',
+      resources: {
+        en: {
+          translation: AppConfigLocales.en
+        }
+      }
     },
     main: {
       packs: [
