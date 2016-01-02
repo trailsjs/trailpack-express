@@ -1,12 +1,14 @@
 const _ = require('lodash')
 const smokesignals = require('smokesignals')
 
+const Api = require('./api')
+
 const App = {
   pkg: {
     name: 'express4-trailpack-test',
     version: '1.0.0'
   },
-  api: require('./api'),
+  api: Api,
   config: {
     database: {
       stores: {
@@ -16,7 +18,7 @@ const App = {
       },
       models: {
         defaultStore: 'sqlitedev',
-        migrate: 'alter'
+        migrate: 'drop'
       }
     },
     footprints: {
@@ -25,7 +27,7 @@ const App = {
         options: {
           defaultLimit: 100,
           watch: false,
-          populate: true
+          populate: false
         },
 
         actions: {
@@ -53,8 +55,8 @@ const App = {
       packs: [
         smokesignals.Trailpack,
         require('trailpack-core'),
-        require('trailpack-router'),
         require('trailpack-waterline'),
+        require('trailpack-router'),
         require('../') // trailpack-express4
       ]
     },
@@ -65,28 +67,8 @@ const App = {
         handler: 'ViewController.helloWorld'
       },
       {
-        method: ['GET', 'DELETE'],
-        path: '/default/info',
-        handler: 'DefaultController.info'
-      },
-      {
-        method: 'GET',
-        path: '/default/policyFail',
-        handler: 'DefaultController.policyFail'
-      },
-      {
-        method: 'GET',
-        path: '/default/policySuccess',
-        handler: 'DefaultController.policySuccess'
-      },
-      {
-        method: 'GET',
-        path: '/default/policyIntercept',
-        handler: 'DefaultController.policyIntercept'
-      },
-      {
         method: ['POST', 'PUT'],
-        path: '/default/info',
+        path: '/api/v1/default/info',
         handler: 'DefaultController.echo'
       }
     ],
