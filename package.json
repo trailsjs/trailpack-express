@@ -30,7 +30,7 @@
     "consolidate": "^0.13.1",
     "express": "^4.13.3",
     "lodash": "^3.10.1",
-    "trailpack": "0.0.15"
+    "trailpack": "0.0.16"
   },
   "eslintConfig": {
     "extends": "trails"
