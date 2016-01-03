@@ -44,7 +44,7 @@
     "trailpack-core": "0.0.14",
     "trailpack-router": "0.0.13",
     "trailpack-waterline": "0.0.6",
-    "trails": "0.0.16",
+    "trails": "0.0.18",
     "waterline-sqlite3": "^1.0.0"
   }
 }
