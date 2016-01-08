@@ -26,7 +26,9 @@ module.exports = class Express4 extends Trailpack {
       return Promise.reject(new Error('There is another web services trailpack installed that conflicts with trailpack-hapi!'))
     }
 
-    return Promise.resolve()
+    return Promise.all([
+      lib.Validator.validateWebConfig(this.app.config.web)
+    ])
   }
 
   /**

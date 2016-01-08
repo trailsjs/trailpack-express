@@ -1,33 +1,46 @@
+'use strict'
+
 const assert = require('assert')
-const utils = require('../utils')
+const supertest = require('supertest')
 
 describe('express4 policies', () => {
+  let request
+  before(() => {
+    request = supertest('http://localhost:3000')
+  })
   describe('Default', () => {
     describe('success', () => {
-      it('should return {app: \'1.0.0\'} on GET /api/v1/default/policySuccess', (done) => {
-        utils.request('GET', '/api/v1/default/policySuccess', null, function (err, data) {
-          assert.equal(err, null)
-          assert.deepEqual(JSON.parse(data), {app: '1.0.0'})
-          done()
-        })
+      it('should return {app: \'1.0.0\'} on GET /default/policySuccess', (done) => {
+        request
+          .get('/default/policySuccess')
+          .expect(200 | 201)
+          .end((err, res) => {
+            const data = res.body
+            assert.deepEqual(data, {app: '1.0.0'})
+            done(err)
+          })
       })
     })
     describe('fail', () => {
-      it('should return an error on GET /api/v1/default/policyFail', (done) => {
-        utils.request('GET', '/api/v1/default/policyFail', null, function (err, data) {
-          assert.equal(true, err.message.indexOf('Policy fail') != -1)
-          assert.equal(err.http_code, 500)
-          done()
-        })
+      it('should return an error on GET /default/policyFail', (done) => {
+        request
+          .get('/default/policyFail')
+          .expect(500)
+          .end((err, res) => {
+            done(err)
+          })
       })
     })
     describe('intercept', () => {
-      it('should return {result: \'intercept\'} on GET /api/v1/default/policyIntercept', (done) => {
-        utils.request('GET', '/api/v1/default/policyIntercept', null, function (err, data) {
-          assert.equal(err, null)
-          assert.deepEqual(JSON.parse(data), {result: 'intercept'})
-          done()
-        })
+      it('should return {result: \'intercept\'} on GET /default/policyIntercept', (done) => {
+        request
+          .get('/default/policyIntercept')
+          .expect(201)
+          .end((err, res) => {
+            const data = res.body
+            assert.deepEqual(data, {result: 'intercept'})
+            done(err)
+          })
       })
     })
   })

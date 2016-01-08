@@ -1,34 +1,49 @@
+'use strict'
+
 const assert = require('assert')
-const utils = require('../utils')
+const supertest = require('supertest')
 
 describe('express4 controllers', () => {
+  let request
+  before(() => {
+    request = supertest('http://localhost:3000')
+  })
   describe('DefaultController', () => {
     describe('info', () => {
-      it('should return {app: \'1.0.0\'} on GET /api/v1/default/info', (done) => {
-        utils.request('GET', '/api/v1/default/info', null, function (err, data) {
-          assert.equal(err, null)
-          assert.deepEqual(JSON.parse(data), {app: '1.0.0'})
-          done()
-        })
+      it('should return {app: \'1.0.0\'} on GET /default/info', (done) => {
+        request
+          .get('/default/info')
+          .expect(200 | 201)
+          .end((err, res) => {
+            const data = res.body
+            assert.deepEqual(data, {app: '1.0.0'})
+            done(err)
+          })
       })
-      it('should return {test: \'ok\'} POST on /api/v1/default/info', (done) => {
-        const params = {test: 'ok'}
-        utils.request('POST', '/api/v1/default/info', params, function (err, data) {
-          assert.equal(err, null)
-          assert.deepEqual(JSON.parse(data), params)
-          done()
-        })
+      it('should return {test: \'ok\'} POST on /default/info', (done) => {
+        request
+          .post('/default/info')
+          .send({test: 'ok'})
+          .expect(200 | 201)
+          .end((err, res) => {
+            const data = res.body
+            assert.deepEqual(data, {test: 'ok'})
+            done(err)
+          })
       })
     })
   })
   describe('ViewController', () => {
     describe('helloWorld', () => {
       it('should return html on GET /', (done) => {
-        utils.request('GET', '/', null, function (err, data) {
-          assert.equal(err, null)
-          assert.equal(data, '<!DOCTYPE html><html lang="en"><head><title>Test</title></head><body><h1>helloWorld</h1></body></html>')
-          done()
-        })
+        request
+          .get('/')
+          .expect(200)
+          .end((err, res) => {
+            const data = res.text
+            assert.deepEqual(data, '<!DOCTYPE html><html lang="en"><head><title>Test</title></head><body><h1>helloWorld</h1></body></html>')
+            done(err)
+          })
       })
     })
   })

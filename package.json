@@ -29,8 +29,10 @@
     "body-parser": "^1.14.2",
     "consolidate": "^0.13.1",
     "express": "^4.13.3",
+    "express-boom": "^0.3.0",
+    "joi": "^7.1.0",
     "lodash": "^3.10.1",
-    "trailpack": "0.0.15"
+    "trailpack": "0.0.18"
   },
   "eslintConfig": {
     "extends": "trails"
@@ -41,10 +43,11 @@
     "jade": "^1.11.0",
     "mocha": "^2.3.4",
     "smokesignals": "0.0.8",
-    "trailpack-core": "0.0.14",
-    "trailpack-router": "0.0.13",
-    "trailpack-waterline": "0.0.6",
-    "trails": "0.0.16",
+    "supertest": "^1.1.0",
+    "trailpack-core": "0.0.20",
+    "trailpack-router": "0.0.19",
+    "trailpack-waterline": "0.0.11",
+    "trails": "0.0.24",
     "waterline-sqlite3": "^1.0.0"
   }
 }

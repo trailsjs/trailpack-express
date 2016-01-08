@@ -1,12 +1,14 @@
 /**
- * User
+ * Role
  *
- * @description A User model
+ * @description A Role model
  */
 module.exports = {
   attributes: {
-    username: {
-      type: 'string'
+    name: 'string',
+    roles: {
+      collection: 'Role',
+      via: 'user'
     }
   }
 }

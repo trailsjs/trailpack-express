@@ -33,7 +33,7 @@ const App = {
         options: {
           defaultLimit: 100,
           watch: false,
-          populate: false
+          populate: true
         },
 
         actions: {
@@ -52,7 +52,7 @@ const App = {
           destroyAssociation: true
         }
       },
-      prefix: '/api/v1'
+      prefix: ''
     },
     i18n: {
       lng: 'en',
@@ -79,7 +79,7 @@ const App = {
       },
       {
         method: ['POST', 'PUT'],
-        path: '/api/v1/default/info',
+        path: '/default/info',
         handler: 'DefaultController.echo'
       }
     ],
