@@ -1,14 +1,23 @@
+'use strict'
+
+const Model = require('trails-model')
+
 /**
- * Role
+ * User
  *
- * @description A Role model
+ * @description A User model
  */
-module.exports = {
-  attributes: {
-    name: 'string',
-    roles: {
-      collection: 'Role',
-      via: 'user'
+module.exports = class User extends Model {
+  static config() {
+  }
+
+  static schema() {
+    return {
+      name: 'string',
+      roles: {
+        collection: 'Role',
+        via: 'user'
+      }
     }
   }
 }

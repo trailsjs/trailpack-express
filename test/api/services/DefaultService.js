@@ -1,3 +1,5 @@
+'use strict'
+const Service = require('trails-service')
 /**
  * @module DefaultService
  *
@@ -5,12 +7,12 @@
  * @see {@link http://trailsjs.io/doc/api/services}
  * @this TrailsApp
  */
-module.exports = {
+module.exports = class DefaultService extends Service {
 
   /**
    * Return some info about this application
    */
-  getApplicationInfo () {
+  getApplicationInfo() {
     return {
       app: this.pkg.version
     }

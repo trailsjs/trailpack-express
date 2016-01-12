@@ -30,11 +30,6 @@ const App = {
     footprints: {
       controllers: true,
       models: {
-        options: {
-          defaultLimit: 100,
-          watch: false,
-          populate: true
-        },
 
         actions: {
           create: true,

@@ -1,5 +1,5 @@
 'use strict'
-
+const Controller = require('trails-controller')
 /**
  * Footprint Controller
  *
@@ -9,7 +9,7 @@
  *
  * @see {@link http://expressjs.com/en/4x/api.html#req}
  */
-module.exports = {
+module.exports = class FootprintController extends Controller{
   create (req, res) {
     const FootprintService = this.api.services.FootprintService
     FootprintService.create(req.params.model, req.body)
@@ -18,7 +18,7 @@ module.exports = {
       }).catch(function (error) {
       res.boom.wrap(error)
     })
-  },
+  }
   find (req, res) {
     const FootprintService = this.api.services.FootprintService
     const id = req.params.id
@@ -36,10 +36,14 @@ module.exports = {
     }).catch(function (error) {
       res.boom.wrap(error)
     })
-  },
+  }
   update (req, res) {
     const FootprintService = this.api.services.FootprintService
     const id = req.params.id
+
+    this.log.debug('[FootprintController] (update) model =',
+      req.params.model, ', criteria =', req.query, req.params.id,
+      ', values = ', req.body)
 
     let response
     if (id) {
@@ -54,7 +58,7 @@ module.exports = {
     }).catch(function (error) {
       res.boom.wrap(error)
     })
-  },
+  }
   destroy (req, res) {
     const FootprintService = this.api.services.FootprintService
     const id = req.params.id
@@ -72,7 +76,7 @@ module.exports = {
     }).catch(function (error) {
       res.boom.wrap(error)
     })
-  },
+  }
   createAssociation (req, res) {
     const FootprintService = this.api.services.FootprintService
     FootprintService.createAssociation(req.params.parentModel, req.params.parentId, req.params.childAttribute, req.body)
@@ -81,7 +85,7 @@ module.exports = {
       }).catch(function (error) {
       res.boom.wrap(error)
     })
-  },
+  }
   findAssociation (req, res) {
     const FootprintService = this.api.services.FootprintService
     const parentModel = req.params.parentModel
@@ -102,8 +106,7 @@ module.exports = {
     }).catch(function (error) {
       res.boom.wrap(error)
     })
-
-  },
+  }
   updateAssociation (req, res) {
     const FootprintService = this.api.services.FootprintService
     const parentModel = req.params.parentModel
@@ -124,7 +127,7 @@ module.exports = {
     }).catch(function (error) {
       res.boom.wrap(error)
     })
-  },
+  }
   destroyAssociation (req, res) {
     const FootprintService = this.api.services.FootprintService
     const parentModel = req.params.parentModel
@@ -145,6 +148,5 @@ module.exports = {
     }).catch(function (error) {
       res.boom.wrap(error)
     })
-
   }
 }

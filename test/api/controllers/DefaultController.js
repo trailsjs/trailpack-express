@@ -1,3 +1,5 @@
+'use strict'
+const Controller = require('trails-controller')
 /**
  * @module DefaultController
  *
@@ -5,19 +7,19 @@
  * @see {@link http://trailsjs.io/doc/api/controllers}
  * @this TrailsApp
  */
-module.exports = {
+module.exports = class DefaultController extends Controller{
   info (req, res) {
     res.status(201).json(this.api.services.DefaultService.getApplicationInfo())
-  },
+  }
   policySuccess (req, res) {
     res.status(201).json(this.api.services.DefaultService.getApplicationInfo())
-  },
+  }
   policyFail (req, res) {
     res.status(201).json(this.api.services.DefaultService.getApplicationInfo())
-  },
+  }
   policyIntercept (req, res) {
     res.status(201).json(this.api.services.DefaultService.getApplicationInfo())
-  },
+  }
   echo (req, res) {
     res.status(201).json(req.body)
   }

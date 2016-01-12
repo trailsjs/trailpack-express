@@ -32,7 +32,9 @@
     "express-boom": "^0.3.0",
     "joi": "^7.1.0",
     "lodash": "^3.10.1",
-    "trailpack": "0.0.18"
+    "trailpack": "0.0.18",
+    "trailpack-core": "^1.0.0-alpha-1",
+    "trails-controller": "^1.0.0-alpha-1"
   },
   "eslintConfig": {
     "extends": "trails"
@@ -44,7 +46,7 @@
     "mocha": "^2.3.4",
     "smokesignals": "0.0.8",
     "supertest": "^1.1.0",
-    "trailpack-core": "0.0.20",
+    "trailpack-core": "1.0.0-alpha-1",
     "trailpack-router": "0.0.19",
     "trailpack-waterline": "0.0.11",
     "trails": "0.0.24",

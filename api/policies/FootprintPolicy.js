@@ -1,4 +1,7 @@
+'use strict'
+
 const _ = require('lodash')
+const Policy = require('trails-policy')
 
 /**
  * Footprint Policy
@@ -9,97 +12,97 @@ const _ = require('lodash')
  *
  * @see http://expressjs.com/en/4x/api.html#req
  */
-module.exports = {
+module.exports = class Footprint extends Policy {
 
   /**
    * Create Policy.
    * @see FootprintController.create
    */
-  create (req, res, next) {
+  create(req, res, next) {
     if (!_.isPlainObject(req.body)) {
       return res.boom.preconditionFailed(this.__('errors.footprints.body'))
     }
 
     next()
-  },
+  }
 
   /**
    * Find Policy.
    * @see FootprintController.find
    */
-  find (req, res, next) {
+  find(req, res, next) {
     if (req.params.id && !_.isEmpty(req.query)) {
       return res.boom.preconditionFailed(this.__('errors.footprints.find.mutex'))
     }
 
     next()
-  },
+  }
 
   /**
    * Update Policy.
    * @see FootprintController.update
    */
-  update (req, res, next) {
+  update(req, res, next) {
     if (req.params.id && !_.isEmpty(req.query)) {
       return res.boom.preconditionFailed(this.__('errors.footprints.update.mutex'))
     }
 
     next()
-  },
+  }
 
   /**
    * Destroy Policy.
    * @see FootprintController.destroy
    */
-  destroy (req, res, next) {
+  destroy(req, res, next) {
     if (req.params.id && !_.isEmpty(req.query)) {
       return res.boom.preconditionFailed(this.__('errors.footprints.destroy.mutex'))
     }
 
     next()
-  },
+  }
 
   /**
    * Create Association Policy.
    * @see FootprintController.createAssociation
    */
-  createAssociation (req, res, next) {
+  createAssociation(req, res, next) {
     if (!_.isPlainObject(req.body)) {
       return res.boom.preconditionFailed(this.__('errors.footprints.body'))
     }
 
     next()
-  },
+  }
 
   /**
    * Find Association Policy.
    * @see FootprintController.findAssociation
    */
-  findAssociation (req, res, next) {
+  findAssociation(req, res, next) {
     if (req.params.childId && !_.isEmpty(req.query)) {
       return res.boom.preconditionFailed(this.__('errors.footprints.find.mutex'))
     }
 
     next()
-  },
+  }
 
   /**
    * Update Association Policy.
    * @see FootprintController.updateAssociation
    */
-  updateAssociation (req, res, next) {
+  updateAssociation(req, res, next) {
     if (req.params.childId && !_.isEmpty(req.query)) {
       return res.boom.preconditionFailed(this.__('errors.footprints.update.mutex'))
     }
 
     next()
-  },
+  }
 
   /**
    * Destroy Association Policy.
    * @see FootprintController.destroyAssociation
    */
-  destroyAssociation (req, res, next) {
+  destroyAssociation(req, res, next) {
     if (req.params.childId && !_.isEmpty(req.query)) {
       return res.boom.preconditionFailed(this.__('errors.footprints.destroy.mutex'))
     }

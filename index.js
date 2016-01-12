@@ -3,9 +3,9 @@
  */
 'use strict'
 
-const Trailpack = require('trailpack')
 const lib = require('./lib')
 const _ = require('lodash')
+const WebServerTrailpack = require('trailpack-webserver')
 
 /**
  * Express4 Trailpack
@@ -15,7 +15,7 @@ const _ = require('lodash')
  *
  * Bind application routes to Express4.js (from trailpack-router)
  */
-module.exports = class Express4 extends Trailpack {
+module.exports = class Express4 extends WebServerTrailpack {
 
   /**
    * Ensure that config/web is valid, and that no other competing web
@@ -35,7 +35,7 @@ module.exports = class Express4 extends Trailpack {
    * Start Express4 Server
    */
   initialize() {
-    const server = lib.Server.createServer(this.app.config.web)
+    const server = lib.Server.createServer(this.app)
 
     lib.Server.registerMethods(this.app, server)
     lib.Server.registerRoutes(this.app, server)

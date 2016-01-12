@@ -1,15 +1,20 @@
+'use strict'
+const Policy = require('trails-policy')
+
 /**
  * @module Default
  * @description Test document Policy
  */
-module.exports = {
-  intercept: function (req, res, next) {
+module.exports = class Default extends Policy {
+  intercept(req, res, next) {
     res.status(201).json({result: 'intercept'})
-  },
-  success: function (req, res, next) {
+  }
+
+  success(req, res, next) {
     next()
-  },
-  fail: function (req, res, next) {
+  }
+
+  fail(req, res, next) {
     res.status(500).send('Policy fail')
   }
 }

@@ -91,8 +91,10 @@ describe('FootprintController', () => {
         .expect(200 | 201)
         .end((err, res) => {
           const user = res.body[0]
-          assert.equal(user.id, userId)
-          assert.equal(user.name, 'updatetest2')
+          if (user) {
+            assert.equal(user.id, userId)
+            assert.equal(user.name, 'updatetest2')
+          }
           done(err)
         })
     })

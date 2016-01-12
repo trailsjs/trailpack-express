@@ -1,8 +1,9 @@
 'use strict'
 
-module.exports = {
+const Controller = require('trails-controller')
 
-  helloWorld (req, res) {
+module.exports = class ViewController extends Controller {
+  helloWorld(req, res) {
     res.status(200).send('Hello Trails.js !')
   }
 }
