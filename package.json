@@ -32,9 +32,9 @@
     "express-boom": "^0.3.0",
     "joi": "^7.1.0",
     "lodash": "^3.10.1",
-    "trailpack": "0.0.18",
     "trailpack-core": "^1.0.0-alpha-1",
-    "trails-controller": "^1.0.0-alpha-1"
+    "trails-controller": "^1.0.0-alpha-1",
+    "trailpack": "0.0.21"
   },
   "eslintConfig": {
     "extends": "trails"
