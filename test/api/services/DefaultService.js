@@ -14,7 +14,7 @@ module.exports = class DefaultService extends Service {
    */
   getApplicationInfo() {
     return {
-      app: this.pkg.version
+      app: this.app.pkg.version
     }
   }
 }

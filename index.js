@@ -22,13 +22,17 @@ module.exports = class Express4 extends WebServerTrailpack {
    * server trailpacks are installed (e.g. express)
    */
   validate() {
-    if (_.contains(_.keys(this.app.config.main.packs), 'express4', 'koa', 'koa2', 'restify')) {
+    if (_.includes(_.keys(this.app.config.main.packs), 'express4', 'koa', 'koa2', 'restify')) {
       return Promise.reject(new Error('There is another web services trailpack installed that conflicts with trailpack-hapi!'))
     }
 
     return Promise.all([
       lib.Validator.validateWebConfig(this.app.config.web)
     ])
+  }
+
+  configure() {
+    this.app.config.web.server = 'express4'
   }
 
   /**
