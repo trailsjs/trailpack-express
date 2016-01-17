@@ -30,7 +30,7 @@
     "consolidate": "^0.13.1",
     "express": "^4.13.3",
     "express-boom": "^0.3.0",
-    "joi": "^7.1.0",
+    "joi": "^7.2.1",
     "lodash": "^4.0.0",
     "trailpack": "0.0.21",
     "trailpack-core": "^1.0.0-alpha-1",
