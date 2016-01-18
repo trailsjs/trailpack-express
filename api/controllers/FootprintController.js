@@ -9,19 +9,20 @@ const Controller = require('trails-controller')
  *
  * @see {@link http://expressjs.com/en/4x/api.html#req}
  */
-module.exports = class FootprintController extends Controller{
-  create (req, res) {
+module.exports = class FootprintController extends Controller {
+  create(req, res) {
     const FootprintService = this.app.services.FootprintService
     const options = this.app.packs.express4.getOptionsFromQuery(req.query)
 
     FootprintService.create(req.params.model, req.body, options)
       .then(function (elements) {
-        res.status(201).json(elements)
+        res.status(200).json(elements)
       }).catch(function (error) {
       res.boom.wrap(error)
     })
   }
-  find (req, res) {
+
+  find(req, res) {
     const FootprintService = this.app.services.FootprintService
     const options = this.app.packs.express4.getOptionsFromQuery(req.query)
     const criteria = this.app.packs.express4.getCriteriaFromQuery(req.query)
@@ -36,12 +37,13 @@ module.exports = class FootprintController extends Controller{
     }
 
     response.then(function (elements) {
-      res.status(elements ? 201 : 404).json(elements)
+      res.status(elements ? 200 : 404).json(elements)
     }).catch(function (error) {
       res.boom.wrap(error)
     })
   }
-  update (req, res) {
+
+  update(req, res) {
     const FootprintService = this.app.services.FootprintService
     const options = this.app.packs.express4.getOptionsFromQuery(req.query)
     const criteria = this.app.packs.express4.getCriteriaFromQuery(req.query)
@@ -61,12 +63,13 @@ module.exports = class FootprintController extends Controller{
     }
 
     response.then(function (elements) {
-      res.status(201).json(elements)
+      res.status(200).json(elements)
     }).catch(function (error) {
       res.boom.wrap(error)
     })
   }
-  destroy (req, res) {
+
+  destroy(req, res) {
     const FootprintService = this.app.services.FootprintService
     const options = this.app.packs.express4.getOptionsFromQuery(req.query)
     const criteria = this.app.packs.express4.getCriteriaFromQuery(req.query)
@@ -81,23 +84,25 @@ module.exports = class FootprintController extends Controller{
     }
 
     response.then(function (elements) {
-      res.status(201).json(elements)
+      res.status(200).json(elements)
     }).catch(function (error) {
       res.boom.wrap(error)
     })
   }
-  createAssociation (req, res) {
+
+  createAssociation(req, res) {
     const FootprintService = this.app.services.FootprintService
     const options = this.app.packs.express4.getOptionsFromQuery(req.query)
 
     FootprintService.createAssociation(req.params.parentModel, req.params.parentId, req.params.childAttribute, req.body, options)
       .then(function (elements) {
-        res.status(201).json(elements)
+        res.status(200).json(elements)
       }).catch(function (error) {
       res.boom.wrap(error)
     })
   }
-  findAssociation (req, res) {
+
+  findAssociation(req, res) {
     const FootprintService = this.app.services.FootprintService
     const options = this.app.packs.express4.getOptionsFromQuery(req.query)
     const criteria = this.app.packs.express4.getCriteriaFromQuery(req.query)
@@ -115,12 +120,13 @@ module.exports = class FootprintController extends Controller{
     }
 
     response.then(function (elements) {
-      res.status(elements ? 201 : 404).json(elements)
+      res.status(elements ? 200 : 404).json(elements)
     }).catch(function (error) {
       res.boom.wrap(error)
     })
   }
-  updateAssociation (req, res) {
+
+  updateAssociation(req, res) {
     const FootprintService = this.app.services.FootprintService
     const options = this.app.packs.express4.getOptionsFromQuery(req.query)
     const criteria = this.app.packs.express4.getCriteriaFromQuery(req.query)
@@ -138,12 +144,13 @@ module.exports = class FootprintController extends Controller{
     }
 
     response.then(function (elements) {
-      res.status(201).json(elements)
+      res.status(200).json(elements)
     }).catch(function (error) {
       res.boom.wrap(error)
     })
   }
-  destroyAssociation (req, res) {
+
+  destroyAssociation(req, res) {
     const FootprintService = this.app.services.FootprintService
     const options = this.app.packs.express4.getOptionsFromQuery(req.query)
     const criteria = this.app.packs.express4.getCriteriaFromQuery(req.query)
@@ -161,7 +168,7 @@ module.exports = class FootprintController extends Controller{
     }
 
     response.then(function (elements) {
-      res.status(201).json(elements)
+      res.status(200).json(elements)
     }).catch(function (error) {
       res.boom.wrap(error)
     })
