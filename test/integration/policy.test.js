@@ -13,7 +13,7 @@ describe('express4 policies', () => {
       it('should return {app: \'1.0.0\'} on GET /default/policySuccess', (done) => {
         request
           .get('/default/policySuccess')
-          .expect(200 | 201)
+          .expect(200)
           .end((err, res) => {
             const data = res.body
             assert.deepEqual(data, {app: '1.0.0'})
@@ -35,7 +35,7 @@ describe('express4 policies', () => {
       it('should return {result: \'intercept\'} on GET /default/policyIntercept', (done) => {
         request
           .get('/default/policyIntercept')
-          .expect(201)
+          .expect(200)
           .end((err, res) => {
             const data = res.body
             assert.deepEqual(data, {result: 'intercept'})

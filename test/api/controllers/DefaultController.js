@@ -9,18 +9,18 @@ const Controller = require('trails-controller')
  */
 module.exports = class DefaultController extends Controller{
   info (req, res) {
-    res.status(201).json(this.app.services.DefaultService.getApplicationInfo())
+    res.status(200).json(this.app.services.DefaultService.getApplicationInfo())
   }
   policySuccess (req, res) {
-    res.status(201).json(this.app.services.DefaultService.getApplicationInfo())
+    res.status(200).json(this.app.services.DefaultService.getApplicationInfo())
   }
   policyFail (req, res) {
-    res.status(201).json(this.app.services.DefaultService.getApplicationInfo())
+    res.status(200).json(this.app.services.DefaultService.getApplicationInfo())
   }
   policyIntercept (req, res) {
-    res.status(201).json(this.app.services.DefaultService.getApplicationInfo())
+    res.status(200).json(this.app.services.DefaultService.getApplicationInfo())
   }
   echo (req, res) {
-    res.status(201).json(req.body)
+    res.status(200).json(req.body)
   }
 }

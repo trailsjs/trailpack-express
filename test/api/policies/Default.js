@@ -7,7 +7,7 @@ const Policy = require('trails-policy')
  */
 module.exports = class Default extends Policy {
   intercept(req, res, next) {
-    res.status(201).json({result: 'intercept'})
+    res.status(200).json({result: 'intercept'})
   }
 
   success(req, res, next) {

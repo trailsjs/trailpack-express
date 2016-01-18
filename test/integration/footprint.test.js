@@ -14,7 +14,7 @@ describe('FootprintController', () => {
       request
         .post('/user')
         .send({name: 'createtest1'})
-        .expect(200 | 201)
+        .expect(200)
         .end((err, res) => {
           const user = res.body
 
@@ -32,7 +32,7 @@ describe('FootprintController', () => {
     it('should find a single record', done => {
       request
         .get('/user/' + userId)
-        .expect(200 | 201)
+        .expect(200)
         .end((err, res) => {
           const user = res.body
           assert.equal(user.name, 'createtest1')
@@ -43,7 +43,7 @@ describe('FootprintController', () => {
       request
         .get('/user')
         .query({name: 'createtest1'})
-        .expect(200 | 201)
+        .expect(200)
         .end((err, res) => {
           const user = res.body[0]
           assert.equal(user.name, 'createtest1')
@@ -64,7 +64,7 @@ describe('FootprintController', () => {
       request
         .post('/user')
         .send({name: 'updatetest1'})
-        .expect(200 | 201)
+        .expect(200)
         .end((err, res) => {
           assert.equal(res.body.name, 'updatetest1')
           userId = res.body.id
@@ -75,7 +75,7 @@ describe('FootprintController', () => {
       request
         .put('/user/' + userId)
         .send({name: 'updatetest2'})
-        .expect(200 | 201)
+        .expect(200)
         .end((err, res) => {
           const user = res.body
           assert.equal(user.id, userId)
@@ -88,7 +88,7 @@ describe('FootprintController', () => {
         .put('/user')
         .query({name: 'updatetest1'})
         .send({name: 'updatetest2'})
-        .expect(200 | 201)
+        .expect(200)
         .end((err, res) => {
           const user = res.body[0]
           if (user) {
@@ -105,7 +105,7 @@ describe('FootprintController', () => {
       request
         .post('/user')
         .send({name: 'destroytest1'})
-        .expect(200 | 201)
+        .expect(200)
         .end((err, res) => {
           assert.equal(res.body.name, 'destroytest1')
           userId = res.body.id
@@ -115,7 +115,7 @@ describe('FootprintController', () => {
     it('should destroy a single record', done => {
       request
         .del('/user/' + userId)
-        .expect(200 | 201)
+        .expect(200)
         .end((err, res) => {
           const user = res.body
           assert.equal(user.id, userId)
@@ -127,7 +127,7 @@ describe('FootprintController', () => {
       request
         .del('/user')
         .query({name: 'destroytest1'})
-        .expect(200 | 201)
+        .expect(200)
         .end((err, res) => {
           const user = res.body[0]
           assert.equal(user.id, userId)
@@ -142,7 +142,7 @@ describe('FootprintController', () => {
       request
         .post('/user')
         .send({name: 'createtest1'})
-        .expect(200 | 201)
+        .expect(200)
         .end((err, res) => {
           userId = res.body.id
           done(err)
@@ -152,7 +152,7 @@ describe('FootprintController', () => {
       request
         .post('/user/' + userId + '/roles')
         .send({name: 'associatedroletest1'})
-        .expect(200 | 201)
+        .expect(200)
         .end((err, res) => {
           const role = res.body
 
@@ -169,7 +169,7 @@ describe('FootprintController', () => {
       request
         .post('/user')
         .send({name: 'createtest1'})
-        .expect(200 | 201)
+        .expect(200)
         .end((err, res) => {
           if (err) return done(err)
 
@@ -177,7 +177,7 @@ describe('FootprintController', () => {
           request
             .post('/user/' + userId + '/roles')
             .send({name: 'associatedroletest1'})
-            .expect(200 | 201)
+            .expect(200)
             .end((err, res) => {
               roleId = res.body.id
               done(err)
@@ -187,7 +187,7 @@ describe('FootprintController', () => {
     it('should find a single associated record ("one")', done => {
       request
         .get('/role/' + roleId + '/user')
-        .expect(200 | 201)
+        .expect(200)
         .end((err, res) => {
           const user = res.body
           assert(user)
@@ -198,7 +198,7 @@ describe('FootprintController', () => {
     it('should find a set of associated records ("many")', done => {
       request
         .get('/user/' + userId + '/roles')
-        .expect(200 | 201)
+        .expect(200)
         .end((err, res) => {
           const roles = res.body
           assert(roles.length)
@@ -209,7 +209,7 @@ describe('FootprintController', () => {
     it.skip('should find a set of associated records ("many") and populate the parent association', done => {
       request
         .get('/user/' + userId + '/roles')
-        .expect(200 | 201)
+        .expect(200)
         .query({
           populate: ['user']
         })
@@ -224,7 +224,7 @@ describe('FootprintController', () => {
     it('should find a particular record in an associated set ("many")', done => {
       request
         .get('/user/' + userId + '/roles/' + roleId)
-        .expect(200 | 201)
+        .expect(200)
         .end((err, res) => {
           const role = res.body
           assert(role)
@@ -240,7 +240,7 @@ describe('FootprintController', () => {
       request
         .post('/user')
         .send({name: 'updateassociationtest1'})
-        .expect(200 | 201)
+        .expect(200)
         .end((err, res) => {
           if (err) return done(err)
 
@@ -248,7 +248,7 @@ describe('FootprintController', () => {
           request
             .post('/user/' + userId + '/roles')
             .send({name: 'associatedroletest2'})
-            .expect(200 | 201)
+            .expect(200)
             .end((err, res) => {
               roleId = res.body.id
               done(err)
@@ -261,7 +261,7 @@ describe('FootprintController', () => {
         .send({
           name: 'updateassociationtest2'
         })
-        .expect(200 | 201)
+        .expect(200)
         .end((err, res) => {
           const user = res.body
           assert(user)
@@ -275,7 +275,7 @@ describe('FootprintController', () => {
         .send({
           name: 'updateassociationtest2'
         })
-        .expect(200 | 201)
+        .expect(200)
         .end((err, res) => {
           const roles = res.body
           assert(roles.length)
@@ -290,7 +290,7 @@ describe('FootprintController', () => {
       request
         .post('/user')
         .send({name: 'destroyassociationtest1'})
-        .expect(200 | 201)
+        .expect(200)
         .end((err, res) => {
           if (err) return done(err)
 
@@ -298,7 +298,7 @@ describe('FootprintController', () => {
           request
             .post('/user/' + userId + '/roles')
             .send({name: 'associatedroletest3'})
-            .expect(200 | 201)
+            .expect(200)
             .end((err, res) => {
               roleId = res.body.id
               done(err)
@@ -308,7 +308,7 @@ describe('FootprintController', () => {
     it('should delete a single associated record', done => {
       request
         .del('/role/' + roleId + '/user')
-        .expect(200 | 201)
+        .expect(200)
         .end((err, res) => {
           if (err) return done(err)
 
