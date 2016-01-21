@@ -12,7 +12,7 @@ describe('FootprintController', () => {
   describe('#create', () => {
     it('should insert a record', done => {
       request
-        .post('/user')
+        .post('/api/v1/user')
         .send({name: 'createtest1'})
         .expect(200)
         .end((err, res) => {
@@ -31,7 +31,7 @@ describe('FootprintController', () => {
   describe('#find', () => {
     it('should find a single record', done => {
       request
-        .get('/user/' + userId)
+        .get('/api/v1/user/' + userId)
         .expect(200)
         .end((err, res) => {
           const user = res.body
@@ -41,7 +41,7 @@ describe('FootprintController', () => {
     })
     it('should find a set of records', done => {
       request
-        .get('/user')
+        .get('/api/v1/user')
         .query({name: 'createtest1'})
         .expect(200)
         .end((err, res) => {
@@ -62,7 +62,7 @@ describe('FootprintController', () => {
     let userId
     beforeEach(done => {
       request
-        .post('/user')
+        .post('/api/v1/user')
         .send({name: 'updatetest1'})
         .expect(200)
         .end((err, res) => {
@@ -73,7 +73,7 @@ describe('FootprintController', () => {
     })
     it('should update a single record', done => {
       request
-        .put('/user/' + userId)
+        .put('/api/v1/user/' + userId)
         .send({name: 'updatetest2'})
         .expect(200)
         .end((err, res) => {
@@ -85,7 +85,7 @@ describe('FootprintController', () => {
     })
     it('should update a set of records', done => {
       request
-        .put('/user')
+        .put('/api/v1/user')
         .query({name: 'updatetest1'})
         .send({name: 'updatetest2'})
         .expect(200)
@@ -103,7 +103,7 @@ describe('FootprintController', () => {
     let userId
     beforeEach(done => {
       request
-        .post('/user')
+        .post('/api/v1/user')
         .send({name: 'destroytest1'})
         .expect(200)
         .end((err, res) => {
@@ -114,7 +114,7 @@ describe('FootprintController', () => {
     })
     it('should destroy a single record', done => {
       request
-        .del('/user/' + userId)
+        .del('/api/v1/user/' + userId)
         .expect(200)
         .end((err, res) => {
           const user = res.body
@@ -125,7 +125,7 @@ describe('FootprintController', () => {
     })
     it('should destroy a set of records', done => {
       request
-        .del('/user')
+        .del('/api/v1/user')
         .query({name: 'destroytest1'})
         .expect(200)
         .end((err, res) => {
@@ -140,7 +140,7 @@ describe('FootprintController', () => {
     let userId
     before(done => {
       request
-        .post('/user')
+        .post('/api/v1/user')
         .send({name: 'createtest1'})
         .expect(200)
         .end((err, res) => {
@@ -150,7 +150,7 @@ describe('FootprintController', () => {
     })
     it('should insert an associated record', done => {
       request
-        .post('/user/' + userId + '/roles')
+        .post('/api/v1/user/' + userId + '/roles')
         .send({name: 'associatedroletest1'})
         .expect(200)
         .end((err, res) => {
@@ -167,7 +167,7 @@ describe('FootprintController', () => {
     let userId, roleId
     before(done => {
       request
-        .post('/user')
+        .post('/api/v1/user')
         .send({name: 'createtest1'})
         .expect(200)
         .end((err, res) => {
@@ -175,7 +175,7 @@ describe('FootprintController', () => {
 
           userId = res.body.id
           request
-            .post('/user/' + userId + '/roles')
+            .post('/api/v1/user/' + userId + '/roles')
             .send({name: 'associatedroletest1'})
             .expect(200)
             .end((err, res) => {
@@ -186,7 +186,7 @@ describe('FootprintController', () => {
     })
     it('should find a single associated record ("one")', done => {
       request
-        .get('/role/' + roleId + '/user')
+        .get('/api/v1/role/' + roleId + '/user')
         .expect(200)
         .end((err, res) => {
           const user = res.body
@@ -197,7 +197,7 @@ describe('FootprintController', () => {
     })
     it('should find a set of associated records ("many")', done => {
       request
-        .get('/user/' + userId + '/roles')
+        .get('/api/v1/user/' + userId + '/roles')
         .expect(200)
         .end((err, res) => {
           const roles = res.body
@@ -208,7 +208,7 @@ describe('FootprintController', () => {
     })
     it.skip('should find a set of associated records ("many") and populate the parent association', done => {
       request
-        .get('/user/' + userId + '/roles')
+        .get('/api/v1/user/' + userId + '/roles')
         .expect(200)
         .query({
           populate: ['user']
@@ -223,7 +223,7 @@ describe('FootprintController', () => {
 
     it('should find a particular record in an associated set ("many")', done => {
       request
-        .get('/user/' + userId + '/roles/' + roleId)
+        .get('/api/v1/user/' + userId + '/roles/' + roleId)
         .expect(200)
         .end((err, res) => {
           const role = res.body
@@ -238,7 +238,7 @@ describe('FootprintController', () => {
     let userId, roleId
     beforeEach(done => {
       request
-        .post('/user')
+        .post('/api/v1/user')
         .send({name: 'updateassociationtest1'})
         .expect(200)
         .end((err, res) => {
@@ -246,7 +246,7 @@ describe('FootprintController', () => {
 
           userId = res.body.id
           request
-            .post('/user/' + userId + '/roles')
+            .post('/api/v1/user/' + userId + '/roles')
             .send({name: 'associatedroletest2'})
             .expect(200)
             .end((err, res) => {
@@ -257,7 +257,7 @@ describe('FootprintController', () => {
     })
     it('should update an associated record', done => {
       request
-        .put('/role/' + roleId + '/user')
+        .put('/api/v1/role/' + roleId + '/user')
         .send({
           name: 'updateassociationtest2'
         })
@@ -271,7 +271,7 @@ describe('FootprintController', () => {
     })
     it('should update a set of associated records', done => {
       request
-        .put('/user/' + userId + '/roles')
+        .put('/api/v1/user/' + userId + '/roles')
         .send({
           name: 'updateassociationtest2'
         })
@@ -288,7 +288,7 @@ describe('FootprintController', () => {
     let userId, roleId
     beforeEach(done => {
       request
-        .post('/user')
+        .post('/api/v1/user')
         .send({name: 'destroyassociationtest1'})
         .expect(200)
         .end((err, res) => {
@@ -296,7 +296,7 @@ describe('FootprintController', () => {
 
           userId = res.body.id
           request
-            .post('/user/' + userId + '/roles')
+            .post('/api/v1/user/' + userId + '/roles')
             .send({name: 'associatedroletest3'})
             .expect(200)
             .end((err, res) => {
@@ -307,7 +307,7 @@ describe('FootprintController', () => {
     })
     it('should delete a single associated record', done => {
       request
-        .del('/role/' + roleId + '/user')
+        .del('/api/v1/role/' + roleId + '/user')
         .expect(200)
         .end((err, res) => {
           if (err) return done(err)
@@ -317,7 +317,7 @@ describe('FootprintController', () => {
           assert.equal(user.id, userId)
 
           request
-            .get('/user/' + userId)
+            .get('/api/v1/user/' + userId)
             .expect(404)
             .end((err, res) => {
               if (err) return done(err)

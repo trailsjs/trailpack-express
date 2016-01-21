@@ -47,7 +47,7 @@ const App = {
           destroyAssociation: true
         }
       },
-      prefix: ''
+      prefix: '/api/v1'
     },
     i18n: {
       lng: 'en',

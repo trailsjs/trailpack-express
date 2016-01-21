@@ -10,6 +10,14 @@ describe('express4 controllers', () => {
   })
   describe('DefaultController', () => {
     describe('info', () => {
+      it('should return 404 on GET /default', (done) => {
+        request
+          .get('/default')
+          .expect(404)
+          .end((err, res) => {
+            done(err)
+          })
+      })
       it('should return {app: \'1.0.0\'} on GET /default/info', (done) => {
         request
           .get('/default/info')

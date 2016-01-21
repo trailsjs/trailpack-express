@@ -8,7 +8,7 @@ to a [Express4 Server](http://expressjs.com/en/api.html).
 Load in your trailpack config.
 
 ```js
-// config/trailpack.js
+// config/main.js
 module.exports = {
   // ...
   packs: [
