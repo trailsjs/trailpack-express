@@ -18,8 +18,8 @@ module.exports = class FootprintController extends Controller {
       .then(function (elements) {
         res.status(200).json(elements)
       }).catch(function (error) {
-      res.boom.wrap(error)
-    })
+        res.boom.wrap(error)
+      })
   }
 
   find(req, res) {
@@ -98,8 +98,8 @@ module.exports = class FootprintController extends Controller {
       .then(function (elements) {
         res.status(200).json(elements)
       }).catch(function (error) {
-      res.boom.wrap(error)
-    })
+        res.boom.wrap(error)
+      })
   }
 
   findAssociation(req, res) {
