@@ -4,7 +4,7 @@
   "description": "Express4.js Trailpack. This pack binds the routes compiled in trailpack-router to a Express 4 Server.",
   "main": "index.js",
   "scripts": {
-    "test": "eslint . && mocha"
+    "test": "eslint --fix . && mocha"
   },
   "repository": {
     "type": "git",
@@ -41,7 +41,7 @@
     "extends": "trails"
   },
   "devDependencies": {
-    "eslint": "next",
+    "eslint": "2.0.0-beta.2",
     "eslint-config-trails": "^1.0",
     "jade": "^1.11.0",
     "mocha": "^2.3.4",
