@@ -5,12 +5,11 @@
  * modified by this trailpack.
  */
 module.exports = {
-  provides: {
-  },
+  provides: {},
   lifecycle: {
     initialize: {
-      listen: [ 'trailpack:router:initialized' ],
-      emit: [ 'webserver:http:ready' ]
+      listen: ['trailpack:router:initialized'],
+      emit: ['webserver:http:ready']
     }
   }
 }
