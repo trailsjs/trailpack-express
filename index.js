@@ -41,11 +41,17 @@ module.exports = class Express4 extends WebServerTrailpack {
   initialize() {
     const server = lib.Server.createServer(this.app)
 
-    lib.Server.registerMethods(this.app, server)
-    lib.Server.registerRoutes(this.app, server)
-    lib.Server.registerViews(this.app, server)
-
-    return lib.Server.start(server)
+    return Promise.all([
+      lib.Server.registerMethods(this.app, server),
+      lib.Server.registerRoutes(this.app, server),
+      lib.Server.registerViews(this.app, server)
+    ])
+      .then(() => {
+        return lib.Server.start(server)
+      })
+      .then(() => {
+        this.app.emit('webserver:http:ready', lib.Server.nativeServer)
+      })
   }
 
   constructor(app, config) {
