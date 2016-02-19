@@ -3,12 +3,6 @@ const smokesignals = require('smokesignals')
 
 const Api = require('./api')
 
-const AppConfigLocales = {
-  en: {
-    helloworld: 'hello world'
-  }
-}
-
 const App = {
   pkg: {
     name: 'express4-trailpack-test',
@@ -49,14 +43,6 @@ const App = {
       },
       prefix: '/api/v1'
     },
-    i18n: {
-      lng: 'en',
-      resources: {
-        en: {
-          translation: AppConfigLocales.en
-        }
-      }
-    },
     main: {
       packs: [
         smokesignals.Trailpack,
@@ -71,6 +57,16 @@ const App = {
         method: 'GET',
         path: '/',
         handler: 'ViewController.helloWorld'
+      },
+      {
+        method: ['GET'],
+        path: '/standard/info',
+        handler: 'StandardController.info'
+      },
+      {
+        method: ['GET'],
+        path: '/standard/intercept',
+        handler: 'StandardController.intercept'
       },
       {
         method: ['POST', 'PUT'],
@@ -103,10 +99,21 @@ const App = {
         policyFail: ['Default.fail'],
         policySuccess: ['Default.success'],
         policyIntercept: ['Default.intercept']
+      },
+      StandardController: {
+        info: ['Standard.continue'],
+        intercept: ['Standard.fail']
       }
     },
-    web: {port: 3000},
-    views: {engine: 'jade'}
+    web: {
+      port: 3000,
+      views: {
+        engines: {
+          html: 'jade'
+        },
+        path: 'views'
+      }
+    }
   }
 }
 

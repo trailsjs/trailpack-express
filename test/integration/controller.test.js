@@ -55,4 +55,25 @@ describe('express4 controllers', () => {
       })
     })
   })
+  describe('StandardController', () => {
+    it('should return {app: \'1.0.0\'} on GET /standard/info', (done) => {
+      request
+        .get('/standard/info')
+        .expect(200)
+        .end((err, res) => {
+          const data = res.body
+          assert.deepEqual(data, {app: '1.0.0'})
+          done(err)
+        })
+    })
+    it('should be intercept by policy and return 412 on GET /standard/intercept', (done) => {
+      request
+        .get('/standard/intercept')
+        .expect(412)
+        .end((err, res) => {
+          assert.equal(res.status, 412)
+          done(err)
+        })
+    })
+  })
 })

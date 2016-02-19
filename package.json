@@ -26,33 +26,33 @@
   },
   "homepage": "https://github.com/jaumard/trailpack-express4#readme",
   "dependencies": {
-    "body-parser": "^1.14.2",
+    "body-parser": "^1.15.0",
     "consolidate": "^0.14.0",
     "express": "^4.13.4",
     "express-boom": "^0.3.0",
-    "joi": "^7.2.1",
-    "lodash": "^4.1.0",
-    "trailpack": "^1.0.0-alpha-2",
+    "joi": "^8.0.1",
+    "lodash": "^4.5.0",
+    "trailpack": "^1.0.0-beta-3",
     "trailpack-webserver": "^1.0.0-alpha-1",
-    "trails-controller": "^1.0.0-alpha-1",
-    "trails-policy": "^1.0.0-alpha-1"
+    "trails-controller": "^1.0.0-beta-2",
+    "trails-policy": "^1.0.1"
   },
   "eslintConfig": {
     "extends": "trails"
   },
   "devDependencies": {
-    "eslint": "2.0.0-beta.2",
-    "eslint-config-trails": "^1.0",
+    "eslint": "^2.1.0",
+    "eslint-config-trails": "^1.0.4",
     "jade": "^1.11.0",
-    "mocha": "^2.3.4",
+    "mocha": "^2.4.5",
     "smokesignals": "^1.0.2",
     "supertest": "^1.1.0",
-    "trailpack-core": "^1.0.0-alpha-3",
+    "trailpack-core": "^1.0.0-alpha-4",
     "trailpack-router": "1.0.0-alpha-7",
     "trailpack-waterline": "1.0.0-alpha-6",
-    "trails": "1.0.0-alpha-8",
-    "trails-model": "1.0.0-alpha-1",
-    "trails-service": "^1.0.0-alpha-1",
+    "trails": "1.0.0-beta-1",
+    "trails-model": "1.0.0-beta-2",
+    "trails-service": "^1.0.0-beta-2",
     "waterline-sqlite3": "^1.0.0"
   }
 }

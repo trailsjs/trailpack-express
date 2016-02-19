@@ -206,7 +206,7 @@ describe('FootprintController', () => {
           done(err)
         })
     })
-    it.skip('should find a set of associated records ("many") and populate the parent association', done => {
+    it('should find a set of associated records ("many") and populate the parent association', done => {
       request
         .get('/api/v1/user/' + userId + '/roles')
         .expect(200)
