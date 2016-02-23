@@ -1,3 +1,5 @@
+
+const bodyParser = require('body-parser')
 /**
  * Server Configuration
  * (app.config.web)
@@ -16,7 +18,10 @@ module.exports = {
   /**
    * Middlewares to load for body parsing
    */
-  bodyParser: [require('body-parser').json()],
+  bodyParser: [
+    bodyParser.json(),
+    bodyParser.urlencoded({extended: false})
+  ],
 
   /**
    * The port to bind the web server to

@@ -22,7 +22,9 @@ const App = {
       }
     },
     footprints: {
-      controllers: false,
+      controllers: {
+        ignore: ['DefaultController', 'ViewController', 'StandardController']
+      },
       models: {
 
         actions: {
@@ -41,13 +43,14 @@ const App = {
           destroyAssociation: true
         }
       },
-      prefix: '/api/v1'
+      prefix: ''
     },
     main: {
       packs: [
         smokesignals.Trailpack,
         require('trailpack-core'),
         require('trailpack-waterline'),
+        require('trailpack-footprints'),
         require('trailpack-router'),
         require('../') // trailpack-express4
       ]

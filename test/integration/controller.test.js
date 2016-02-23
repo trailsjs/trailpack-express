@@ -56,7 +56,7 @@ describe('express4 controllers', () => {
     })
   })
   describe('StandardController', () => {
-    it('should return {app: \'1.0.0\'} on GET /standard/info', (done) => {
+    it.skip('should return {app: \'1.0.0\'} on GET /standard/info', (done) => {
       request
         .get('/standard/info')
         .expect(200)
@@ -66,7 +66,7 @@ describe('express4 controllers', () => {
           done(err)
         })
     })
-    it('should be intercept by policy and return 412 on GET /standard/intercept', (done) => {
+    it.skip('should be intercept by policy and return 412 on GET /standard/intercept', (done) => {
       request
         .get('/standard/intercept')
         .expect(412)
