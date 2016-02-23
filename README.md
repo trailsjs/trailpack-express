@@ -32,10 +32,48 @@ module.exports = {
 Then simply write your views in a directory called 'views'!
 
 ## Configuration
-See [`config/web.js`](https://github.com/trailsjs/trails-example-app/blob/master/config/web.js) for an example.
 
-#### `port`
-The port to listen on. `3000` by default. Can also be set via the `PORT` environment variable.
+```js
+// config/web.js
+/**
+ * Server Configuration
+ * (app.config.web)
+ *
+ * Configure the Web Server
+ *
+ * @see {@link http://trailsjs.io/doc/config/web}
+ */
+module.exports = {
+
+  /**
+   * Middlewares to load (in order)
+   */
+  middlewares: [],
+
+  /**
+   * Middlewares to load for body parsing
+   */
+  bodyParser: [
+    bodyParser.json(),
+    bodyParser.urlencoded({extended: false})
+  ],
+
+  /**
+   * The port to bind the web server to
+   */
+  port: process.env.PORT || 3000,
+
+  /**
+   * Alternate method to add multiple template engine
+   */
+  views: {
+    engines: {
+      // html: require('some-view-engine')
+    },
+    path: 'views'
+  }
+}
+```
 
 ## Contributing
 We love contributions! In order to be able to review your code efficiently,
