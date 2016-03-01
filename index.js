@@ -42,7 +42,7 @@ module.exports = class Express4 extends WebServerTrailpack {
     const server = lib.Server.createServer(this.app)
 
     return Promise.all([
-      lib.Server.registerRoutes(this.app, server),
+      lib.Server.registerMiddlewares(this.app, server),
       lib.Server.registerViews(this.app, server)
     ])
       .then(() => {
