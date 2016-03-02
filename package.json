@@ -33,7 +33,7 @@
     "express": "^4.13.4",
     "express-boom": "^0.3.0",
     "joi": "^8.0.2",
-    "lodash": "^4.5.0",
+    "lodash": "^4.6.0",
     "method-override": "^2.3.5",
     "trailpack": "^1.0.0-beta-3",
     "trailpack-webserver": "^1.0.0-alpha-1",
