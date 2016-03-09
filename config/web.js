@@ -70,6 +70,7 @@ module.exports = {
     order: [
       'addMethods',
       'cookieParser',
+      'session',
       'bodyParser',
       'compression',
       'methodOverride',
