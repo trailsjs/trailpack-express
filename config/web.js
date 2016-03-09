@@ -23,7 +23,7 @@ module.exports = {
       res.status(404)
 
       // respond with html page
-      if (req.accepts('html')) {
+      if (req.accepts('html') && req.app.get('view engine')) {
         res.render('404', {url: req.url}, (err, html) => {
           if (err) {
             req.log.error('Error sending page 404, maybe you don\'t have a 404.html file', err)
@@ -47,7 +47,7 @@ module.exports = {
       res.status(500)
       req.log.error(error)
       // respond with html page
-      if (req.accepts('html')) {
+      if (req.accepts('html') && req.app.get('view engine')) {
         res.render('500', {url: req.url, error: error}, (err, html) => {
           if (err) {
             req.log.error('Error sending page 500, maybe you don\'t have a 500.html file', err)
