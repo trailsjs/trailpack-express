@@ -2,6 +2,7 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const methodOverride = require('method-override')
 const compression = require('compression')
+
 /**
  * Server Configuration
  * (app.config.web)
@@ -35,7 +36,7 @@ module.exports = {
         })
       }
       // respond with json
-      else if (req.accepts('json')) {
+      else if (req.wantsJSON) {
         res.send({error: 'Not found'})
       }
       else {
@@ -59,7 +60,7 @@ module.exports = {
         })
       }
       // respond with json
-      else if (req.accepts('json')) {
+      else if (req.wantsJSON) {
         res.send({error: error})
       }
       // default to plain-text. send()
