@@ -53,4 +53,39 @@ module.exports = {
    * The port to bind the web server to
    */
   port: process.env.PORT || 3000
+
+  /**
+   * Alternate method to add multiple template engine, for single view template use config.view.engine
+   */
+  /*
+  views: {
+    engines: {
+      // html: require('some-view-engine')
+    },
+    path: 'views'
+  },
+  */
+
+  /**
+   * SSL options
+   * Cert and key or pfx to create HTTPS server
+   */
+  /*
+  ssl: {
+    key: fs.readFileSync('path/to/private.key'),
+    cert: fs.readFileSync('path/to/certificate.pem')
+    //OR pfx: fs.readFileSync('path/to/server.pfx')
+  },
+   */
+  /**
+   * Automatically redirect HTTP to HTTPS
+   * Create an HTTP server who redirect to HTTPS server
+   * Work only if SSL is enabled
+   */
+  //redirectToHttps: false,
+
+  /**
+   * Http port to use if redirectToHttps is enabled, port use for https server
+   */
+  //portHttp: 80
 }
