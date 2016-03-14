@@ -46,7 +46,7 @@ module.exports = class Express4 extends WebServerTrailpack {
       lib.Server.registerViews(this.app, server)
     ])
       .then(() => {
-        return lib.Server.start(server)
+        return lib.Server.start(this.app, server)
       })
       .then(() => {
         this.app.emit('webserver:http:ready', lib.Server.nativeServer)
