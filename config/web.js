@@ -75,8 +75,8 @@ module.exports = {
       'bodyParser',
       'compression',
       'methodOverride',
-      'router',
       'www',
+      'router',
       '404',
       '500'
     ],
