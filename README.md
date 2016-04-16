@@ -58,8 +58,8 @@ module.exports = {
       'cookieParser',
       'bodyParser',
       'methodOverride',
-      'router',
       'www',
+      'router',
       '404',
       '500'
     ]*/
