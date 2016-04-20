@@ -15,6 +15,6 @@ module.exports = class DefaultController extends Controller {
    * Return some info about this application
    */
   info(req, res) {
-    res.status(200).json(this.api.services.DefaultService.getApplicationInfo())
+    res.status(200).json(this.app.services.DefaultService.getApplicationInfo())
   }
 }
