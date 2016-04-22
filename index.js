@@ -21,7 +21,7 @@ module.exports = class Express4 extends WebServerTrailpack {
    * Ensure that config/web is valid, and that no other competing web
    * server trailpacks are installed (e.g. express)
    */
-  validate () {
+  validate() {
     if (_.includes(_.keys(this.app.config.main.packs), 'express4', 'koa', 'koa2', 'restify')) {
       return Promise.reject(new Error('There is another web services trailpack installed that conflicts with trailpack-express4!'))
     }
@@ -31,29 +31,41 @@ module.exports = class Express4 extends WebServerTrailpack {
     ])
   }
 
-  configure () {
+  configure() {
     this.app.config.web.server = 'express4'
   }
 
   /**
    * Start Express4 Server
    */
-  initialize () {
-    const server = lib.Server.createServer(this.app)
+  initialize() {
+    this.server = lib.Server.createServer(this.app)
 
     return Promise.all([
-      lib.Server.registerMiddlewares(this.app, server),
-      lib.Server.registerViews(this.app, server)
-    ])
+        lib.Server.registerMiddlewares(this.app, this.server),
+        lib.Server.registerViews(this.app, this.server)
+      ])
       .then(() => {
-        return lib.Server.start(this.app, server)
+        return lib.Server.start(this.app, this.server)
       })
       .then(() => {
         this.app.emit('webserver:http:ready', lib.Server.nativeServer)
       })
   }
 
-  constructor (app, config) {
+  unload() {
+    if (_.isArray(lib.Server.nativeServer)) {
+      lib.Server.nativeServer.forEach(server => {
+        server.close()
+      })
+    }
+    else {
+      lib.Server.nativeServer.close()
+    }
+
+  }
+
+  constructor(app, config) {
     super(app, {
       config: require('./config'),
       api: require('./api'),

@@ -85,7 +85,8 @@ module.exports = {
   //redirectToHttps: false,
 
   /**
-   * Http port to use if redirectToHttps is enabled, port use for https server
+   * Http port to use if you want to enable http and https
+   * SSL need to be enabled
    */
   //portHttp: 80
 }

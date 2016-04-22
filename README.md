@@ -19,6 +19,19 @@ module.exports = {
 }
 ```
 
+## Static assets
+```js
+// config/main.js
+module.exports = {
+  // ...
+  paths: {
+    ...
+    www: path.resolve(__dirname, '..', 'public')
+    ...
+  }
+}
+```
+
 ## View Config
 Choose a template engine.
 
@@ -33,101 +46,28 @@ Then simply write your views in a directory called 'views'!
 
 ## Configuration
 
-```js
-// config/web.js
+See [`config/web.js`](https://github.com/trailsjs/trailpack-express4/blob/master/archetype/config/web.js) for a full example.
 
-/**
- * Server Configuration
- * (app.config.web)
- *
- * Configure the Web Server
- *
- * @see {@link http://trailsjs.io/doc/config/web}
- */
-module.exports = {
+#### `port`
+The port to listen on. `3000` by default. Can also be set via the `PORT` environment variable.
 
-  /**
-   * Middlewares to load (in order)
-   */
-  middlewares: {
+#### `host`
+The hostname of the server.
 
-    /*
-    //middlewares loading order
-    order: [
-      'addMethods',
-      'cookieParser',
-      'bodyParser',
-      'methodOverride',
-      'www',
-      'router',
-      '404',
-      '500'
-    ]*/
+#### `cache`
+The number of seconds to cache flat files on disk being served by Express
 
-    /**
-     * Middlewares to load for body parsing
-    bodyParser: [
-      bodyParser.json(),
-      bodyParser.urlencoded({extended: false})
-    ]
-     */
+#### `ssl`
+SSL options (`key`, `cert` or `pfx`) to allow set https protocol
 
-  },
+#### `redirectToHttps`
+Automatically redirect HTTP request to HTTPS if ssl enabled
 
-  /***************************************************************************
-   *                                                                          *
-   * The number of seconds to cache flat files on disk being served by        *
-   * Express static middleware (by default, these files are in `.tmp/public`) *
-   *                                                                          *
-   * The HTTP static cache is only active in a 'production' environment,      *
-   * since that's the only time Express will cache flat-files.                *
-   *                                                                          *
-   ***************************************************************************/
+#### `portHttp`
+The port to listen for http protocol if ssl enabled. If you don't want http and https, don't add this field.
 
-  cache: 31557600000,
-
-  /**
-   * The port to bind the web server to
-   */
-  port: process.env.PORT || 3000,
-
-  /**
-   * Alternate method to add multiple template engine, for single view template use config.view.engine
-   */
-  /*
-  views: {
-    engines: {
-      // html: require('some-view-engine')
-    },
-    path: 'views'
-  },
-  */
-
-  /**
-   * SSL options
-   * Cert and key or pfx to add to create HTTPS server
-   * @redirectToHttps
-   */
-  /*
-  ssl: {
-    key: fs.readFileSync('path/to/private.key'),
-    cert: fs.readFileSync('path/to/certificate.pem')
-    //OR pfx: fs.readFileSync('path/to/server.pfx')
-  },
-   */
-  /**
-   * Automatically redirect HTTP to HTTPS
-   * Create an HTTP server who redirect to HTTPS server
-   * Work only if SSL is enabled
-   */
-  //redirectToHttps: false,
-
-  /**
-   * Http port to use if redirectToHttps is enabled, port use for https server
-   */
-  //portHttp: 80
-}
-```
+#### `middlewares`
+Object to add custom middleware functions to Express, don't forget to add them into `middlewares.order` or they will not be called
 
 ## Contributing
 We love contributions! In order to be able to review your code efficiently,
