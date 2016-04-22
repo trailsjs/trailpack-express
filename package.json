@@ -1,10 +1,10 @@
 {
   "name": "trailpack-express4",
-  "version": "1.0.0-beta-1",
+  "version": "1.0.0-beta-2",
   "description": "Express4.js Trailpack. This pack binds the routes compiled in trailpack-router to a Express 4 Server.",
   "main": "index.js",
   "scripts": {
-    "test": "eslint --fix . && mocha"
+    "test": "eslint . && mocha"
   },
   "repository": {
     "type": "git",
