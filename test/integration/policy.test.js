@@ -3,7 +3,7 @@
 const assert = require('assert')
 const supertest = require('supertest')
 
-describe('express4 policies', () => {
+describe('express policies', () => {
   let request
   before(() => {
     request = supertest('http://localhost:3000')

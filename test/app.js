@@ -5,7 +5,7 @@ const Api = require('./api')
 
 const App = {
   pkg: {
-    name: 'express4-trailpack-test',
+    name: 'express-trailpack-test',
     version: '1.0.0'
   },
   api: Api,
@@ -52,7 +52,7 @@ const App = {
         require('trailpack-waterline'),
         require('trailpack-footprints'),
         require('trailpack-router'),
-        require('../') // trailpack-express4
+        require('../') // trailpack-express
       ]
     },
     routes: [

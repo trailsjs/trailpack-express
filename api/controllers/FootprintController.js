@@ -18,7 +18,7 @@ const modelExist = (modelName, app) =>{
 module.exports = class FootprintController extends Controller {
   create(req, res) {
     const FootprintService = this.app.services.FootprintService
-    const options = this.app.packs.express4.getOptionsFromQuery(req.query)
+    const options = this.app.packs.express.getOptionsFromQuery(req.query)
 
     if (modelExist(req.params.model, this.app)) {
       FootprintService.create(req.params.model, req.body, options)
@@ -36,8 +36,8 @@ module.exports = class FootprintController extends Controller {
 
   find(req, res) {
     const FootprintService = this.app.services.FootprintService
-    const options = this.app.packs.express4.getOptionsFromQuery(req.query)
-    const criteria = this.app.packs.express4.getCriteriaFromQuery(req.query)
+    const options = this.app.packs.express.getOptionsFromQuery(req.query)
+    const criteria = this.app.packs.express.getCriteriaFromQuery(req.query)
     const id = req.params.id
     if (modelExist(req.params.model, this.app)) {
       let response
@@ -61,8 +61,8 @@ module.exports = class FootprintController extends Controller {
 
   update(req, res) {
     const FootprintService = this.app.services.FootprintService
-    const options = this.app.packs.express4.getOptionsFromQuery(req.query)
-    const criteria = this.app.packs.express4.getCriteriaFromQuery(req.query)
+    const options = this.app.packs.express.getOptionsFromQuery(req.query)
+    const criteria = this.app.packs.express.getCriteriaFromQuery(req.query)
 
     const id = req.params.id
 
@@ -91,8 +91,8 @@ module.exports = class FootprintController extends Controller {
 
   destroy(req, res) {
     const FootprintService = this.app.services.FootprintService
-    const options = this.app.packs.express4.getOptionsFromQuery(req.query)
-    const criteria = this.app.packs.express4.getCriteriaFromQuery(req.query)
+    const options = this.app.packs.express.getOptionsFromQuery(req.query)
+    const criteria = this.app.packs.express.getCriteriaFromQuery(req.query)
     const id = req.params.id
 
     if (modelExist(req.params.model, this.app)) {
@@ -117,7 +117,7 @@ module.exports = class FootprintController extends Controller {
 
   createAssociation(req, res) {
     const FootprintService = this.app.services.FootprintService
-    const options = this.app.packs.express4.getOptionsFromQuery(req.query)
+    const options = this.app.packs.express.getOptionsFromQuery(req.query)
     if (modelExist(req.params.parentModel, this.app)) {
       FootprintService.createAssociation(req.params.parentModel, req.params.parentId, req.params.childAttribute, req.body, options)
         .then(function(elements) {
@@ -133,8 +133,8 @@ module.exports = class FootprintController extends Controller {
 
   findAssociation(req, res) {
     const FootprintService = this.app.services.FootprintService
-    const options = this.app.packs.express4.getOptionsFromQuery(req.query)
-    const criteria = this.app.packs.express4.getCriteriaFromQuery(req.query)
+    const options = this.app.packs.express.getOptionsFromQuery(req.query)
+    const criteria = this.app.packs.express.getCriteriaFromQuery(req.query)
     const parentModel = req.params.parentModel
     const parentId = req.params.parentId
     const childAttribute = req.params.childAttribute
@@ -162,8 +162,8 @@ module.exports = class FootprintController extends Controller {
 
   updateAssociation(req, res) {
     const FootprintService = this.app.services.FootprintService
-    const options = this.app.packs.express4.getOptionsFromQuery(req.query)
-    const criteria = this.app.packs.express4.getCriteriaFromQuery(req.query)
+    const options = this.app.packs.express.getOptionsFromQuery(req.query)
+    const criteria = this.app.packs.express.getCriteriaFromQuery(req.query)
     const parentModel = req.params.parentModel
     const parentId = req.params.parentId
     const childAttribute = req.params.childAttribute
@@ -191,8 +191,8 @@ module.exports = class FootprintController extends Controller {
 
   destroyAssociation(req, res) {
     const FootprintService = this.app.services.FootprintService
-    const options = this.app.packs.express4.getOptionsFromQuery(req.query)
-    const criteria = this.app.packs.express4.getCriteriaFromQuery(req.query)
+    const options = this.app.packs.express.getOptionsFromQuery(req.query)
+    const criteria = this.app.packs.express.getCriteriaFromQuery(req.query)
     const parentModel = req.params.parentModel
     const parentId = req.params.parentId
     const childAttribute = req.params.childAttribute

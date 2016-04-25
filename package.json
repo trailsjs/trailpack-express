@@ -1,19 +1,20 @@
 {
-  "name": "trailpack-express4",
+  "name": "trailpack-express",
   "version": "1.0.0-beta-1",
-  "description": "Express4.js Trailpack. This pack binds the routes compiled in trailpack-router to a Express 4 Server.",
+  "description": "Express.js Trailpack. This pack binds the routes compiled in trailpack-router to a Express 4 or 5 Server.",
   "main": "index.js",
   "scripts": {
-    "test": "eslint --fix . && mocha"
+    "test": "eslint . && mocha"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jaumard/trailpack-express4.git"
+    "url": "git+https://github.com/jaumard/trailpack-express.git"
   },
   "keywords": [
     "trails",
     "express",
     "express4",
+    "express5",
     "trailsjs",
     "expressjs",
     "webserver",
@@ -22,9 +23,9 @@
   "author": "Jimmy Aumard <jimmy.aumard@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jaumard/trailpack-express4/issues"
+    "url": "https://github.com/jaumard/trailpack-express/issues"
   },
-  "homepage": "https://github.com/jaumard/trailpack-express4#readme",
+  "homepage": "https://github.com/jaumard/trailpack-express#readme",
   "dependencies": {
     "body-parser": "^1.15.0",
     "compression": "^1.6.1",
