@@ -15,8 +15,10 @@ describe('express policies', () => {
           .get('/default/policySuccess')
           .expect(200)
           .end((err, res) => {
-            const data = res.body
-            assert.deepEqual(data, {app: '1.0.0'})
+            if (!err) {
+              const data = res.body
+              assert.deepEqual(data, {app: '1.0.0'})
+            }
             done(err)
           })
       })
@@ -37,8 +39,10 @@ describe('express policies', () => {
           .get('/default/policyIntercept')
           .expect(200)
           .end((err, res) => {
-            const data = res.body
-            assert.deepEqual(data, {result: 'intercept'})
+            if (!err) {
+              const data = res.body
+              assert.deepEqual(data, {result: 'intercept'})
+            }
             done(err)
           })
       })

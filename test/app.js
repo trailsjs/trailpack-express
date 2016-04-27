@@ -2,6 +2,7 @@ const _ = require('lodash')
 const smokesignals = require('smokesignals')
 
 const Api = require('./api')
+const fs = require('fs')
 
 const App = {
   pkg: {
@@ -109,7 +110,13 @@ const App = {
       }
     },
     web: {
-      port: 3000,
+      express: require('express'),
+      port: 3030,
+      portHttp: 3000,
+      ssl: {
+        key: fs.readFileSync(process.cwd() + '/test/ssl/server.key'),
+        cert: fs.readFileSync(process.cwd() + '/test/ssl/server.crt')
+      },
       views: {
         engines: {
           html: 'jade'

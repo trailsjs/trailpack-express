@@ -4,7 +4,9 @@
   "description": "Express.js Trailpack. This pack binds the routes compiled in trailpack-router to a Express 4 or 5 Server.",
   "main": "index.js",
   "scripts": {
-    "test": "eslint . && mocha"
+    "test": "eslint . && mocha && npm run testExpress4 && npm run testExpress5",
+    "testExpress4": "export EXPRESS_VERSION=latest;mocha",
+    "testExpress5": "export EXPRESS_VERSION=5.0.0-alpha.2;mocha"
   },
   "repository": {
     "type": "git",
@@ -50,13 +52,14 @@
     "eslint-config-trails": "^1.0.4",
     "jade": "^1.11.0",
     "mocha": "^2.4.5",
-    "trailpack-router": "^1.0.0-beta-4",
+    "npm": "^3.8.7",
     "smokesignals": "^1.0.9",
     "supertest": "^1.1.0",
-    "trailpack-core": "^1.0.0-alpha-4",
+    "trailpack-core": "^1.0.0-beta-3",
     "trailpack-footprints": "^1.0.0-beta-3",
+    "trailpack-router": "^1.0.0-beta-4",
     "trailpack-waterline": "1.0.0-alpha-6",
-    "trails": "1.0.0-beta-1",
+    "trails": "1.0.0-beta-8",
     "trails-model": "1.0.0-beta-2",
     "trails-service": "^1.0.0-beta-2",
     "waterline-sqlite3": "^1.0.0"

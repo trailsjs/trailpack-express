@@ -23,9 +23,11 @@ describe('express controllers', () => {
           .get('/default/info')
           .expect(200)
           .end((err, res) => {
-            const data = res.body
-            assert.deepEqual(data, {app: '1.0.0'})
-            done(err)
+            if (!err) {
+              const data = res.body
+              assert.deepEqual(data, {app: '1.0.0'})
+              done(err)
+            }
           })
       })
       it('should return {test: \'ok\'} POST on /default/info', (done) => {
@@ -34,8 +36,10 @@ describe('express controllers', () => {
           .send({test: 'ok'})
           .expect(200)
           .end((err, res) => {
-            const data = res.body
-            assert.deepEqual(data, {test: 'ok'})
+            if (!err) {
+              const data = res.body
+              assert.deepEqual(data, {test: 'ok'})
+            }
             done(err)
           })
       })
@@ -48,8 +52,10 @@ describe('express controllers', () => {
           .get('/')
           .expect(200)
           .end((err, res) => {
-            const data = res.text
-            assert.deepEqual(data, '<!DOCTYPE html><html lang="en"><head><title>Test</title></head><body><h1>helloWorld</h1></body></html>')
+            if (!err) {
+              const data = res.text
+              assert.deepEqual(data, '<!DOCTYPE html><html lang="en"><head><title>Test</title></head><body><h1>helloWorld</h1></body></html>')
+            }
             done(err)
           })
       })
@@ -61,8 +67,10 @@ describe('express controllers', () => {
         .get('/standard/info')
         .expect(200)
         .end((err, res) => {
-          const data = res.body
-          assert.deepEqual(data, {app: '1.0.0'})
+          if (!err) {
+            const data = res.body
+            assert.deepEqual(data, {app: '1.0.0'})
+          }
           done(err)
         })
     })
@@ -71,7 +79,9 @@ describe('express controllers', () => {
         .get('/standard/intercept')
         .expect(412)
         .end((err, res) => {
-          assert.equal(res.status, 412)
+          if (!err) {
+            assert.equal(res.status, 412)
+          }
           done(err)
         })
     })
