@@ -55,47 +55,112 @@ const App = {
         require('../') // trailpack-express4
       ]
     },
-    routes: [
-      {
+    routes: [{
         method: 'GET',
         path: '/',
         handler: 'ViewController.helloWorld'
-      },
-      {
+      }, {
         method: ['GET'],
         path: '/standard/info',
         handler: 'StandardController.info'
-      },
-      {
+      }, {
         method: ['GET'],
         path: '/standard/intercept',
         handler: 'StandardController.intercept'
-      },
-      {
+      }, {
         method: ['POST', 'PUT'],
         path: '/default/info',
         handler: 'DefaultController.echo'
-      },
-      {
+      }, {
         method: ['GET'],
         path: '/default/info',
         handler: 'DefaultController.info'
-      },
-      {
+      }, {
         method: ['GET'],
         path: '/default/policySuccess',
         handler: 'DefaultController.policySuccess'
-      },
-      {
+      }, {
         method: ['GET'],
         path: '/default/policyFail',
         handler: 'DefaultController.policyFail'
-      },
-      {
+      }, {
         method: ['GET'],
         path: '/default/policyIntercept',
         handler: 'DefaultController.policyIntercept'
+      }, {
+        method: ['GET'],
+        path: '/validation/failHeaders',
+        handler: 'ValidationController.fail',
+        config: {
+          validate: {
+            headers: false
+          }
+        }
+      }, {
+        method: ['GET'],
+        path: '/validation/successHeaders',
+        handler: 'ValidationController.success',
+        config: {
+          validate: {
+            headers: true
+          }
+        }
+      }, {
+        method: ['GET'],
+        path: '/validation/:id/failParams',
+        handler: 'ValidationController.fail',
+        config: {
+          validate: {
+            params: false
+          }
+        }
+      }, {
+        method: ['GET'],
+        path: '/validation/:id/successParams',
+        handler: 'ValidationController.success',
+        config: {
+          validate: {
+            params: true
+          }
+        }
+      }, {
+        method: ['GET'],
+        path: '/validation/failQuery',
+        handler: 'ValidationController.fail',
+        config: {
+          validate: {
+            query: false
+          }
+        }
+      }, {
+        method: ['GET'],
+        path: '/validation/successQuery',
+        handler: 'ValidationController.success',
+        config: {
+          validate: {
+            query: true
+          }
+        }
+      }, {
+        method: ['POST'],
+        path: '/validation/failBody',
+        handler: 'ValidationController.fail',
+        config: {
+          validate: {
+            payload: false
+          }
+        }
+      }, {
+        method: ['POST'],
+        path: '/validation/successBody',
+        handler: 'ValidationController.success',
+        config: {
+          validate: {
+            payload: true
+          }
+        }
       }
+
     ],
     policies: {
       DefaultController: {
