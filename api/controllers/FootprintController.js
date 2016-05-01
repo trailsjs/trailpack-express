@@ -1,7 +1,7 @@
 'use strict'
 const Controller = require('trails-controller')
 
-const modelExist = (modelName, app) =>{
+const modelExist = (modelName, app) => {
   const Model = app.orm[modelName] || app.packs.waterline.orm.collections[modelName]
   return Model
 }
@@ -22,9 +22,9 @@ module.exports = class FootprintController extends Controller {
 
     if (modelExist(req.params.model, this.app)) {
       FootprintService.create(req.params.model, req.body, options)
-        .then(function (elements) {
+        .then(function(elements) {
           res.status(200).json(elements)
-        }).catch(function (error) {
+        }).catch(function(error) {
           res.boom.wrap(error)
         })
     }
@@ -104,9 +104,9 @@ module.exports = class FootprintController extends Controller {
         response = FootprintService.destroy(req.params.model, criteria, options)
       }
 
-      response.then(function (elements) {
+      response.then(function(elements) {
         res.status(200).json(elements)
-      }).catch(function (error) {
+      }).catch(function(error) {
         res.boom.wrap(error)
       })
     }
@@ -119,7 +119,8 @@ module.exports = class FootprintController extends Controller {
     const FootprintService = this.app.services.FootprintService
     const options = this.app.packs.express4.getOptionsFromQuery(req.query)
     if (modelExist(req.params.parentModel, this.app)) {
-      FootprintService.createAssociation(req.params.parentModel, req.params.parentId, req.params.childAttribute, req.body, options)
+      FootprintService.createAssociation(req.params.parentModel,
+          req.params.parentId, req.params.childAttribute, req.body, options)
         .then(function(elements) {
           res.status(200).json(elements)
         }).catch(function(error) {
@@ -143,15 +144,17 @@ module.exports = class FootprintController extends Controller {
     if (modelExist(req.params.parentModel, this.app)) {
       let response
       if (childId) {
-        response = FootprintService.findAssociation(parentModel, parentId, childAttribute, childId, options)
+        response = FootprintService.findAssociation(parentModel,
+          parentId, childAttribute, childId, options)
       }
       else {
-        response = FootprintService.findAssociation(parentModel, parentId, childAttribute, criteria, options)
+        response = FootprintService.findAssociation(parentModel,
+          parentId, childAttribute, criteria, options)
       }
 
-      response.then(function (elements) {
+      response.then(function(elements) {
         res.status(elements ? 200 : 404).json(elements)
-      }).catch(function (error) {
+      }).catch(function(error) {
         res.boom.wrap(error)
       })
     }
@@ -172,15 +175,17 @@ module.exports = class FootprintController extends Controller {
     if (modelExist(req.params.parentModel, this.app)) {
       let response
       if (childId) {
-        response = FootprintService.updateAssociation(parentModel, parentId, childAttribute, childId, req.body, options)
+        response = FootprintService.updateAssociation(parentModel,
+          parentId, childAttribute, childId, req.body, options)
       }
       else {
-        response = FootprintService.updateAssociation(parentModel, parentId, childAttribute, criteria, req.body, options)
+        response = FootprintService.updateAssociation(parentModel,
+          parentId, childAttribute, criteria, req.body, options)
       }
 
-      response.then(function (elements) {
+      response.then(function(elements) {
         res.status(200).json(elements)
-      }).catch(function (error) {
+      }).catch(function(error) {
         res.boom.wrap(error)
       })
     }
@@ -201,15 +206,17 @@ module.exports = class FootprintController extends Controller {
     if (modelExist(req.params.parentModel, this.app)) {
       let response
       if (childId) {
-        response = FootprintService.destroyAssociation(parentModel, parentId, childAttribute, childId, options)
+        response = FootprintService.destroyAssociation(parentModel,
+          parentId, childAttribute, childId, options)
       }
       else {
-        response = FootprintService.destroyAssociation(parentModel, parentId, childAttribute, criteria, options)
+        response = FootprintService.destroyAssociation(parentModel,
+          parentId, childAttribute, criteria, options)
       }
 
-      response.then(function (elements) {
+      response.then(function(elements) {
         res.status(200).json(elements)
-      }).catch(function (error) {
+      }).catch(function(error) {
         res.boom.wrap(error)
       })
     }

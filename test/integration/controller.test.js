@@ -55,7 +55,8 @@ describe('express4 controllers', () => {
           .expect(200)
           .end((err, res) => {
             const data = res.text
-            assert.deepEqual(data, '<!DOCTYPE html><html lang="en"><head><title>Test</title></head><body><h1>helloWorld</h1></body></html>')
+            assert.deepEqual(data, '<!DOCTYPE html><html lang="en">' +
+              '<head><title>Test</title></head><body><h1>helloWorld</h1></body></html>')
             done(err)
           })
       })

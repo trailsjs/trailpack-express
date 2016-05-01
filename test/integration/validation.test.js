@@ -1,6 +1,5 @@
 'use strict'
 
-const assert = require('assert')
 const supertest = require('supertest')
 
 describe('express4 controllers', () => {

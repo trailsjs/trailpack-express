@@ -13,7 +13,9 @@ describe('FootprintController', () => {
     it('should insert a record', done => {
       request
         .post('/user')
-        .send({name: 'createtest1'})
+        .send({
+          name: 'createtest1'
+        })
         .expect(200)
         .end((err, res) => {
           const user = res.body
@@ -42,7 +44,9 @@ describe('FootprintController', () => {
     it('should find a set of records', done => {
       request
         .get('/user')
-        .query({name: 'createtest1'})
+        .query({
+          name: 'createtest1'
+        })
         .expect(200)
         .end((err, res) => {
           const user = res.body[0]
@@ -63,7 +67,9 @@ describe('FootprintController', () => {
     beforeEach(done => {
       request
         .post('/user')
-        .send({name: 'updatetest1'})
+        .send({
+          name: 'updatetest1'
+        })
         .expect(200)
         .end((err, res) => {
           assert.equal(res.body.name, 'updatetest1')
@@ -74,7 +80,9 @@ describe('FootprintController', () => {
     it('should update a single record', done => {
       request
         .put('/user/' + userId)
-        .send({name: 'updatetest2'})
+        .send({
+          name: 'updatetest2'
+        })
         .expect(200)
         .end((err, res) => {
           const user = res.body
@@ -86,8 +94,12 @@ describe('FootprintController', () => {
     it('should update a set of records', done => {
       request
         .put('/user')
-        .query({name: 'updatetest1'})
-        .send({name: 'updatetest2'})
+        .query({
+          name: 'updatetest1'
+        })
+        .send({
+          name: 'updatetest2'
+        })
         .expect(200)
         .end((err, res) => {
           const user = res.body[0]
@@ -104,7 +116,9 @@ describe('FootprintController', () => {
     beforeEach(done => {
       request
         .post('/user')
-        .send({name: 'destroytest1'})
+        .send({
+          name: 'destroytest1'
+        })
         .expect(200)
         .end((err, res) => {
           assert.equal(res.body.name, 'destroytest1')
@@ -126,7 +140,9 @@ describe('FootprintController', () => {
     it('should destroy a set of records', done => {
       request
         .del('/user')
-        .query({name: 'destroytest1'})
+        .query({
+          name: 'destroytest1'
+        })
         .expect(200)
         .end((err, res) => {
           const user = res.body[0]
@@ -141,7 +157,9 @@ describe('FootprintController', () => {
     before(done => {
       request
         .post('/user')
-        .send({name: 'createtest1'})
+        .send({
+          name: 'createtest1'
+        })
         .expect(200)
         .end((err, res) => {
           userId = res.body.id
@@ -151,7 +169,9 @@ describe('FootprintController', () => {
     it('should insert an associated record', done => {
       request
         .post('/user/' + userId + '/roles')
-        .send({name: 'associatedroletest1'})
+        .send({
+          name: 'associatedroletest1'
+        })
         .expect(200)
         .end((err, res) => {
           const role = res.body
@@ -168,7 +188,9 @@ describe('FootprintController', () => {
     before(done => {
       request
         .post('/user')
-        .send({name: 'createtest1'})
+        .send({
+          name: 'createtest1'
+        })
         .expect(200)
         .end((err, res) => {
           if (err) return done(err)
@@ -176,7 +198,9 @@ describe('FootprintController', () => {
           userId = res.body.id
           request
             .post('/user/' + userId + '/roles')
-            .send({name: 'associatedroletest1'})
+            .send({
+              name: 'associatedroletest1'
+            })
             .expect(200)
             .end((err, res) => {
               roleId = res.body.id
@@ -206,20 +230,21 @@ describe('FootprintController', () => {
           done(err)
         })
     })
-    it('should find a set of associated records ("many") and populate the parent association', done => {
-      request
-        .get('/user/' + userId + '/roles')
-        .expect(200)
-        .query({
-          populate: ['user']
-        })
-        .end((err, res) => {
-          const roles = res.body
-          assert(roles.length)
-          assert.equal(roles[0].user.id, userId)
-          done(err)
-        })
-    })
+    it('should find a set of associated records ("many") ' +
+      'and populate the parent association', done => {
+        request
+          .get('/user/' + userId + '/roles')
+          .expect(200)
+          .query({
+            populate: ['user']
+          })
+          .end((err, res) => {
+            const roles = res.body
+            assert(roles.length)
+            assert.equal(roles[0].user.id, userId)
+            done(err)
+          })
+      })
 
     it('should find a particular record in an associated set ("many")', done => {
       request
@@ -239,7 +264,9 @@ describe('FootprintController', () => {
     beforeEach(done => {
       request
         .post('/user')
-        .send({name: 'updateassociationtest1'})
+        .send({
+          name: 'updateassociationtest1'
+        })
         .expect(200)
         .end((err, res) => {
           if (err) return done(err)
@@ -247,7 +274,9 @@ describe('FootprintController', () => {
           userId = res.body.id
           request
             .post('/user/' + userId + '/roles')
-            .send({name: 'associatedroletest2'})
+            .send({
+              name: 'associatedroletest2'
+            })
             .expect(200)
             .end((err, res) => {
               roleId = res.body.id
@@ -289,7 +318,9 @@ describe('FootprintController', () => {
     beforeEach(done => {
       request
         .post('/user')
-        .send({name: 'destroyassociationtest1'})
+        .send({
+          name: 'destroyassociationtest1'
+        })
         .expect(200)
         .end((err, res) => {
           if (err) return done(err)
@@ -297,7 +328,9 @@ describe('FootprintController', () => {
           userId = res.body.id
           request
             .post('/user/' + userId + '/roles')
-            .send({name: 'associatedroletest3'})
+            .send({
+              name: 'associatedroletest3'
+            })
             .expect(200)
             .end((err, res) => {
               roleId = res.body.id
