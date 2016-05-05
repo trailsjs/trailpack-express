@@ -2,6 +2,7 @@ language: node_js
 node_js:
 - '4'
 - '5'
+- stable
 
 notifications:
   email: false
@@ -19,4 +20,4 @@ deploy:
   on:
     tags: true
     repo: trailsjs/trailpack-express
-    node: '5'
+    node: stable
