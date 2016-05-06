@@ -16,14 +16,15 @@ describe('FootprintController', () => {
         .send({name: 'createtest1'})
         .expect(200)
         .end((err, res) => {
-          const user = res.body
+          if (!err) {
+            const user = res.body
 
-          assert(user)
-          assert(user.id)
-          assert.equal(user.name, 'createtest1')
+            assert(user)
+            assert(user.id)
+            assert.equal(user.name, 'createtest1')
 
-          userId = user.id
-
+            userId = user.id
+          }
           done(err)
         })
     })
@@ -34,8 +35,10 @@ describe('FootprintController', () => {
         .get('/user/' + userId)
         .expect(200)
         .end((err, res) => {
-          const user = res.body
-          assert.equal(user.name, 'createtest1')
+          if (!err) {
+            const user = res.body
+            assert.equal(user.name, 'createtest1')
+          }
           done(err)
         })
     })
@@ -45,8 +48,10 @@ describe('FootprintController', () => {
         .query({name: 'createtest1'})
         .expect(200)
         .end((err, res) => {
-          const user = res.body[0]
-          assert.equal(user.name, 'createtest1')
+          if (!err) {
+            const user = res.body[0]
+            assert.equal(user.name, 'createtest1')
+          }
           done(err)
         })
     })
@@ -66,8 +71,10 @@ describe('FootprintController', () => {
         .send({name: 'updatetest1'})
         .expect(200)
         .end((err, res) => {
-          assert.equal(res.body.name, 'updatetest1')
-          userId = res.body.id
+          if (!err) {
+            assert.equal(res.body.name, 'updatetest1')
+            userId = res.body.id
+          }
           done(err)
         })
     })
@@ -77,9 +84,11 @@ describe('FootprintController', () => {
         .send({name: 'updatetest2'})
         .expect(200)
         .end((err, res) => {
-          const user = res.body
-          assert.equal(user.id, userId)
-          assert.equal(user.name, 'updatetest2')
+          if (!err) {
+            const user = res.body
+            assert.equal(user.id, userId)
+            assert.equal(user.name, 'updatetest2')
+          }
           done(err)
         })
     })
@@ -90,10 +99,12 @@ describe('FootprintController', () => {
         .send({name: 'updatetest2'})
         .expect(200)
         .end((err, res) => {
-          const user = res.body[0]
-          if (user) {
-            assert.equal(user.id, userId)
-            assert.equal(user.name, 'updatetest2')
+          if (!err) {
+            const user = res.body[0]
+            if (user) {
+              assert.equal(user.id, userId)
+              assert.equal(user.name, 'updatetest2')
+            }
           }
           done(err)
         })
@@ -107,8 +118,10 @@ describe('FootprintController', () => {
         .send({name: 'destroytest1'})
         .expect(200)
         .end((err, res) => {
-          assert.equal(res.body.name, 'destroytest1')
-          userId = res.body.id
+          if (!err) {
+            assert.equal(res.body.name, 'destroytest1')
+            userId = res.body.id
+          }
           done(err)
         })
     })
@@ -117,9 +130,11 @@ describe('FootprintController', () => {
         .del('/user/' + userId)
         .expect(200)
         .end((err, res) => {
-          const user = res.body
-          assert.equal(user.id, userId)
-          assert.equal(user.name, 'destroytest1')
+          if (!err) {
+            const user = res.body
+            assert.equal(user.id, userId)
+            assert.equal(user.name, 'destroytest1')
+          }
           done(err)
         })
     })
@@ -129,9 +144,11 @@ describe('FootprintController', () => {
         .query({name: 'destroytest1'})
         .expect(200)
         .end((err, res) => {
-          const user = res.body[0]
-          assert.equal(user.id, userId)
-          assert.equal(user.name, 'destroytest1')
+          if (!err) {
+            const user = res.body[0]
+            assert.equal(user.id, userId)
+            assert.equal(user.name, 'destroytest1')
+          }
           done(err)
         })
     })
@@ -144,7 +161,9 @@ describe('FootprintController', () => {
         .send({name: 'createtest1'})
         .expect(200)
         .end((err, res) => {
-          userId = res.body.id
+          if (!err) {
+            userId = res.body.id
+          }
           done(err)
         })
     })
@@ -154,11 +173,13 @@ describe('FootprintController', () => {
         .send({name: 'associatedroletest1'})
         .expect(200)
         .end((err, res) => {
-          const role = res.body
+          if (!err) {
+            const role = res.body
 
-          assert(role)
-          assert.equal(role.name, 'associatedroletest1')
-          assert.equal(role.user, userId)
+            assert(role)
+            assert.equal(role.name, 'associatedroletest1')
+            assert.equal(role.user, userId)
+          }
           done(err)
         })
     })
@@ -189,9 +210,11 @@ describe('FootprintController', () => {
         .get('/role/' + roleId + '/user')
         .expect(200)
         .end((err, res) => {
-          const user = res.body
-          assert(user)
-          assert.equal(user.id, userId)
+          if (!err) {
+            const user = res.body
+            assert(user)
+            assert.equal(user.id, userId)
+          }
           done(err)
         })
     })
@@ -200,9 +223,11 @@ describe('FootprintController', () => {
         .get('/user/' + userId + '/roles')
         .expect(200)
         .end((err, res) => {
-          const roles = res.body
-          assert(roles.length)
-          assert.equal(roles[0].user, userId)
+          if (!err) {
+            const roles = res.body
+            assert(roles.length)
+            assert.equal(roles[0].user, userId)
+          }
           done(err)
         })
     })
@@ -214,9 +239,11 @@ describe('FootprintController', () => {
           populate: ['user']
         })
         .end((err, res) => {
-          const roles = res.body
-          assert(roles.length)
-          assert.equal(roles[0].user.id, userId)
+          if (!err) {
+            const roles = res.body
+            assert(roles.length)
+            assert.equal(roles[0].user.id, userId)
+          }
           done(err)
         })
     })
@@ -226,10 +253,12 @@ describe('FootprintController', () => {
         .get('/user/' + userId + '/roles/' + roleId)
         .expect(200)
         .end((err, res) => {
-          const role = res.body
-          assert(role)
-          assert.equal(role.id, roleId)
-          assert.equal(role.user, userId)
+          if (!err) {
+            const role = res.body
+            assert(role)
+            assert.equal(role.id, roleId)
+            assert.equal(role.user, userId)
+          }
           done(err)
         })
     })
@@ -250,7 +279,9 @@ describe('FootprintController', () => {
             .send({name: 'associatedroletest2'})
             .expect(200)
             .end((err, res) => {
-              roleId = res.body.id
+              if (!err) {
+                roleId = res.body.id
+              }
               done(err)
             })
         })
@@ -263,9 +294,11 @@ describe('FootprintController', () => {
         })
         .expect(200)
         .end((err, res) => {
-          const user = res.body
-          assert(user)
-          assert.equal(user.name, 'updateassociationtest2')
+          if (!err) {
+            const user = res.body
+            assert(user)
+            assert.equal(user.name, 'updateassociationtest2')
+          }
           done(err)
         })
     })
@@ -277,9 +310,11 @@ describe('FootprintController', () => {
         })
         .expect(200)
         .end((err, res) => {
-          const roles = res.body
-          assert(roles.length)
-          assert.equal(roles[0].name, 'updateassociationtest2')
+          if (!err) {
+            const roles = res.body
+            assert(roles.length)
+            assert.equal(roles[0].name, 'updateassociationtest2')
+          }
           done(err)
         })
     })
@@ -300,7 +335,9 @@ describe('FootprintController', () => {
             .send({name: 'associatedroletest3'})
             .expect(200)
             .end((err, res) => {
-              roleId = res.body.id
+              if (!err) {
+                roleId = res.body.id
+              }
               done(err)
             })
         })
