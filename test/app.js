@@ -119,7 +119,7 @@ const App = {
       },
       views: {
         engines: {
-          html: 'jade'
+          html: 'pug'
         },
         path: 'views'
       }

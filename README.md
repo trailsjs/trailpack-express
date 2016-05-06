@@ -38,7 +38,7 @@ Choose a template engine.
 ```js
 // config/views.js
 module.exports = {
-  engine: 'jade'
+  engine: 'pug'
 }
 ```
 
