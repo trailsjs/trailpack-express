@@ -2,10 +2,11 @@ const _ = require('lodash')
 const smokesignals = require('smokesignals')
 
 const Api = require('./api')
+const fs = require('fs')
 
 const App = {
   pkg: {
-    name: 'express4-trailpack-test',
+    name: 'express-trailpack-test',
     version: '1.0.0'
   },
   api: Api,
@@ -52,7 +53,7 @@ const App = {
         require('trailpack-waterline'),
         require('trailpack-footprints'),
         require('trailpack-router'),
-        require('../') // trailpack-express4
+        require('../') // trailpack-express
       ]
     },
     routes: [
@@ -109,10 +110,16 @@ const App = {
       }
     },
     web: {
-      port: 3000,
+      express: require('express'),
+      port: 3030,
+      portHttp: 3000,
+      ssl: {
+        key: fs.readFileSync(process.cwd() + '/test/ssl/server.key'),
+        cert: fs.readFileSync(process.cwd() + '/test/ssl/server.crt')
+      },
       views: {
         engines: {
-          html: 'jade'
+          html: 'pug'
         },
         path: 'views'
       }
