@@ -17,6 +17,22 @@ to an [Express Server](http://expressjs.com/en/api.html).
 $ npm install --save trailpack-express
 ```
 
+## Compatibility
+
+This Trailpack is compatible with Express [v4](http://expressjs.com/en/4x/api.html) and [v5](https://github.com/expressjs/express/tree/5.0).
+
+#### Express v4
+
+```
+$ npm install --save express@^4
+```
+
+#### Express v5
+
+```
+$ npm install --save express@^5.0.0-alpha.2
+```
+
 ## Usage
 Load in your trailpack config.
 
