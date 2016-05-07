@@ -12,7 +12,6 @@ const compression = require('compression')
  * @see {@link http://trailsjs.io/doc/config/web}
  */
 module.exports = {
-  express: require('express'),
   /**
    * Middlewares to load (in order)
    */
