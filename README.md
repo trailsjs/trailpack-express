@@ -49,7 +49,7 @@ Then simply write your views in a directory called 'views'!
 See [`config/web.js`](https://github.com/trailsjs/trailpack-express/blob/master/archetype/config/web.js) for a full example.
 
 #### `express`
-Optional field to force a version of express by using `express: require('express')`
+Require field to set express version to use by setting `express: require('express')`
 
 #### `port`
 The port to listen on. `3000` by default. Can also be set via the `PORT` environment variable.
