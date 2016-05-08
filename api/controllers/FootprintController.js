@@ -2,7 +2,8 @@
 const Controller = require('trails-controller')
 
 const modelExist = (modelName, app) =>{
-  const Model = app.orm[modelName.toLowerCase()]
+  const capitalizeName = modelName[0].toUpperCase() + modelName.substr(1).toLowerCase()
+  const Model = app.orm[modelName] || app.orm[capitalizeName]
   return Model
 }
 
