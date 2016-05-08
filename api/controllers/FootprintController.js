@@ -2,7 +2,7 @@
 const Controller = require('trails-controller')
 
 const modelExist = (modelName, app) =>{
-  const Model = app.orm[modelName] || app.packs.waterline.orm.collections[modelName]
+  const Model = app.orm[modelName.toLowerCase()]
   return Model
 }
 
