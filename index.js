@@ -44,9 +44,9 @@ module.exports = class Express extends WebServerTrailpack {
     this.server = lib.Server.createServer(this.app)
 
     return Promise.all([
-        lib.Server.registerMiddlewares(this.app, this.server),
-        lib.Server.registerViews(this.app, this.server)
-      ])
+      lib.Server.registerMiddlewares(this.app, this.server),
+      lib.Server.registerViews(this.app, this.server)
+    ])
       .then(() => {
         return lib.Server.start(this.app, this.server)
       })

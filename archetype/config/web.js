@@ -9,7 +9,7 @@
  * @see {@link http://trailsjs.io/doc/config/web}
  */
 module.exports = {
-  //express: require('express'), Install the express version you want (4 or 5) and uncomment this line
+  express: require('express'),
 
   /**
    * Middlewares to load (in order)

@@ -121,7 +121,7 @@ const App = {
         engines: {
           html: 'pug'
         },
-        path: 'views'
+        path: 'test/views'
       }
     }
   }

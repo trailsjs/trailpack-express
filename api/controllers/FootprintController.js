@@ -26,8 +26,8 @@ module.exports = class FootprintController extends Controller {
         .then(elements => {
           res.status(200).json(elements || {})
         }).catch(error => {
-        res.boom.wrap(error)
-      })
+          res.boom.wrap(error)
+        })
     }
     else {
       res.boom.notFound()
@@ -124,8 +124,8 @@ module.exports = class FootprintController extends Controller {
         .then(elements => {
           res.status(200).json(elements || {})
         }).catch(error => {
-        res.boom.wrap(error)
-      })
+          res.boom.wrap(error)
+        })
     }
     else {
       res.boom.notFound()
