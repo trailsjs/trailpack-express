@@ -7,7 +7,7 @@ const pkg = require('../package')
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
 
 before(done => {
-  const exVersion = process.env.EXPRESS_VERSION || pkg.dependencies.express.replace('^', '')
+  const exVersion = process.env.EXPRESS_VERSION || pkg.devDependencies.express.replace('^', '')
   global.app = new TrailsApp(require('./app'))
 
   npm.load({

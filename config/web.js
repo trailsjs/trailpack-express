@@ -1,3 +1,5 @@
+'use strict'
+
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const methodOverride = require('method-override')
@@ -12,7 +14,6 @@ const compression = require('compression')
  * @see {@link http://trailsjs.io/doc/config/web}
  */
 module.exports = {
-  express: require('express'),
   /**
    * Middlewares to load (in order)
    */

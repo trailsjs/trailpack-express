@@ -25,7 +25,9 @@ module.exports = class Express extends WebServerTrailpack {
     if (_.includes(_.keys(this.app.config.main.packs), 'hapi', 'koa', 'koa2', 'restify')) {
       return Promise.reject(new Error('There is another web services trailpack installed that conflicts with trailpack-express!'))
     }
-
+    if (!this.app.config.web.express) {
+      return Promise.reject(new Error('config.web.express is absent, please npm install your express version (4 or 5) and uncomment the line under config.web.express'))
+    }
     return Promise.all([
       lib.Validator.validateWebConfig(this.app.config.web)
     ])
@@ -42,9 +44,9 @@ module.exports = class Express extends WebServerTrailpack {
     this.server = lib.Server.createServer(this.app)
 
     return Promise.all([
-        lib.Server.registerMiddlewares(this.app, this.server),
-        lib.Server.registerViews(this.app, this.server)
-      ])
+      lib.Server.registerMiddlewares(this.app, this.server),
+      lib.Server.registerViews(this.app, this.server)
+    ])
       .then(() => {
         return lib.Server.start(this.app, this.server)
       })

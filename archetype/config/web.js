@@ -9,6 +9,14 @@
  * @see {@link http://trailsjs.io/doc/config/web}
  */
 module.exports = {
+  express: require('express'),
+
+  /**
+   * CORS options
+   * Can be true/false or an object of CORS options
+   * @see {@link https://github.com/expressjs/cors#configuring-cors}
+   */
+  cors: false,
 
   /**
    * Middlewares to load (in order)

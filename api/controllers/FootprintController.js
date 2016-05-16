@@ -1,8 +1,9 @@
 'use strict'
 const Controller = require('trails-controller')
 
-const modelExist = (modelName, app) =>{
-  const Model = app.orm[modelName] || app.packs.waterline.orm.collections[modelName]
+const modelExist = (modelName, app) => {
+  const capitalizeName = modelName[0].toUpperCase() + modelName.substr(1).toLowerCase()
+  const Model = app.orm[modelName] || app.orm[capitalizeName]
   return Model
 }
 
@@ -22,9 +23,9 @@ module.exports = class FootprintController extends Controller {
 
     if (modelExist(req.params.model, this.app)) {
       FootprintService.create(req.params.model, req.body, options)
-        .then(function (elements) {
-          res.status(200).json(elements)
-        }).catch(function (error) {
+        .then(elements => {
+          res.status(200).json(elements || {})
+        }).catch(error => {
           res.boom.wrap(error)
         })
     }
@@ -49,8 +50,8 @@ module.exports = class FootprintController extends Controller {
       }
 
       response.then(elements => {
-        res.status(elements ? 200 : 404).json(elements)
-      }).catch(function(error) {
+        res.status(elements ? 200 : 404).json(elements || {})
+      }).catch(error => {
         res.boom.wrap(error)
       })
     }
@@ -78,9 +79,9 @@ module.exports = class FootprintController extends Controller {
         response = FootprintService.update(req.params.model, criteria, req.body)
       }
 
-      response.then(function(elements) {
-        res.status(200).json(elements)
-      }).catch(function(error) {
+      response.then(elements => {
+        res.status(200).json(elements || {})
+      }).catch(error => {
         res.boom.wrap(error)
       })
     }
@@ -104,9 +105,9 @@ module.exports = class FootprintController extends Controller {
         response = FootprintService.destroy(req.params.model, criteria, options)
       }
 
-      response.then(function (elements) {
-        res.status(200).json(elements)
-      }).catch(function (error) {
+      response.then(elements => {
+        res.status(200).json(elements || {})
+      }).catch(error => {
         res.boom.wrap(error)
       })
     }
@@ -120,9 +121,9 @@ module.exports = class FootprintController extends Controller {
     const options = this.app.packs.express.getOptionsFromQuery(req.query)
     if (modelExist(req.params.parentModel, this.app)) {
       FootprintService.createAssociation(req.params.parentModel, req.params.parentId, req.params.childAttribute, req.body, options)
-        .then(function(elements) {
-          res.status(200).json(elements)
-        }).catch(function(error) {
+        .then(elements => {
+          res.status(200).json(elements || {})
+        }).catch(error => {
           res.boom.wrap(error)
         })
     }
@@ -149,9 +150,9 @@ module.exports = class FootprintController extends Controller {
         response = FootprintService.findAssociation(parentModel, parentId, childAttribute, criteria, options)
       }
 
-      response.then(function (elements) {
-        res.status(elements ? 200 : 404).json(elements)
-      }).catch(function (error) {
+      response.then(elements => {
+        res.status(elements ? 200 : 404).json(elements || {})
+      }).catch(error => {
         res.boom.wrap(error)
       })
     }
@@ -178,9 +179,9 @@ module.exports = class FootprintController extends Controller {
         response = FootprintService.updateAssociation(parentModel, parentId, childAttribute, criteria, req.body, options)
       }
 
-      response.then(function (elements) {
-        res.status(200).json(elements)
-      }).catch(function (error) {
+      response.then(elements => {
+        res.status(200).json(elements || {})
+      }).catch(error => {
         res.boom.wrap(error)
       })
     }
@@ -207,9 +208,9 @@ module.exports = class FootprintController extends Controller {
         response = FootprintService.destroyAssociation(parentModel, parentId, childAttribute, criteria, options)
       }
 
-      response.then(function (elements) {
-        res.status(200).json(elements)
-      }).catch(function (error) {
+      response.then(elements => {
+        res.status(200).json(elements || {})
+      }).catch(error => {
         res.boom.wrap(error)
       })
     }
