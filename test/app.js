@@ -67,6 +67,16 @@ const App = {
       },
       {
         method: ['GET'],
+        path: '/default/notFound',
+        handler: 'DefaultController.notFound'
+      },
+      {
+        method: ['GET'],
+        path: '/default/serverError',
+        handler: 'DefaultController.serverError'
+      },
+      {
+        method: ['GET'],
         path: '/standard/info',
         handler: 'StandardController.info'
       },
