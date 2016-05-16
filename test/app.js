@@ -60,6 +60,9 @@ const App = {
       {
         method: 'GET',
         path: '/',
+        config: {
+          cors: {origin: 'http://trailsjs.io'}
+        },
         handler: 'ViewController.helloWorld'
       },
       {
@@ -111,6 +114,7 @@ const App = {
     },
     web: {
       express: require('express'),
+      cors: true,
       port: 3030,
       portHttp: 3000,
       ssl: {
