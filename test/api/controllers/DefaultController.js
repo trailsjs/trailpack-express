@@ -8,6 +8,12 @@ const Controller = require('trails-controller')
  * @this TrailsApp
  */
 module.exports = class DefaultController extends Controller{
+  notFound (req, res) {
+    res.notFound()
+  }
+  serverError (req, res) {
+    res.serverError()
+  }
   info (req, res) {
     res.status(200).json(this.app.services.DefaultService.getApplicationInfo())
   }
