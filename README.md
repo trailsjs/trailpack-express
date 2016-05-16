@@ -1,8 +1,37 @@
 # trailpack-express
-:package: Express 4 or 5 Trailpack
+:package: Express Trailpack
+
+[![Gitter][gitter-image]][gitter-url]
+[![NPM version][npm-image]][npm-url]
+[![Linux + OSX Build Status][ci-image]][ci-url]
+[![Windows Build Status][appveyor-image]][appveyor-url]
+[![Code Climate][codeclimate-image]][codeclimate-url]
+[![Follow @trailsjs on Twitter][twitter-image]][twitter-url]
 
 This pack binds the routes compiled in [trailpack-router](https://github.com/trailsjs/trailpack-router)
-to a [Express Server](http://expressjs.com/en/api.html). 
+to an [Express Server](http://expressjs.com/en/api.html). 
+
+## Install
+
+```
+$ npm install --save trailpack-express
+```
+
+## Compatibility
+
+This Trailpack is compatible with Express [v4](http://expressjs.com/en/4x/api.html) and [v5](https://github.com/expressjs/express/tree/5.0).
+
+#### Express v4
+
+```
+$ npm install --save express@^4
+```
+
+#### Express v5
+
+```
+$ npm install --save express@^5.0.0-alpha.2
+```
 
 ## Usage
 Load in your trailpack config.
@@ -76,12 +105,23 @@ The port to listen for http protocol if ssl enabled. If you don't want http and 
 Object to add custom middleware functions to Express, don't forget to add them into `middlewares.order` or they will not be called
 
 ## Contributing
-We love contributions! In order to be able to review your code efficiently,
-please keep the following in mind:
-
-1. Pull Requests (PRs) must include new and/or updated tests, and all tests [must pass](https://travis-ci.org/trailsjs/trailpack-express).
-2. Use `eslint`! See the `eslintConfig` in [package.json](https://github.com/trailsjs/trailpack-express/blob/master/package.json).
-3. Please [reference the relevant issue](https://github.com/blog/1506-closing-issues-via-pull-requests) in your Pull Request.
+We love contributions! Please check out our [Contributor's Guide](https://github.com/trailsjs/trails/blob/master/.github/CONTRIBUTING.md) for more
+information on how our projects are organized and how to get started.
 
 ## License
 [MIT](https://github.com/trailsjs/trailpack-express/blob/master/LICENSE)
+
+[trails-image]: http://i.imgur.com/zfT2NEv.png
+[trails-url]: http://trailsjs.io
+[npm-image]: https://img.shields.io/npm/v/trailpack-express.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/trailpack-express
+[ci-image]: https://img.shields.io/travis/trailsjs/trailpack-express.svg?style=flat-square&label=Linux%20/%20OSX
+[ci-url]: https://travis-ci.org/trailsjs/trailpack-express
+[appveyor-image]: https://img.shields.io/appveyor/ci/trailsjs/trailpack-express/master.svg?style=flat-square&label=Windows
+[appveyor-url]: https://ci.appveyor.com/project/trailsjs/trailpack-express
+[codeclimate-image]: https://img.shields.io/codeclimate/github/trailsjs/trailpack-express.svg?style=flat-square
+[codeclimate-url]: https://codeclimate.com/github/trailsjs/trailpack-express
+[gitter-image]: http://img.shields.io/badge/+%20GITTER-JOIN%20CHAT%20%E2%86%92-1DCE73.svg?style=flat-square
+[gitter-url]: https://gitter.im/trailsjs/trails
+[twitter-image]: https://img.shields.io/twitter/follow/trailsjs.svg?style=social
+[twitter-url]: https://twitter.com/trailsjs
