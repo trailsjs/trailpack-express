@@ -33,7 +33,6 @@
     "compression": "^1.6.1",
     "consolidate": "^0.14.1",
     "cookie-parser": "^1.4.1",
-    "express": "^4.13.4",
     "express-boom": "^0.3.0",
     "express-session": "^1.13.0",
     "joi": "^8.0.5",
