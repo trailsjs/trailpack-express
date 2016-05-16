@@ -54,15 +54,15 @@
     "mocha": "^2.4.5",
     "npm": "^3.9.1",
     "pug": "^2.0.0-alpha7",
+    "sails-disk": "^0.10.9",
     "smokesignals": "^1.2.2",
     "supertest": "^1.1.0",
     "trailpack-core": "^1.0.0-beta-6",
-    "trailpack-footprints": "^1.0.0",
-    "trailpack-router": "^1.0.1",
-    "trailpack-waterline": "1.0.0-alpha-6",
+    "trailpack-footprints": "^1.0.0-beta-7",
+    "trailpack-router": "^1.0.2",
+    "trailpack-waterline": "^1.0.0-beta-1",
     "trails": "^1.0.0",
     "trails-model": "1.0.0-beta-2",
-    "trails-service": "^1.0.0-beta-2",
-    "waterline-sqlite3": "^1.0.3"
+    "trails-service": "^1.0.0-beta-2"
   }
 }

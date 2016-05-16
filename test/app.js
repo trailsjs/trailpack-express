@@ -14,7 +14,7 @@ const App = {
     database: {
       stores: {
         sqlitedev: {
-          adapter: require('waterline-sqlite3')
+          adapter: require('sails-disk')
         }
       },
       models: {
@@ -61,7 +61,7 @@ const App = {
         method: 'GET',
         path: '/',
         config: {
-          cors: {origin: 'http://trailsjs.io'}
+          cors: {origin: ['http://trailsjs.io']}
         },
         handler: 'ViewController.helloWorld'
       },
