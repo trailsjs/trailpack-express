@@ -104,6 +104,11 @@ module.exports = {
   cache: 31557600000,
 
   /**
+   * The host to bind the web server to
+   */
+  host: process.env.HOST || 'localhost',
+
+  /**
    * The port to bind the web server to
    */
   port: process.env.PORT || 3000
