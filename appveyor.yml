@@ -1,0 +1,35 @@
+environment:
+  compiler: gcc-4.8.4-posix
+
+  matrix:
+  - nodejs_version: "4"
+  - nodejs_version: "5"
+  - nodejs_version: "6"
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - OPTIONAL_TESTS: true
+
+notifications:
+- provider: Webhook
+  url: https://webhooks.gitter.im/e/2a667026696d38f78146
+  on_build_success: false
+  on_build_failure: false
+  on_build_status_changed: true
+
+# Install scripts. (runs after repo cloning)
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - npm install
+
+platform:
+  - x64
+
+test_script:
+  - node -v
+  - npm -v
+  - npm test
+
+build: off
+skip_tags: true

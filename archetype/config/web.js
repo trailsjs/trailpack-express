@@ -1,3 +1,4 @@
+'use strict'
 
 /**
  * Server Configuration
@@ -8,6 +9,14 @@
  * @see {@link http://trailsjs.io/doc/config/web}
  */
 module.exports = {
+  express: require('express'),
+
+  /**
+   * CORS options
+   * Can be true/false or an object of CORS options
+   * @see {@link https://github.com/expressjs/cors#configuring-cors}
+   */
+  cors: false,
 
   /**
    * Middlewares to load (in order)
@@ -48,6 +57,11 @@ module.exports = {
    ***************************************************************************/
 
   cache: 31557600000,
+
+  /**
+   * The host to bind the web server to
+   */
+  //host: process.env.HOST || 'localhost',
 
   /**
    * The port to bind the web server to

@@ -2,11 +2,12 @@ const _ = require('lodash')
 const smokesignals = require('smokesignals')
 
 const Api = require('./api')
+const fs = require('fs')
 const Joi = require('joi')
 
 const App = {
   pkg: {
-    name: 'express4-trailpack-test',
+    name: 'express-trailpack-test',
     version: '1.0.0'
   },
   api: Api,
@@ -14,7 +15,7 @@ const App = {
     database: {
       stores: {
         sqlitedev: {
-          adapter: require('waterline-sqlite3')
+          adapter: require('sails-disk')
         }
       },
       models: {
@@ -52,10 +53,55 @@ const App = {
         require('trailpack-waterline'),
         require('trailpack-footprints'),
         require('trailpack-router'),
-        require('../') // trailpack-express4
+        require('../') // trailpack-express
       ]
     },
     routes: [{
+      method: 'GET',
+      path: '/',
+      config: {
+        cors: {
+          origin: ['http://trailsjs.io']
+        }
+      },
+      handler: 'ViewController.helloWorld'
+    }, {
+      method: ['GET'],
+      path: '/default/notFound',
+      handler: 'DefaultController.notFound'
+    }, {
+      method: ['GET'],
+      path: '/default/serverError',
+      handler: 'DefaultController.serverError'
+    }, {
+      method: ['GET'],
+      path: '/standard/info',
+      handler: 'StandardController.info'
+    }, {
+      method: ['GET'],
+      path: '/standard/intercept',
+      handler: 'StandardController.intercept'
+    }, {
+      method: ['POST', 'PUT'],
+      path: '/default/info',
+      handler: 'DefaultController.echo'
+    }, {
+      method: ['GET'],
+      path: '/default/info',
+      handler: 'DefaultController.info'
+    }, {
+      method: ['GET'],
+      path: '/default/policySuccess',
+      handler: 'DefaultController.policySuccess'
+    }, {
+      method: ['GET'],
+      path: '/default/policyFail',
+      handler: 'DefaultController.policyFail'
+    }, {
+      method: ['GET'],
+      path: '/default/policyIntercept',
+      handler: 'DefaultController.policyIntercept'
+    }, {
       method: 'GET',
       path: '/',
       handler: 'ViewController.helloWorld'
@@ -180,7 +226,7 @@ const App = {
             'wrongPayload': Joi.string().email().required()
           })
         }
-      }
+      },
     }],
     policies: {
       DefaultController: {
@@ -194,12 +240,19 @@ const App = {
       }
     },
     web: {
-      port: 3000,
+      express: require('express'),
+      cors: true,
+      port: 3030,
+      portHttp: 3000,
+      ssl: {
+        key: fs.readFileSync(process.cwd() + '/test/ssl/server.key'),
+        cert: fs.readFileSync(process.cwd() + '/test/ssl/server.crt')
+      },
       views: {
         engines: {
-          html: 'jade'
+          html: 'pug'
         },
-        path: 'views'
+        path: 'test/views'
       }
     }
   }

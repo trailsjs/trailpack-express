@@ -9,7 +9,6 @@ const Controller = require('trails-controller')
    */
 module.exports = class DefaultController extends Controller {
   info(req, res) {
-    console.lo
     res.status(200).json(this.app.services.DefaultService.getApplicationInfo())
   }
   policySuccess(req, res) {

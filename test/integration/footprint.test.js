@@ -232,7 +232,7 @@ describe('FootprintController', () => {
     })
     it('should find a set of associated records ("many") ' +
       'and populate the parent association', done => {
-        request
+      request
           .get('/user/' + userId + '/roles')
           .expect(200)
           .query({
@@ -244,7 +244,7 @@ describe('FootprintController', () => {
             assert.equal(roles[0].user.id, userId)
             done(err)
           })
-      })
+    })
 
     it('should find a particular record in an associated set ("many")', done => {
       request

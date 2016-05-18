@@ -8,36 +8,37 @@ const _ = require('lodash')
 const WebServerTrailpack = require('trailpack-webserver')
 
 /**
- * Express4 Trailpack
+ * Express Trailpack
  *
- * @class Express4
+ * @class Express
  * @see {@link http://trailsjs.io/doc/trailpack
  *
- * Bind application routes to Express4.js (from trailpack-router)
+ * Bind application routes to Express.js (from trailpack-router)
  */
-module.exports = class Express4 extends WebServerTrailpack {
+module.exports = class Express extends WebServerTrailpack {
 
   /**
    * Ensure that config/web is valid, and that no other competing web
    * server trailpacks are installed (e.g. express)
    */
   validate() {
-    if (_.includes(_.keys(this.app.config.main.packs), 'express4', 'koa', 'koa2', 'restify')) {
-      return Promise.reject(new Error(`There is another web
-              services trailpack installed that conflicts with trailpack - express4!`))
+    if (_.includes(_.keys(this.app.config.main.packs), 'hapi', 'koa', 'koa2', 'restify')) {
+      return Promise.reject(new Error('There is another web services trailpack installed that conflicts with trailpack-express!'))
     }
-
+    if (!this.app.config.web.express) {
+      return Promise.reject(new Error('config.web.express is absent, please npm install your express version (4 or 5) and uncomment the line under config.web.express'))
+    }
     return Promise.all([
       lib.Validator.validateWebConfig(this.app.config.web)
     ])
   }
 
   configure() {
-    this.app.config.web.server = 'express4'
+    this.app.config.web.server = 'express'
   }
 
   /**
-   * Start Express4 Server
+   * Start Express Server
    */
   initialize() {
     this.server = lib.Server.createServer(this.app)

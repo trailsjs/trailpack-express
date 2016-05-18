@@ -2,7 +2,8 @@
 const Controller = require('trails-controller')
 
 const modelExist = (modelName, app) => {
-  const Model = app.orm[modelName] || app.packs.waterline.orm.collections[modelName]
+  const capitalizeName = modelName[0].toUpperCase() + modelName.substr(1).toLowerCase()
+  const Model = app.orm[modelName] || app.orm[capitalizeName]
   return Model
 }
 
@@ -18,13 +19,13 @@ const modelExist = (modelName, app) => {
 module.exports = class FootprintController extends Controller {
   create(req, res) {
     const FootprintService = this.app.services.FootprintService
-    const options = this.app.packs.express4.getOptionsFromQuery(req.query)
+    const options = this.app.packs.express.getOptionsFromQuery(req.query)
 
     if (modelExist(req.params.model, this.app)) {
       FootprintService.create(req.params.model, req.body, options)
-        .then(function(elements) {
-          res.status(200).json(elements)
-        }).catch(function(error) {
+        .then(elements => {
+          res.status(200).json(elements || {})
+        }).catch(error => {
           res.boom.wrap(error)
         })
     }
@@ -36,8 +37,8 @@ module.exports = class FootprintController extends Controller {
 
   find(req, res) {
     const FootprintService = this.app.services.FootprintService
-    const options = this.app.packs.express4.getOptionsFromQuery(req.query)
-    const criteria = this.app.packs.express4.getCriteriaFromQuery(req.query)
+    const options = this.app.packs.express.getOptionsFromQuery(req.query)
+    const criteria = this.app.packs.express.getCriteriaFromQuery(req.query)
     const id = req.params.id
     if (modelExist(req.params.model, this.app)) {
       let response
@@ -49,8 +50,8 @@ module.exports = class FootprintController extends Controller {
       }
 
       response.then(elements => {
-        res.status(elements ? 200 : 404).json(elements)
-      }).catch(function(error) {
+        res.status(elements ? 200 : 404).json(elements || {})
+      }).catch(error => {
         res.boom.wrap(error)
       })
     }
@@ -61,8 +62,8 @@ module.exports = class FootprintController extends Controller {
 
   update(req, res) {
     const FootprintService = this.app.services.FootprintService
-    const options = this.app.packs.express4.getOptionsFromQuery(req.query)
-    const criteria = this.app.packs.express4.getCriteriaFromQuery(req.query)
+    const options = this.app.packs.express.getOptionsFromQuery(req.query)
+    const criteria = this.app.packs.express.getCriteriaFromQuery(req.query)
 
     const id = req.params.id
 
@@ -78,9 +79,9 @@ module.exports = class FootprintController extends Controller {
         response = FootprintService.update(req.params.model, criteria, req.body)
       }
 
-      response.then(function(elements) {
-        res.status(200).json(elements)
-      }).catch(function(error) {
+      response.then(elements => {
+        res.status(200).json(elements || {})
+      }).catch(error => {
         res.boom.wrap(error)
       })
     }
@@ -91,8 +92,8 @@ module.exports = class FootprintController extends Controller {
 
   destroy(req, res) {
     const FootprintService = this.app.services.FootprintService
-    const options = this.app.packs.express4.getOptionsFromQuery(req.query)
-    const criteria = this.app.packs.express4.getCriteriaFromQuery(req.query)
+    const options = this.app.packs.express.getOptionsFromQuery(req.query)
+    const criteria = this.app.packs.express.getCriteriaFromQuery(req.query)
     const id = req.params.id
 
     if (modelExist(req.params.model, this.app)) {
@@ -104,9 +105,9 @@ module.exports = class FootprintController extends Controller {
         response = FootprintService.destroy(req.params.model, criteria, options)
       }
 
-      response.then(function(elements) {
-        res.status(200).json(elements)
-      }).catch(function(error) {
+      response.then(elements => {
+        res.status(200).json(elements || {})
+      }).catch(error => {
         res.boom.wrap(error)
       })
     }
@@ -117,13 +118,12 @@ module.exports = class FootprintController extends Controller {
 
   createAssociation(req, res) {
     const FootprintService = this.app.services.FootprintService
-    const options = this.app.packs.express4.getOptionsFromQuery(req.query)
+    const options = this.app.packs.express.getOptionsFromQuery(req.query)
     if (modelExist(req.params.parentModel, this.app)) {
-      FootprintService.createAssociation(req.params.parentModel,
-          req.params.parentId, req.params.childAttribute, req.body, options)
-        .then(function(elements) {
-          res.status(200).json(elements)
-        }).catch(function(error) {
+      FootprintService.createAssociation(req.params.parentModel, req.params.parentId, req.params.childAttribute, req.body, options)
+        .then(elements => {
+          res.status(200).json(elements || {})
+        }).catch(error => {
           res.boom.wrap(error)
         })
     }
@@ -134,8 +134,8 @@ module.exports = class FootprintController extends Controller {
 
   findAssociation(req, res) {
     const FootprintService = this.app.services.FootprintService
-    const options = this.app.packs.express4.getOptionsFromQuery(req.query)
-    const criteria = this.app.packs.express4.getCriteriaFromQuery(req.query)
+    const options = this.app.packs.express.getOptionsFromQuery(req.query)
+    const criteria = this.app.packs.express.getCriteriaFromQuery(req.query)
     const parentModel = req.params.parentModel
     const parentId = req.params.parentId
     const childAttribute = req.params.childAttribute
@@ -152,9 +152,9 @@ module.exports = class FootprintController extends Controller {
           parentId, childAttribute, criteria, options)
       }
 
-      response.then(function(elements) {
-        res.status(elements ? 200 : 404).json(elements)
-      }).catch(function(error) {
+      response.then(elements => {
+        res.status(elements ? 200 : 404).json(elements || {})
+      }).catch(error => {
         res.boom.wrap(error)
       })
     }
@@ -165,8 +165,8 @@ module.exports = class FootprintController extends Controller {
 
   updateAssociation(req, res) {
     const FootprintService = this.app.services.FootprintService
-    const options = this.app.packs.express4.getOptionsFromQuery(req.query)
-    const criteria = this.app.packs.express4.getCriteriaFromQuery(req.query)
+    const options = this.app.packs.express.getOptionsFromQuery(req.query)
+    const criteria = this.app.packs.express.getCriteriaFromQuery(req.query)
     const parentModel = req.params.parentModel
     const parentId = req.params.parentId
     const childAttribute = req.params.childAttribute
@@ -183,9 +183,9 @@ module.exports = class FootprintController extends Controller {
           parentId, childAttribute, criteria, req.body, options)
       }
 
-      response.then(function(elements) {
-        res.status(200).json(elements)
-      }).catch(function(error) {
+      response.then(elements => {
+        res.status(200).json(elements || {})
+      }).catch(error => {
         res.boom.wrap(error)
       })
     }
@@ -196,8 +196,8 @@ module.exports = class FootprintController extends Controller {
 
   destroyAssociation(req, res) {
     const FootprintService = this.app.services.FootprintService
-    const options = this.app.packs.express4.getOptionsFromQuery(req.query)
-    const criteria = this.app.packs.express4.getCriteriaFromQuery(req.query)
+    const options = this.app.packs.express.getOptionsFromQuery(req.query)
+    const criteria = this.app.packs.express.getCriteriaFromQuery(req.query)
     const parentModel = req.params.parentModel
     const parentId = req.params.parentId
     const childAttribute = req.params.childAttribute
@@ -214,9 +214,9 @@ module.exports = class FootprintController extends Controller {
           parentId, childAttribute, criteria, options)
       }
 
-      response.then(function(elements) {
-        res.status(200).json(elements)
-      }).catch(function(error) {
+      response.then(elements => {
+        res.status(200).json(elements || {})
+      }).catch(error => {
         res.boom.wrap(error)
       })
     }
