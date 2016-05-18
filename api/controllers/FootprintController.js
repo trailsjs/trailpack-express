@@ -19,16 +19,16 @@ module.exports = class FootprintController extends Controller {
       .then(elements => {
         res.status(200).json(elements || {})
       }).catch(error => {
-      if(error.code == "E_VALIDATION") {
-        res.status(400).json(error)
-      }
-      else if(error.code == "E_NOT_FOUND") {
-        res.status(404).json(error)
-      }
+        if (error.code == 'E_VALIDATION') {
+          res.status(400).json(error)
+        }
+        else if (error.code == 'E_NOT_FOUND') {
+          res.status(404).json(error)
+        }
       else {
-        res.boom.wrap(error)
-      }
-    })
+          res.boom.wrap(error)
+        }
+      })
   }
 
   find(req, res) {
@@ -47,10 +47,10 @@ module.exports = class FootprintController extends Controller {
     response.then(elements => {
       res.status(elements ? 200 : 404).json(elements || {})
     }).catch(error => {
-      if(error.code == "E_VALIDATION") {
+      if (error.code == 'E_VALIDATION') {
         res.status(400).json(error)
       }
-      else if(error.code == "E_NOT_FOUND") {
+      else if (error.code == 'E_NOT_FOUND') {
         res.status(404).json(error)
       }
       else {
@@ -79,10 +79,10 @@ module.exports = class FootprintController extends Controller {
     response.then(elements => {
       res.status(200).json(elements || {})
     }).catch(error => {
-      if(error.code == "E_VALIDATION") {
+      if (error.code == 'E_VALIDATION') {
         res.status(400).json(error)
       }
-      else if(error.code == "E_NOT_FOUND") {
+      else if (error.code == 'E_NOT_FOUND') {
         res.status(404).json(error)
       }
       else {
@@ -108,10 +108,10 @@ module.exports = class FootprintController extends Controller {
     response.then(elements => {
       res.status(200).json(elements || {})
     }).catch(error => {
-      if(error.code == "E_VALIDATION") {
+      if (error.code == 'E_VALIDATION') {
         res.status(400).json(error)
       }
-      else if(error.code == "E_NOT_FOUND") {
+      else if (error.code == 'E_NOT_FOUND') {
         res.status(404).json(error)
       }
       else {
@@ -127,16 +127,16 @@ module.exports = class FootprintController extends Controller {
       .then(elements => {
         res.status(200).json(elements || {})
       }).catch(error => {
-      if(error.code == "E_VALIDATION") {
-        res.status(400).json(error)
-      }
-      else if(error.code == "E_NOT_FOUND") {
-        res.status(404).json(error)
-      }
+        if (error.code == 'E_VALIDATION') {
+          res.status(400).json(error)
+        }
+        else if (error.code == 'E_NOT_FOUND') {
+          res.status(404).json(error)
+        }
       else {
-        res.boom.wrap(error)
-      }
-    })
+          res.boom.wrap(error)
+        }
+      })
 
   }
 
@@ -161,10 +161,10 @@ module.exports = class FootprintController extends Controller {
     response.then(elements => {
       res.status(elements ? 200 : 404).json(elements || {})
     }).catch(error => {
-      if(error.code == "E_VALIDATION") {
+      if (error.code == 'E_VALIDATION') {
         res.status(400).json(error)
       }
-      else if(error.code == "E_NOT_FOUND") {
+      else if (error.code == 'E_NOT_FOUND') {
         res.status(404).json(error)
       }
       else {
@@ -194,10 +194,10 @@ module.exports = class FootprintController extends Controller {
     response.then(elements => {
       res.status(200).json(elements || {})
     }).catch(error => {
-      if(error.code == "E_VALIDATION") {
+      if (error.code == 'E_VALIDATION') {
         res.status(400).json(error)
       }
-      else if(error.code == "E_NOT_FOUND") {
+      else if (error.code == 'E_NOT_FOUND') {
         res.status(404).json(error)
       }
       else {
@@ -227,10 +227,10 @@ module.exports = class FootprintController extends Controller {
     response.then(elements => {
       res.status(200).json(elements || {})
     }).catch(error => {
-      if(error.code == "E_VALIDATION") {
+      if (error.code == 'E_VALIDATION') {
         res.status(400).json(error)
       }
-      else if(error.code == "E_NOT_FOUND") {
+      else if (error.code == 'E_NOT_FOUND') {
         res.status(404).json(error)
       }
       else {
