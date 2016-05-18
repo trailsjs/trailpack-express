@@ -61,7 +61,7 @@ module.exports = {
       }
       // respond with json
       else if (req.wantsJSON) {
-        res.send({error: error})
+        res.send(error)
       }
       // default to plain-text. send()
       else {
