@@ -13,7 +13,10 @@ module.exports = class User extends Model {
 
   static schema() {
     return {
-      name: 'string',
+      name: {
+        type: 'string',
+        required: true
+      },
       roles: {
         collection: 'Role',
         via: 'user'

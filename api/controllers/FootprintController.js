@@ -1,12 +1,6 @@
 'use strict'
 const Controller = require('trails-controller')
 
-const modelExist = (modelName, app) => {
-  const capitalizeName = modelName[0].toUpperCase() + modelName.substr(1).toLowerCase()
-  const Model = app.orm[modelName] || app.orm[capitalizeName]
-  return Model
-}
-
 /**
  * Footprint Controller
  *
@@ -21,18 +15,20 @@ module.exports = class FootprintController extends Controller {
     const FootprintService = this.app.services.FootprintService
     const options = this.app.packs.express.getOptionsFromQuery(req.query)
 
-    if (modelExist(req.params.model, this.app)) {
-      FootprintService.create(req.params.model, req.body, options)
-        .then(elements => {
-          res.status(200).json(elements || {})
-        }).catch(error => {
-          res.boom.wrap(error)
-        })
-    }
-    else {
-      res.boom.notFound()
-    }
-
+    FootprintService.create(req.params.model, req.body, options)
+      .then(elements => {
+        res.status(200).json(elements || {})
+      }).catch(error => {
+      if(error.code == "E_VALIDATION") {
+        res.status(400).json(error)
+      }
+      else if(error.code == "E_NOT_FOUND") {
+        res.status(404).json(error)
+      }
+      else {
+        res.boom.wrap(error)
+      }
+    })
   }
 
   find(req, res) {
@@ -40,54 +36,60 @@ module.exports = class FootprintController extends Controller {
     const options = this.app.packs.express.getOptionsFromQuery(req.query)
     const criteria = this.app.packs.express.getCriteriaFromQuery(req.query)
     const id = req.params.id
-    if (modelExist(req.params.model, this.app)) {
-      let response
-      if (id) {
-        response = FootprintService.find(req.params.model, id, options)
-      }
-      else {
-        response = FootprintService.find(req.params.model, criteria, options)
-      }
-
-      response.then(elements => {
-        res.status(elements ? 200 : 404).json(elements || {})
-      }).catch(error => {
-        res.boom.wrap(error)
-      })
+    let response
+    if (id) {
+      response = FootprintService.find(req.params.model, id, options)
     }
     else {
-      res.boom.notFound()
+      response = FootprintService.find(req.params.model, criteria, options)
     }
+
+    response.then(elements => {
+      res.status(elements ? 200 : 404).json(elements || {})
+    }).catch(error => {
+      if(error.code == "E_VALIDATION") {
+        res.status(400).json(error)
+      }
+      else if(error.code == "E_NOT_FOUND") {
+        res.status(404).json(error)
+      }
+      else {
+        res.boom.wrap(error)
+      }
+    })
+
   }
 
   update(req, res) {
     const FootprintService = this.app.services.FootprintService
     const options = this.app.packs.express.getOptionsFromQuery(req.query)
     const criteria = this.app.packs.express.getCriteriaFromQuery(req.query)
-
     const id = req.params.id
-
     this.log.debug('[FootprintController] (update) model =',
-      req.params.model, ', criteria =', req.query, req.params.id,
+      req.params.model, ', criteria =', req.query, id,
       ', values = ', req.body)
-    if (modelExist(req.params.model, this.app)) {
-      let response
-      if (id) {
-        response = FootprintService.update(req.params.model, id, req.body, options)
-      }
-      else {
-        response = FootprintService.update(req.params.model, criteria, req.body)
-      }
-
-      response.then(elements => {
-        res.status(200).json(elements || {})
-      }).catch(error => {
-        res.boom.wrap(error)
-      })
+    let response
+    if (id) {
+      response = FootprintService.update(req.params.model, id, req.body, options)
     }
     else {
-      res.boom.notFound()
+      response = FootprintService.update(req.params.model, criteria, req.body)
     }
+
+    response.then(elements => {
+      res.status(200).json(elements || {})
+    }).catch(error => {
+      if(error.code == "E_VALIDATION") {
+        res.status(400).json(error)
+      }
+      else if(error.code == "E_NOT_FOUND") {
+        res.status(404).json(error)
+      }
+      else {
+        res.boom.wrap(error)
+      }
+    })
+
   }
 
   destroy(req, res) {
@@ -95,41 +97,47 @@ module.exports = class FootprintController extends Controller {
     const options = this.app.packs.express.getOptionsFromQuery(req.query)
     const criteria = this.app.packs.express.getCriteriaFromQuery(req.query)
     const id = req.params.id
-
-    if (modelExist(req.params.model, this.app)) {
-      let response
-      if (id) {
-        response = FootprintService.destroy(req.params.model, id, options)
-      }
-      else {
-        response = FootprintService.destroy(req.params.model, criteria, options)
-      }
-
-      response.then(elements => {
-        res.status(200).json(elements || {})
-      }).catch(error => {
-        res.boom.wrap(error)
-      })
+    let response
+    if (id) {
+      response = FootprintService.destroy(req.params.model, id, options)
     }
     else {
-      res.boom.notFound()
+      response = FootprintService.destroy(req.params.model, criteria, options)
     }
+
+    response.then(elements => {
+      res.status(200).json(elements || {})
+    }).catch(error => {
+      if(error.code == "E_VALIDATION") {
+        res.status(400).json(error)
+      }
+      else if(error.code == "E_NOT_FOUND") {
+        res.status(404).json(error)
+      }
+      else {
+        res.boom.wrap(error)
+      }
+    })
   }
 
   createAssociation(req, res) {
     const FootprintService = this.app.services.FootprintService
     const options = this.app.packs.express.getOptionsFromQuery(req.query)
-    if (modelExist(req.params.parentModel, this.app)) {
-      FootprintService.createAssociation(req.params.parentModel, req.params.parentId, req.params.childAttribute, req.body, options)
-        .then(elements => {
-          res.status(200).json(elements || {})
-        }).catch(error => {
-          res.boom.wrap(error)
-        })
-    }
-    else {
-      res.boom.notFound()
-    }
+    FootprintService.createAssociation(req.params.parentModel, req.params.parentId, req.params.childAttribute, req.body, options)
+      .then(elements => {
+        res.status(200).json(elements || {})
+      }).catch(error => {
+      if(error.code == "E_VALIDATION") {
+        res.status(400).json(error)
+      }
+      else if(error.code == "E_NOT_FOUND") {
+        res.status(404).json(error)
+      }
+      else {
+        res.boom.wrap(error)
+      }
+    })
+
   }
 
   findAssociation(req, res) {
@@ -140,27 +148,29 @@ module.exports = class FootprintController extends Controller {
     const parentId = req.params.parentId
     const childAttribute = req.params.childAttribute
     const childId = req.params.childId
-
-    if (modelExist(req.params.parentModel, this.app)) {
-      let response
-      if (childId) {
-        response = FootprintService.findAssociation(parentModel,
-          parentId, childAttribute, childId, options)
-      }
-      else {
-        response = FootprintService.findAssociation(parentModel,
-          parentId, childAttribute, criteria, options)
-      }
-
-      response.then(elements => {
-        res.status(elements ? 200 : 404).json(elements || {})
-      }).catch(error => {
-        res.boom.wrap(error)
-      })
+    let response
+    if (childId) {
+      response = FootprintService.findAssociation(parentModel,
+        parentId, childAttribute, childId, options)
     }
     else {
-      res.boom.notFound()
+      response = FootprintService.findAssociation(parentModel,
+        parentId, childAttribute, criteria, options)
     }
+
+    response.then(elements => {
+      res.status(elements ? 200 : 404).json(elements || {})
+    }).catch(error => {
+      if(error.code == "E_VALIDATION") {
+        res.status(400).json(error)
+      }
+      else if(error.code == "E_NOT_FOUND") {
+        res.status(404).json(error)
+      }
+      else {
+        res.boom.wrap(error)
+      }
+    })
   }
 
   updateAssociation(req, res) {
@@ -171,27 +181,29 @@ module.exports = class FootprintController extends Controller {
     const parentId = req.params.parentId
     const childAttribute = req.params.childAttribute
     const childId = req.params.childId
-
-    if (modelExist(req.params.parentModel, this.app)) {
-      let response
-      if (childId) {
-        response = FootprintService.updateAssociation(parentModel,
-          parentId, childAttribute, childId, req.body, options)
-      }
-      else {
-        response = FootprintService.updateAssociation(parentModel,
-          parentId, childAttribute, criteria, req.body, options)
-      }
-
-      response.then(elements => {
-        res.status(200).json(elements || {})
-      }).catch(error => {
-        res.boom.wrap(error)
-      })
+    let response
+    if (childId) {
+      response = FootprintService.updateAssociation(parentModel,
+        parentId, childAttribute, childId, req.body, options)
     }
     else {
-      res.boom.notFound()
+      response = FootprintService.updateAssociation(parentModel,
+        parentId, childAttribute, criteria, req.body, options)
     }
+
+    response.then(elements => {
+      res.status(200).json(elements || {})
+    }).catch(error => {
+      if(error.code == "E_VALIDATION") {
+        res.status(400).json(error)
+      }
+      else if(error.code == "E_NOT_FOUND") {
+        res.status(404).json(error)
+      }
+      else {
+        res.boom.wrap(error)
+      }
+    })
   }
 
   destroyAssociation(req, res) {
@@ -202,26 +214,28 @@ module.exports = class FootprintController extends Controller {
     const parentId = req.params.parentId
     const childAttribute = req.params.childAttribute
     const childId = req.params.childId
-
-    if (modelExist(req.params.parentModel, this.app)) {
-      let response
-      if (childId) {
-        response = FootprintService.destroyAssociation(parentModel,
-          parentId, childAttribute, childId, options)
-      }
-      else {
-        response = FootprintService.destroyAssociation(parentModel,
-          parentId, childAttribute, criteria, options)
-      }
-
-      response.then(elements => {
-        res.status(200).json(elements || {})
-      }).catch(error => {
-        res.boom.wrap(error)
-      })
+    let response
+    if (childId) {
+      response = FootprintService.destroyAssociation(parentModel,
+        parentId, childAttribute, childId, options)
     }
     else {
-      res.boom.notFound()
+      response = FootprintService.destroyAssociation(parentModel,
+        parentId, childAttribute, criteria, options)
     }
+
+    response.then(elements => {
+      res.status(200).json(elements || {})
+    }).catch(error => {
+      if(error.code == "E_VALIDATION") {
+        res.status(400).json(error)
+      }
+      else if(error.code == "E_NOT_FOUND") {
+        res.status(404).json(error)
+      }
+      else {
+        res.boom.wrap(error)
+      }
+    })
   }
 }
