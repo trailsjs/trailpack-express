@@ -226,7 +226,7 @@ const App = {
             'wrongPayload': Joi.string().email().required()
           })
         }
-      },
+      }
     }],
     policies: {
       DefaultController: {
