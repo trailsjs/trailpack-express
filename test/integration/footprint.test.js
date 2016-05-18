@@ -13,18 +13,19 @@ describe('FootprintController', () => {
     it('should insert a record', done => {
       request
         .post('/user')
-        .send({name: 'createtest1'})
+        .send({
+          name: 'createtest1'
+        })
         .expect(200)
         .end((err, res) => {
-          if (!err) {
-            const user = res.body
+          const user = res.body
 
-            assert(user)
-            assert(user.id)
-            assert.equal(user.name, 'createtest1')
+          assert(user)
+          assert(user.id)
+          assert.equal(user.name, 'createtest1')
 
-            userId = user.id
-          }
+          userId = user.id
+
           done(err)
         })
     })
@@ -35,23 +36,21 @@ describe('FootprintController', () => {
         .get('/user/' + userId)
         .expect(200)
         .end((err, res) => {
-          if (!err) {
-            const user = res.body
-            assert.equal(user.name, 'createtest1')
-          }
+          const user = res.body
+          assert.equal(user.name, 'createtest1')
           done(err)
         })
     })
     it('should find a set of records', done => {
       request
         .get('/user')
-        .query({name: 'createtest1'})
+        .query({
+          name: 'createtest1'
+        })
         .expect(200)
         .end((err, res) => {
-          if (!err) {
-            const user = res.body[0]
-            assert.equal(user.name, 'createtest1')
-          }
+          const user = res.body[0]
+          assert.equal(user.name, 'createtest1')
           done(err)
         })
     })
@@ -68,43 +67,45 @@ describe('FootprintController', () => {
     beforeEach(done => {
       request
         .post('/user')
-        .send({name: 'updatetest1'})
+        .send({
+          name: 'updatetest1'
+        })
         .expect(200)
         .end((err, res) => {
-          if (!err) {
-            assert.equal(res.body.name, 'updatetest1')
-            userId = res.body.id
-          }
+          assert.equal(res.body.name, 'updatetest1')
+          userId = res.body.id
           done(err)
         })
     })
     it('should update a single record', done => {
       request
         .put('/user/' + userId)
-        .send({name: 'updatetest2'})
+        .send({
+          name: 'updatetest2'
+        })
         .expect(200)
         .end((err, res) => {
-          if (!err) {
-            const user = res.body
-            assert.equal(user.id, userId)
-            assert.equal(user.name, 'updatetest2')
-          }
+          const user = res.body
+          assert.equal(user.id, userId)
+          assert.equal(user.name, 'updatetest2')
           done(err)
         })
     })
     it('should update a set of records', done => {
       request
         .put('/user')
-        .query({name: 'updatetest1'})
-        .send({name: 'updatetest2'})
+        .query({
+          name: 'updatetest1'
+        })
+        .send({
+          name: 'updatetest2'
+        })
         .expect(200)
         .end((err, res) => {
-          if (!err) {
-            const user = res.body[0]
-            if (user) {
-              assert.equal(user.id, userId)
-              assert.equal(user.name, 'updatetest2')
-            }
+          const user = res.body[0]
+          if (user) {
+            assert.equal(user.id, userId)
+            assert.equal(user.name, 'updatetest2')
           }
           done(err)
         })
@@ -115,13 +116,13 @@ describe('FootprintController', () => {
     beforeEach(done => {
       request
         .post('/user')
-        .send({name: 'destroytest1'})
+        .send({
+          name: 'destroytest1'
+        })
         .expect(200)
         .end((err, res) => {
-          if (!err) {
-            assert.equal(res.body.name, 'destroytest1')
-            userId = res.body.id
-          }
+          assert.equal(res.body.name, 'destroytest1')
+          userId = res.body.id
           done(err)
         })
     })
@@ -130,25 +131,23 @@ describe('FootprintController', () => {
         .del('/user/' + userId)
         .expect(200)
         .end((err, res) => {
-          if (!err) {
-            const user = res.body
-            assert.equal(user.id, userId)
-            assert.equal(user.name, 'destroytest1')
-          }
+          const user = res.body
+          assert.equal(user.id, userId)
+          assert.equal(user.name, 'destroytest1')
           done(err)
         })
     })
     it('should destroy a set of records', done => {
       request
         .del('/user')
-        .query({name: 'destroytest1'})
+        .query({
+          name: 'destroytest1'
+        })
         .expect(200)
         .end((err, res) => {
-          if (!err) {
-            const user = res.body[0]
-            assert.equal(user.id, userId)
-            assert.equal(user.name, 'destroytest1')
-          }
+          const user = res.body[0]
+          assert.equal(user.id, userId)
+          assert.equal(user.name, 'destroytest1')
           done(err)
         })
     })
@@ -158,28 +157,28 @@ describe('FootprintController', () => {
     before(done => {
       request
         .post('/user')
-        .send({name: 'createtest1'})
+        .send({
+          name: 'createtest1'
+        })
         .expect(200)
         .end((err, res) => {
-          if (!err) {
-            userId = res.body.id
-          }
+          userId = res.body.id
           done(err)
         })
     })
     it('should insert an associated record', done => {
       request
         .post('/user/' + userId + '/roles')
-        .send({name: 'associatedroletest1'})
+        .send({
+          name: 'associatedroletest1'
+        })
         .expect(200)
         .end((err, res) => {
-          if (!err) {
-            const role = res.body
+          const role = res.body
 
-            assert(role)
-            assert.equal(role.name, 'associatedroletest1')
-            assert.equal(role.user, userId)
-          }
+          assert(role)
+          assert.equal(role.name, 'associatedroletest1')
+          assert.equal(role.user, userId)
           done(err)
         })
     })
@@ -189,7 +188,9 @@ describe('FootprintController', () => {
     before(done => {
       request
         .post('/user')
-        .send({name: 'createtest1'})
+        .send({
+          name: 'createtest1'
+        })
         .expect(200)
         .end((err, res) => {
           if (err) return done(err)
@@ -197,7 +198,9 @@ describe('FootprintController', () => {
           userId = res.body.id
           request
             .post('/user/' + userId + '/roles')
-            .send({name: 'associatedroletest1'})
+            .send({
+              name: 'associatedroletest1'
+            })
             .expect(200)
             .end((err, res) => {
               roleId = res.body.id
@@ -210,11 +213,9 @@ describe('FootprintController', () => {
         .get('/role/' + roleId + '/user')
         .expect(200)
         .end((err, res) => {
-          if (!err) {
-            const user = res.body
-            assert(user)
-            assert.equal(user.id, userId)
-          }
+          const user = res.body
+          assert(user)
+          assert.equal(user.id, userId)
           done(err)
         })
     })
@@ -223,29 +224,26 @@ describe('FootprintController', () => {
         .get('/user/' + userId + '/roles')
         .expect(200)
         .end((err, res) => {
-          if (!err) {
-            const roles = res.body
-            assert(roles.length)
-            assert.equal(roles[0].user, userId)
-          }
+          const roles = res.body
+          assert(roles.length)
+          assert.equal(roles[0].user, userId)
           done(err)
         })
     })
-    it('should find a set of associated records ("many") and populate the parent association', done => {
+    it('should find a set of associated records ("many") ' +
+      'and populate the parent association', done => {
       request
-        .get('/user/' + userId + '/roles')
-        .expect(200)
-        .query({
-          populate: ['user']
-        })
-        .end((err, res) => {
-          if (!err) {
+          .get('/user/' + userId + '/roles')
+          .expect(200)
+          .query({
+            populate: ['user']
+          })
+          .end((err, res) => {
             const roles = res.body
             assert(roles.length)
             assert.equal(roles[0].user.id, userId)
-          }
-          done(err)
-        })
+            done(err)
+          })
     })
 
     it('should find a particular record in an associated set ("many")', done => {
@@ -253,12 +251,10 @@ describe('FootprintController', () => {
         .get('/user/' + userId + '/roles/' + roleId)
         .expect(200)
         .end((err, res) => {
-          if (!err) {
-            const role = res.body
-            assert(role)
-            assert.equal(role.id, roleId)
-            assert.equal(role.user, userId)
-          }
+          const role = res.body
+          assert(role)
+          assert.equal(role.id, roleId)
+          assert.equal(role.user, userId)
           done(err)
         })
     })
@@ -268,7 +264,9 @@ describe('FootprintController', () => {
     beforeEach(done => {
       request
         .post('/user')
-        .send({name: 'updateassociationtest1'})
+        .send({
+          name: 'updateassociationtest1'
+        })
         .expect(200)
         .end((err, res) => {
           if (err) return done(err)
@@ -276,12 +274,12 @@ describe('FootprintController', () => {
           userId = res.body.id
           request
             .post('/user/' + userId + '/roles')
-            .send({name: 'associatedroletest2'})
+            .send({
+              name: 'associatedroletest2'
+            })
             .expect(200)
             .end((err, res) => {
-              if (!err) {
-                roleId = res.body.id
-              }
+              roleId = res.body.id
               done(err)
             })
         })
@@ -294,11 +292,9 @@ describe('FootprintController', () => {
         })
         .expect(200)
         .end((err, res) => {
-          if (!err) {
-            const user = res.body
-            assert(user)
-            assert.equal(user.name, 'updateassociationtest2')
-          }
+          const user = res.body
+          assert(user)
+          assert.equal(user.name, 'updateassociationtest2')
           done(err)
         })
     })
@@ -310,11 +306,9 @@ describe('FootprintController', () => {
         })
         .expect(200)
         .end((err, res) => {
-          if (!err) {
-            const roles = res.body
-            assert(roles.length)
-            assert.equal(roles[0].name, 'updateassociationtest2')
-          }
+          const roles = res.body
+          assert(roles.length)
+          assert.equal(roles[0].name, 'updateassociationtest2')
           done(err)
         })
     })
@@ -324,7 +318,9 @@ describe('FootprintController', () => {
     beforeEach(done => {
       request
         .post('/user')
-        .send({name: 'destroyassociationtest1'})
+        .send({
+          name: 'destroyassociationtest1'
+        })
         .expect(200)
         .end((err, res) => {
           if (err) return done(err)
@@ -332,12 +328,12 @@ describe('FootprintController', () => {
           userId = res.body.id
           request
             .post('/user/' + userId + '/roles')
-            .send({name: 'associatedroletest3'})
+            .send({
+              name: 'associatedroletest3'
+            })
             .expect(200)
             .end((err, res) => {
-              if (!err) {
-                roleId = res.body.id
-              }
+              roleId = res.body.id
               done(err)
             })
         })

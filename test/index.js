@@ -3,7 +3,7 @@
 const npm = require('npm')
 const TrailsApp = require('trails')
 const pkg = require('../package')
-//Allow self signed certificate
+  //Allow self signed certificate
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
 
 before(done => {
@@ -14,7 +14,7 @@ before(done => {
     loaded: false
   }, err => {
     if (err) return done(err)
-    // catch errors
+      // catch errors
     npm.commands.install([`express@${exVersion}`], (er, data) => {
       // log the error or data
       if (er) return done(er)

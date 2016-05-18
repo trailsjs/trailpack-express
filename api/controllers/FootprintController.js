@@ -144,10 +144,12 @@ module.exports = class FootprintController extends Controller {
     if (modelExist(req.params.parentModel, this.app)) {
       let response
       if (childId) {
-        response = FootprintService.findAssociation(parentModel, parentId, childAttribute, childId, options)
+        response = FootprintService.findAssociation(parentModel,
+          parentId, childAttribute, childId, options)
       }
       else {
-        response = FootprintService.findAssociation(parentModel, parentId, childAttribute, criteria, options)
+        response = FootprintService.findAssociation(parentModel,
+          parentId, childAttribute, criteria, options)
       }
 
       response.then(elements => {
@@ -173,10 +175,12 @@ module.exports = class FootprintController extends Controller {
     if (modelExist(req.params.parentModel, this.app)) {
       let response
       if (childId) {
-        response = FootprintService.updateAssociation(parentModel, parentId, childAttribute, childId, req.body, options)
+        response = FootprintService.updateAssociation(parentModel,
+          parentId, childAttribute, childId, req.body, options)
       }
       else {
-        response = FootprintService.updateAssociation(parentModel, parentId, childAttribute, criteria, req.body, options)
+        response = FootprintService.updateAssociation(parentModel,
+          parentId, childAttribute, criteria, req.body, options)
       }
 
       response.then(elements => {
@@ -202,10 +206,12 @@ module.exports = class FootprintController extends Controller {
     if (modelExist(req.params.parentModel, this.app)) {
       let response
       if (childId) {
-        response = FootprintService.destroyAssociation(parentModel, parentId, childAttribute, childId, options)
+        response = FootprintService.destroyAssociation(parentModel,
+          parentId, childAttribute, childId, options)
       }
       else {
-        response = FootprintService.destroyAssociation(parentModel, parentId, childAttribute, criteria, options)
+        response = FootprintService.destroyAssociation(parentModel,
+          parentId, childAttribute, criteria, options)
       }
 
       response.then(elements => {

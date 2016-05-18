@@ -26,7 +26,9 @@ module.exports = {
 
       // respond with html page
       if (req.accepts('html') && req.app.get('view engine')) {
-        res.render('404', {url: req.url}, (err, html) => {
+        res.render('404', {
+          url: req.url
+        }, (err, html) => {
           if (err) {
             req.log.error('Error sending page 404, maybe you don\'t have a 404.html file', err)
             res.type('txt').send('Resource not found')
@@ -38,7 +40,9 @@ module.exports = {
       }
       // respond with json
       else if (req.wantsJSON) {
-        res.send({error: 'Not found'})
+        res.send({
+          error: 'Not found'
+        })
       }
       else {
         // default to plain-text. send()
@@ -49,9 +53,12 @@ module.exports = {
       res.status(500)
       error = error || 'Internal Server Error'
       req.log.error(error)
-      // respond with html page
+        // respond with html page
       if (req.accepts('html') && req.app.get('view engine') && !req.wantsJSON) {
-        res.render('500', {url: req.url, error: error}, (err, html) => {
+        res.render('500', {
+          url: req.url,
+          error: error
+        }, (err, html) => {
           if (err) {
             req.log.error('Error sending page 500, maybe you don\'t have a 500.html file', err)
             res.type('txt').send('Internal Server Error')
@@ -63,7 +70,14 @@ module.exports = {
       }
       // respond with json
       else if (req.wantsJSON) {
-        res.send({error: error})
+        if (typeof error === 'object') {
+          res.send(error)
+        }
+        else {
+          res.send({
+            error: error
+          })
+        }
       }
       // default to plain-text. send()
       else {
@@ -87,7 +101,9 @@ module.exports = {
      */
     bodyParser: [
       bodyParser.json(),
-      bodyParser.urlencoded({extended: false})
+      bodyParser.urlencoded({
+        extended: false
+      })
     ]
   },
 

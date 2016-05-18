@@ -26,8 +26,8 @@ describe('express options', () => {
         .end((err, res) => {
           if (!err) {
             assert(res.headers['access-control-allow-origin'])
-            //FIXME update trailpack-router to have origin as string only
-            //assert.equal(res.headers['access-control-allow-origin'], 'http://trailsjs.io')
+              //FIXME update trailpack-router to have origin as string only
+              //assert.equal(res.headers['access-control-allow-origin'], 'http://trailsjs.io')
           }
           done(err)
         })
@@ -66,7 +66,9 @@ describe('express options', () => {
         .expect('Content-Type', /json/)
         .end((err, res) => {
           if (!err) {
-            assert.deepEqual(res.body, {error: 'Not found'})
+            assert.deepEqual(res.body, {
+              error: 'Not found'
+            })
           }
           done(err)
         })
@@ -79,7 +81,9 @@ describe('express options', () => {
         .expect(500)
         .end((err, res) => {
           if (!err) {
-            assert.deepEqual(res.body, {error: 'Internal Server Error'})
+            assert.deepEqual(res.body, {
+              error: 'Internal Server Error'
+            })
           }
           done(err)
         })
@@ -94,7 +98,9 @@ describe('express options', () => {
         .end((err, res) => {
           if (!err) {
             const data = res.body
-            assert.deepEqual(data, {app: '1.0.0'})
+            assert.deepEqual(data, {
+              app: '1.0.0'
+            })
           }
           done(err)
         })

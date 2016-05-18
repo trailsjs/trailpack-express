@@ -1,32 +1,32 @@
 'use strict'
 const Controller = require('trails-controller')
-/**
- * @module DefaultController
- *
- * @description Default Controller included with a new Trails app
- * @see {@link http://trailsjs.io/doc/api/controllers}
- * @this TrailsApp
- */
-module.exports = class DefaultController extends Controller{
-  notFound (req, res) {
+  /**
+   * @module DefaultController
+   *
+   * @description Default Controller included with a new Trails app
+   * @see {@link http://trailsjs.io/doc/api/controllers}
+   * @this TrailsApp
+   */
+module.exports = class DefaultController extends Controller {
+  notFound(req, res) {
     res.notFound()
   }
-  serverError (req, res) {
+  serverError(req, res) {
     res.serverError()
   }
-  info (req, res) {
+  info(req, res) {
     res.status(200).json(this.app.services.DefaultService.getApplicationInfo())
   }
-  policySuccess (req, res) {
+  policySuccess(req, res) {
     res.status(200).json(this.app.services.DefaultService.getApplicationInfo())
   }
-  policyFail (req, res) {
+  policyFail(req, res) {
     res.status(200).json(this.app.services.DefaultService.getApplicationInfo())
   }
-  policyIntercept (req, res) {
+  policyIntercept(req, res) {
     res.status(200).json(this.app.services.DefaultService.getApplicationInfo())
   }
-  echo (req, res) {
+  echo(req, res) {
     res.status(200).json(req.body)
   }
 }

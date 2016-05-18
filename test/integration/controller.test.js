@@ -25,7 +25,9 @@ describe('express controllers', () => {
           .end((err, res) => {
             if (!err) {
               const data = res.body
-              assert.deepEqual(data, {app: '1.0.0'})
+              assert.deepEqual(data, {
+                app: '1.0.0'
+              })
               done(err)
             }
           })
@@ -33,12 +35,16 @@ describe('express controllers', () => {
       it('should return {test: \'ok\'} POST on /default/info', (done) => {
         request
           .post('/default/info')
-          .send({test: 'ok'})
+          .send({
+            test: 'ok'
+          })
           .expect(200)
           .end((err, res) => {
             if (!err) {
               const data = res.body
-              assert.deepEqual(data, {test: 'ok'})
+              assert.deepEqual(data, {
+                test: 'ok'
+              })
             }
             done(err)
           })
@@ -69,7 +75,9 @@ describe('express controllers', () => {
         .end((err, res) => {
           if (!err) {
             const data = res.body
-            assert.deepEqual(data, {app: '1.0.0'})
+            assert.deepEqual(data, {
+              app: '1.0.0'
+            })
           }
           done(err)
         })
