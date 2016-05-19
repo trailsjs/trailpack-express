@@ -6,7 +6,7 @@ const supertest = require('supertest')
 describe('FootprintController', () => {
   let request, userId
   before(() => {
-    request = supertest('http://localhost:3000')
+    request = supertest('http://localhost:3000/api/v1')
   })
 
   describe('#create', () => {
@@ -26,6 +26,20 @@ describe('FootprintController', () => {
 
           userId = user.id
 
+          done(err)
+        })
+    })
+
+    it('should return a validation error', done => {
+      request
+        .post('/user')
+        .send({})
+        .expect(400)
+        .end((err, res) => {
+          const validError = res.body
+          assert.equal(validError.error, 'E_VALIDATION')
+          assert.equal(validError.model, 'User')
+          assert.equal(validError.summary, '1 attribute is invalid')
           done(err)
         })
     })

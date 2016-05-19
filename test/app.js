@@ -44,7 +44,7 @@ const App = {
           destroyAssociation: true
         }
       },
-      prefix: ''
+      prefix: '/api/v1'
     },
     main: {
       packs: [
