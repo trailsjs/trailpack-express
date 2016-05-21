@@ -27,7 +27,8 @@ module.exports = {
       // respond with html page
       if (req.accepts('html') && req.app.get('view engine')) {
         res.render('404', {
-          url: req.url
+          url: req.url,
+          error: req.error
         }, (err, html) => {
           if (err) {
             req.log.error('Error sending page 404, maybe you don\'t have a 404.html file', err)
@@ -40,9 +41,16 @@ module.exports = {
       }
       // respond with json
       else if (req.wantsJSON) {
-        res.send({
-          error: 'Not found'
-        })
+        if (req.error) {
+          res.json(typeof req.error === 'object' ? req.error : {
+            error: 'Not found'
+          })
+        }
+        else {
+          res.json({
+            error: 'Not found'
+          })
+        }
       }
       else {
         // default to plain-text. send()
@@ -50,38 +58,62 @@ module.exports = {
       }
     },
     '500': (error, req, res, next) => {
-      res.status(500)
-      error = error || 'Internal Server Error'
-      req.log.error(error)
+      if (error && error.statusCode) {
+        res.status(error.statusCode)
+        req.log.error(error)
         // respond with html page
-      if (req.accepts('html') && req.app.get('view engine') && !req.wantsJSON) {
-        res.render('500', {
-          url: req.url,
-          error: error
-        }, (err, html) => {
-          if (err) {
-            req.log.error('Error sending page 500, maybe you don\'t have a 500.html file', err)
-            res.type('txt').send('Internal Server Error')
-          }
-          else {
-            res.send(html)
-          }
-        })
-      }
-      // respond with json
-      else if (req.wantsJSON) {
-        if (typeof error === 'object') {
-          res.send(error)
-        }
-        else {
-          res.send({
+        if (req.accepts('html') && req.app.get('view engine') && !req.wantsJSON) {
+          res.render(error.statusCode, {
+            url: req.url,
             error: error
+          }, (err, html) => {
+            if (err) {
+              req.log.error(`Error sending page ${error.statusCode}, maybe you don\'t have a ${error.statusCode}.html file`, err)
+              res.type('txt').send(error.message)
+            }
+            else {
+              res.send(html)
+            }
           })
         }
+        else if (req.wantsJSON) {
+          res.send(error)
+        }
       }
-      // default to plain-text. send()
       else {
-        res.type('txt').send('Internal Server Error')
+        res.status(500)
+        error = error || 'Internal Server Error'
+        req.log.error(error)
+        // respond with html page
+        if (req.accepts('html') && req.app.get('view engine') && !req.wantsJSON) {
+          res.render('500', {
+            url: req.url,
+            error: error
+          }, (err, html) => {
+            if (err) {
+              req.log.error('Error sending page 500, maybe you don\'t have a 500.html file', err)
+              res.type('txt').send('Internal Server Error')
+            }
+            else {
+              res.send(html)
+            }
+          })
+        }
+        // respond with json
+        else if (req.wantsJSON) {
+          if (typeof error === 'object') {
+            res.send(error)
+          }
+          else {
+            res.send({
+              error: error
+            })
+          }
+        }
+        // default to plain-text. send()
+        else {
+          res.type('txt').send('Internal Server Error')
+        }
       }
     },
     order: [
