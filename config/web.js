@@ -58,7 +58,7 @@ module.exports = {
       }
     },
     '500': (error, req, res, next) => {
-      if (error.statusCode) {
+      if (error && error.statusCode) {
         res.status(error.statusCode)
         req.log.error(error)
         // respond with html page

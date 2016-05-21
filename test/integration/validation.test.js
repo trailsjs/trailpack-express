@@ -10,12 +10,15 @@ describe('express4 controllers', () => {
   })
   describe('ValidationController', () => {
     describe('Validation Header', () => {
-      it('should return 500 on GET  /validation/failHeaders with headers', (done) => {
+      it('should return 400 on GET  /validation/failHeaders with headers', (done) => {
         request
           .get('/validation/failHeaders')
           .set('accept', 'application/json')
-          .expect(500)
+          .expect(400)
           .end((err, res) => {
+            assert.equal(res.body.error, 'Bad Request')
+            assert.equal(res.body.statusCode, '400')
+            assert.equal(res.body.message, '"host" is not allowed')
             done(err)
           })
       })
@@ -30,12 +33,15 @@ describe('express4 controllers', () => {
       })
     })
     describe('Validation Params', () => {
-      it('should return 500 on GET /validation/:test/failParams with params', (done) => {
+      it('should return 400 on GET /validation/:id/failParams with params', (done) => {
         request
           .get('/validation/test/failParams')
           .set('accept', 'application/json')
-          .expect(500)
+          .expect(400)
           .end((err, res) => {
+            assert.equal(res.body.error, 'Bad Request')
+            assert.equal(res.body.statusCode, '400')
+            assert.equal(res.body.message, '"id" is not allowed')
             done(err)
           })
       })
@@ -51,12 +57,15 @@ describe('express4 controllers', () => {
       })
     })
     describe('Validation query', () => {
-      it('should return 500 on GET /validation/failQuery with query', (done) => {
+      it('should return 400 on GET /validation/failQuery with query', (done) => {
         request
           .get('/validation/failQuery?validate=test')
           .set('accept', 'application/json')
-          .expect(500)
+          .expect(400)
           .end((err, res) => {
+            assert.equal(res.body.error, 'Bad Request')
+            assert.equal(res.body.statusCode, '400')
+            assert.equal(res.body.message, '"validate" is not allowed')
             done(err)
           })
       })
@@ -72,15 +81,18 @@ describe('express4 controllers', () => {
     })
 
     describe('Validation body', () => {
-      it('should return 500 on GET /validation/failBody with payload', (done) => {
+      it('should return 400 on GET /validation/failBody with payload', (done) => {
         request
           .post('/validation/failBody')
           .set('accept', 'application/json')
           .send({
             test: 'ok'
           })
-          .expect(500)
+          .expect(400)
           .end((err, res) => {
+            assert.equal(res.body.error, 'Bad Request')
+            assert.equal(res.body.statusCode, '400')
+            assert.equal(res.body.message, '"test" is not allowed')
             done(err)
           })
       })
@@ -98,11 +110,11 @@ describe('express4 controllers', () => {
       })
     })
     describe('Validation Order', () => {
-      it('should return 500 on GET /validation/testOrder/test with fail on header only', (done) => {
+      it('should return 400 on GET /validation/testOrder/test with fail on header only', (done) => {
         request
           .get('/validation/testOrder/test')
           .set('accept', 'application/json')
-          .expect(500)
+          .expect(400)
           .end((err, res) => {
 
             assert.equal(res.body.validation.source, 'headers')
@@ -110,12 +122,12 @@ describe('express4 controllers', () => {
             done(err)
           })
       })
-      it('should return 500 on GET /validation/testOrder/test with fail on query only', (done) => {
+      it('should return 400 on GET /validation/testOrder/test with fail on query only', (done) => {
         request
           .get('/validation/testOrder/test')
           .set('accept', 'application/json')
           .set('requiredheader', 'valid')
-          .expect(500)
+          .expect(400)
           .end((err, res) => {
 
             assert.equal(res.body.validation.source, 'query')
@@ -123,13 +135,13 @@ describe('express4 controllers', () => {
             done(err)
           })
       })
-      it('should return 500 on GET /validation/testOrder/test with fail on params only', (done) => {
+      it('should return 400 on GET /validation/testOrder/test with fail on params only', (done) => {
         request
           .get('/validation/testOrder/test?wrongQuery=123')
           .set('accept', 'application/json')
           .set('requiredheader', 'valid')
 
-        .expect(500)
+        .expect(400)
           .end((err, res) => {
 
             assert.deepEqual(res.body.validation.key, ['wrongParam'])
@@ -137,13 +149,13 @@ describe('express4 controllers', () => {
             done(err)
           })
       })
-      it('should return 500 on GET /validation/testOrder/test with fail on payload only',
+      it('should return 400 on GET /validation/testOrder/test with fail on payload only',
         (done) => {
           request
             .post('/validation/testOrder/1234?wrongQuery=123')
             .set('accept', 'application/json')
             .set('requiredheader', 'valid')
-            .expect(500)
+            .expect(400)
             .end((err, res) => {
 
               assert.deepEqual(res.body.validation.key, ['wrongPayload'])
@@ -151,7 +163,7 @@ describe('express4 controllers', () => {
               done(err)
             })
         })
-      it('should return 500 on POST /validation/testOrder/test with fail on payload only',
+      it('should return 400 on POST /validation/testOrder/test with fail on payload only',
         (done) => {
           request
             .post('/validation/testOrder/1234?wrongQuery=123')
@@ -160,7 +172,7 @@ describe('express4 controllers', () => {
             .send({
               'wrongPayload': '1234'
             })
-            .expect(500)
+            .expect(400)
             .end((err, res) => {
 
               assert.deepEqual(res.body.validation.key, ['wrongPayload'])
