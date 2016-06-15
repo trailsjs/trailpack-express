@@ -15,7 +15,7 @@ const App = {
     database: {
       stores: {
         sqlitedev: {
-          adapter: require('sails-disk')
+          adapter: require('waterline-sqlite3')
         }
       },
       models: {
@@ -225,6 +225,14 @@ const App = {
           payload: Joi.object({
             'wrongPayload': Joi.string().email().required()
           })
+        }
+      }
+    }, {
+      method: 'GET',
+      path: '/node_modules',
+      handler: {
+        directory: {
+          path: 'node_modules'
         }
       }
     }],
