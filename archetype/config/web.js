@@ -69,7 +69,7 @@ module.exports = {
   port: process.env.PORT || 3000
 
   /**
-   * Alternate method to add multiple template engine, for single view template use config.view.engine
+   * Alternate method to add multiple template engine, for single view template use config.views.engine
    */
   /*
   views: {
