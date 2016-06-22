@@ -34,6 +34,20 @@ describe('express options', () => {
     })
   })
 
+  describe('Should serve static file', () => {
+    it('should return file on GET /node_modules/trails-policy/index.js', done => {
+      request
+        .get('/node_modules/trails-policy/index.js')
+        .expect(200)
+        .end((err, res) => {
+          if (!err) {
+            assert.equal(res.type, 'application/javascript')
+          }
+          done(err)
+        })
+    })
+  })
+
   describe('Should have default methods', () => {
     it('should return 404 page on GET /default/notFound', done => {
       request
