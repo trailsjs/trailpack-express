@@ -52,7 +52,7 @@
         "eslint-config-trails": "^1.0.7",
         "express": "^4.14.0",
         "mocha": "^2.5.1",
-        "npm": "^3.9.1",
+        "npm": "^3.9.6",
         "pug": "^2.0.0-beta3",
         "smokesignals": "^1.2.2",
         "supertest": "^1.2.0",
