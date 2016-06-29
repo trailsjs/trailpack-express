@@ -1,6 +1,6 @@
 {
     "name": "trailpack-express",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "Express.js Trailpack. This pack binds the routes compiled in trailpack-router to a Express 4 or 5 Server.",
     "main": "index.js",
     "scripts": {
@@ -39,7 +39,7 @@
         "joi": "^8.4.2",
         "lodash": "^4.13.1",
         "method-override": "^2.3.5",
-        "trailpack-webserver": "^1.0.1",
+        "trailpack-webserver": "^1.0.2",
         "trails-controller": "^1.0.0-beta-2",
         "trails-policy": "^1.0.2"
     },
