@@ -52,6 +52,7 @@ describe('express options', () => {
     it('should return 404 page on GET /default/notFound', done => {
       request
         .get('/default/notFound')
+        .set('Accept', 'text/html')
         .expect(404)
         .end((err, res) => {
           if (!err) {
