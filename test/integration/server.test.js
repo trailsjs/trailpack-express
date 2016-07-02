@@ -121,4 +121,25 @@ describe('express options', () => {
     })
   })
 
+  describe('Should keep route config on handlers', () => {
+    it('should return route config on GET /default/routeConfig', done => {
+      request
+        .get('/default/routeConfig')
+        .expect(200)
+        .end((err, res) => {
+          if (!err) {
+            const data = res.body
+            assert.deepEqual(data, {
+              app: {
+                customConfig: true,
+                results: 'ok'
+              },
+              pre: []
+            })
+          }
+          done(err)
+        })
+    })
+  })
+
 })

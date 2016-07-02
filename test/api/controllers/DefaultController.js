@@ -29,4 +29,7 @@ module.exports = class DefaultController extends Controller {
   echo(req, res) {
     res.status(200).json(req.body)
   }
+  routeConfig(req, res) {
+    res.status(200).json(req.route.config)
+  }
 }
