@@ -79,7 +79,12 @@ module.exports = {
           })
         }
         else if (req.wantsJSON) {
-          res.send(error)
+          res.json(typeof error === 'object' ? error : {
+            error: error
+          })
+        }
+        else {
+          res.type('txt').send(error.message || error)
         }
       }
       else {
