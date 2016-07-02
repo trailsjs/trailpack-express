@@ -23,9 +23,10 @@ module.exports = {
     cookieParser: cookieParser(),
     '404': (req, res, next) => {
       res.status(404)
+      const accept = req.get('accept') || ''
 
       // respond with html page
-      if (req.accepts('html') && req.app.get('view engine')) {
+      if (accept.indexOf('html') != -1 && req.app.get('view engine') && !req.wantsJSON) {
         res.render('404', {
           url: req.url,
           error: req.error
@@ -61,8 +62,9 @@ module.exports = {
       if (error && error.statusCode) {
         res.status(error.statusCode)
         req.log.error(error)
+        const accept = req.get('accept') || ''
         // respond with html page
-        if (req.accepts('html') && req.app.get('view engine') && !req.wantsJSON) {
+        if (accept.indexOf('html') != -1 && req.app.get('view engine') && !req.wantsJSON) {
           res.render(error.statusCode, {
             url: req.url,
             error: error
