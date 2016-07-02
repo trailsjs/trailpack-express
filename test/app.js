@@ -235,6 +235,16 @@ const App = {
           path: 'node_modules'
         }
       }
+    },{
+      method: 'GET',
+      path: '/default/routeConfig',
+      handler: 'DefaultController.routeConfig',
+      config: {
+        app: {
+          customConfig: true,
+          results: 'ok'
+        }
+      }
     }],
     policies: {
       DefaultController: {
