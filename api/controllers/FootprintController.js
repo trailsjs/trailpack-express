@@ -73,7 +73,7 @@ module.exports = class FootprintController extends Controller {
       response = FootprintService.update(req.params.model, id, req.body, options)
     }
     else {
-      response = FootprintService.update(req.params.model, criteria, req.body)
+      response = FootprintService.update(req.params.model, criteria, req.body, options)
     }
 
     response.then(elements => {
