@@ -26,14 +26,16 @@ module.exports = {
     /*
     //middlewares loading order
     order: [
-      'addMethods',
-      'cookieParser',
-      'bodyParser',
-      'methodOverride',
-      'www',
-      'router',
-      '404',
-      '500'
+     'addMethods',
+     'cookieParser',
+     'session',
+     'bodyParser',
+     'compression',
+     'methodOverride',
+     'www',
+     'router',
+     '404',
+     '500'
     ]*/
 
     /**
