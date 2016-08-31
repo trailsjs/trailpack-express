@@ -25,7 +25,7 @@ module.exports = class FootprintController extends Controller {
         else if (error.code == 'E_NOT_FOUND') {
           res.status(404).json(error)
         }
-      else {
+        else {
           res.boom.wrap(error)
         }
       })
@@ -133,7 +133,7 @@ module.exports = class FootprintController extends Controller {
         else if (error.code == 'E_NOT_FOUND') {
           res.status(404).json(error)
         }
-      else {
+        else {
           res.boom.wrap(error)
         }
       })
