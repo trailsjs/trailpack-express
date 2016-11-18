@@ -195,6 +195,35 @@ describe('express4 controllers', () => {
             done(err)
           })
       })
+      it('should return 200 on GET /validation/sendRequestData/123 with typecasted request data (headers, query, params, body)', (done) => {
+        request
+          .get('/validation/sendRequestData/1?number=2')
+          .set('accept', 'application/json')
+          .set('numberheader', '3')
+          .expect(200)
+          .end((err, res) => {
+            assert.deepStrictEqual(res.body.params.numberParam, 1)
+            assert.deepStrictEqual(res.body.query.number, 2)
+            assert.deepStrictEqual(res.body.headers.numberheader, 3)
+            done(err)
+          })
+      })
+      it('should return 200 on POST /validation/sendRequestData/123 with typecasted request data (headers, query, params, body)', (done) => {
+        request
+          .get('/validation/sendRequestData/1')
+          .set('accept', 'application/json')
+          .set('numberheader', '3')
+          .send({
+            'number': '2'
+          })
+          .expect(200)
+          .end((err, res) => {
+            assert.deepStrictEqual(res.body.params.numberParam, 1)
+            assert.deepStrictEqual(res.body.body.number, 2)
+            assert.deepStrictEqual(res.body.headers.numberheader, 3)
+            done(err)
+          })
+      })
     })
   })
 })
