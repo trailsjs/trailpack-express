@@ -15,7 +15,10 @@ const App = {
     database: {
       stores: {
         sqlitedev: {
-          adapter: require('waterline-sqlite3')
+          database: 'dev',
+          storage: './.tmp/dev.sqlite',
+          host: '127.0.0.1',
+          dialect: 'sqlite'
         }
       },
       models: {
@@ -50,7 +53,7 @@ const App = {
       packs: [
         smokesignals.Trailpack,
         require('trailpack-core'),
-        require('trailpack-waterline'),
+        require('trailpack-sequelize'),
         require('trailpack-footprints'),
         require('trailpack-router'),
         require('../') // trailpack-express

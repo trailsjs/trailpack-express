@@ -60,10 +60,9 @@
     "trailpack-core": "^1.0.1",
     "trailpack-footprints": "^1.0.1",
     "trailpack-router": "^1.0.8",
-    "trailpack-waterline": "^1.0.0-beta-1",
     "trails": "^1.1.0",
     "trails-model": "^1.0.0",
-    "trails-service": "^1.0.0",
-    "waterline-sqlite3": "^1.0.3"
+    "sqlite3": "^3.1.8",
+    "trailpack-sequelize": "^1.1.1"
   }
 }

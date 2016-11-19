@@ -37,9 +37,11 @@ describe('FootprintController', () => {
         .expect(400)
         .end((err, res) => {
           const validError = res.body
-          assert.equal(validError.error, 'E_VALIDATION')
-          assert.equal(validError.model, 'User')
-          assert.equal(validError.summary, '1 attribute is invalid')
+          assert.equal(validError.code, 'E_VALIDATION')
+          assert.equal(validError.errors.length, 1)
+          assert.equal(validError.errors[0].path, 'name')
+          assert.equal(validError.errors[0].message, 'name cannot be null')
+          assert.equal(validError.errors[0].type, 'notNull Violation')
           done(err)
         })
     })
@@ -99,9 +101,7 @@ describe('FootprintController', () => {
         })
         .expect(200)
         .end((err, res) => {
-          const user = res.body
-          assert.equal(user.id, userId)
-          assert.equal(user.name, 'updatetest2')
+          assert.equal(res.body, 1)
           done(err)
         })
     })
@@ -116,11 +116,7 @@ describe('FootprintController', () => {
         })
         .expect(200)
         .end((err, res) => {
-          const user = res.body[0]
-          if (user) {
-            assert.equal(user.id, userId)
-            assert.equal(user.name, 'updatetest2')
-          }
+          assert.equal(res.body[0], 1)
           done(err)
         })
     })
@@ -145,9 +141,6 @@ describe('FootprintController', () => {
         .del('/user/' + userId)
         .expect(200)
         .end((err, res) => {
-          const user = res.body
-          assert.equal(user.id, userId)
-          assert.equal(user.name, 'destroytest1')
           done(err)
         })
     })
@@ -159,9 +152,7 @@ describe('FootprintController', () => {
         })
         .expect(200)
         .end((err, res) => {
-          const user = res.body[0]
-          assert.equal(user.id, userId)
-          assert.equal(user.name, 'destroytest1')
+          assert.equal(res.body, 1)
           done(err)
         })
     })
@@ -192,7 +183,7 @@ describe('FootprintController', () => {
 
           assert(role)
           assert.equal(role.name, 'associatedroletest1')
-          assert.equal(role.user, userId)
+          assert.equal(role.userId, userId)
           done(err)
         })
     })
@@ -240,24 +231,24 @@ describe('FootprintController', () => {
         .end((err, res) => {
           const roles = res.body
           assert(roles.length)
-          assert.equal(roles[0].user, userId)
+          assert.equal(roles[0].user.id, userId)
           done(err)
         })
     })
     it('should find a set of associated records ("many") ' +
       'and populate the parent association', done => {
       request
-          .get('/user/' + userId + '/roles')
-          .expect(200)
-          .query({
-            populate: ['user']
-          })
-          .end((err, res) => {
-            const roles = res.body
-            assert(roles.length)
-            assert.equal(roles[0].user.id, userId)
-            done(err)
-          })
+        .get('/user/' + userId + '/roles')
+        .expect(200)
+        .query({
+          populate: ['user']
+        })
+        .end((err, res) => {
+          const roles = res.body
+          assert(roles.length)
+          assert.equal(roles[0].user.id, userId)
+          done(err)
+        })
     })
 
     it('should find a particular record in an associated set ("many")', done => {
@@ -265,10 +256,10 @@ describe('FootprintController', () => {
         .get('/user/' + userId + '/roles/' + roleId)
         .expect(200)
         .end((err, res) => {
-          const role = res.body
+          const role = res.body[0]
           assert(role)
           assert.equal(role.id, roleId)
-          assert.equal(role.user, userId)
+          assert.equal(role.user.id, userId)
           done(err)
         })
     })
@@ -306,9 +297,7 @@ describe('FootprintController', () => {
         })
         .expect(200)
         .end((err, res) => {
-          const user = res.body
-          assert(user)
-          assert.equal(user.name, 'updateassociationtest2')
+          assert.equal(res.body, 1)
           done(err)
         })
     })
@@ -322,7 +311,7 @@ describe('FootprintController', () => {
         .end((err, res) => {
           const roles = res.body
           assert(roles.length)
-          assert.equal(roles[0].name, 'updateassociationtest2')
+          assert.equal(roles[0], 1)
           done(err)
         })
     })
@@ -359,7 +348,7 @@ describe('FootprintController', () => {
         .end((err, res) => {
           if (err) return done(err)
 
-          const user = res.body
+          const user = res.body[0]
           assert(user)
           assert.equal(user.id, userId)
 
