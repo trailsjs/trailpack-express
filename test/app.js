@@ -228,6 +228,28 @@ const App = {
         }
       }
     }, {
+      method: ['GET', 'POST'],
+      path: '/validation/sendRequestData/:numberParam',
+      handler: 'ValidationController.sendRequestData',
+      config: {
+        validate: {
+          headers: Joi.object({
+            'numberheader': Joi.number()
+          }).options({
+            allowUnknown: true
+          }),
+          query: Joi.object({
+            number: Joi.number()
+          }),
+          params: Joi.object({
+            numberParam: Joi.number()
+          }),
+          payload: Joi.object({
+            number: Joi.number()
+          })
+        }
+      }
+    }, {
       method: 'GET',
       path: '/node_modules',
       handler: {

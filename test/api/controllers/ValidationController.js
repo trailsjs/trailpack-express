@@ -14,4 +14,12 @@ module.exports = class ValidationController extends Controller {
   success(req, res) {
     res.status(200).json()
   }
+  sendRequestData(req, res) {
+    res.status(200).json({
+      headers: req.headers,
+      query: req.query,
+      params: req.params,
+      body: req.body
+    })
+  }
 }
