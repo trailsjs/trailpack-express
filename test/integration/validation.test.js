@@ -3,7 +3,7 @@
 const assert = require('assert')
 const supertest = require('supertest')
 
-describe('express4 controllers', () => {
+describe('express route validation', () => {
   let request
   before(() => {
     request = supertest('http://localhost:3000')

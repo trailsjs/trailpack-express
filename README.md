@@ -104,6 +104,9 @@ The port to listen for http protocol if ssl enabled. If you don't want http and 
 #### `middlewares`
 Object to add custom middleware functions to Express, don't forget to add them into `middlewares.order` or they will not be called
 
+### `init`
+Method to customize express instance
+
 ## Contributing
 We love contributions! Please check out our [Contributor's Guide](https://github.com/trailsjs/trails/blob/master/.github/CONTRIBUTING.md) for more
 information on how our projects are organized and how to get started.
