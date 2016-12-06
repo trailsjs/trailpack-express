@@ -284,6 +284,9 @@ const App = {
     },
     web: {
       express: require('express'),
+      init: (trailsApp, expressApp) => {
+        expressApp.initOk = true
+      },
       cors: true,
       port: 3030,
       portHttp: 3000,

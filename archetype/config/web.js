@@ -19,6 +19,11 @@ module.exports = {
   cors: false,
 
   /**
+   * Init method, can be used to customize express instance
+   */
+  //init: (trailsApp, expressApp) => {},
+
+  /**
    * Middlewares to load (in order)
    */
   middlewares: {

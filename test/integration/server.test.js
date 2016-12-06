@@ -9,6 +9,10 @@ describe('express options', () => {
     request = supertest('https://localhost:3030')
   })
 
+  it('Should execute init method', () => {
+    assert(global.app.packs.express.server.initOk)
+  })
+
   describe('Should use CORS', () => {
     it('should have CORS headers informations', done => {
       request
