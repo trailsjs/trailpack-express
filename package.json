@@ -64,5 +64,8 @@
     "trails": "v2-latest",
     "sqlite3": "^3.1.8",
     "trailpack-sequelize": "^1.1.1"
+  },
+  "publishConfig": {
+    "tag": "next"
   }
 }
