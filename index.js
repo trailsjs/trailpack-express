@@ -5,17 +5,17 @@
 
 const lib = require('./lib')
 const _ = require('lodash')
-const WebServerTrailpack = require('trailpack-webserver')
+const ServerTrailpack = require('trailpack/server')
 
 /**
  * Express Trailpack
  *
  * @class Express
- * @see {@link http://trailsjs.io/doc/trailpack
+ * @see {@link http://trailsjs.io/doc/trailpack}
  *
  * Bind application routes to Express.js (from trailpack-router)
  */
-module.exports = class Express extends WebServerTrailpack {
+module.exports = class Express extends ServerTrailpack {
 
   /**
    * Ensure that config/web is valid, and that no other competing web

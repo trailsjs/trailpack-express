@@ -1,5 +1,5 @@
 'use strict'
-const Service = require('trails-service')
+const Service = require('trails/service')
   /**
    * @module DefaultService
    *

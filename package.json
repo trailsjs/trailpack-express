@@ -43,9 +43,7 @@
     "lodash": "^4.17.2",
     "method-override": "^2.3.6",
     "methods": "^1.1.2",
-    "trailpack-webserver": "^1.0.4",
-    "trails-controller": "^1.0.0",
-    "trails-policy": "^1.0.2"
+    "trailpack": "v2-latest"
   },
   "eslintConfig": {
     "extends": "trails"
@@ -54,18 +52,16 @@
     "boom": "^4.2.0",
     "eslint": "^3.11.1",
     "pre-commit": "^1.1.3",
-    "eslint-config-trails": "^1.2.0",
+    "eslint-config-trails": "^2",
     "express": "^4.14.0",
     "mocha": "^3.2.0",
     "npm": "^3.10.10",
     "pug": "^2.0.0-beta6",
-    "smokesignals": "^1.2.2",
+    "smokesignals": "v2-latest",
     "supertest": "^2.0.1",
-    "trailpack-core": "^1.0.1",
-    "trailpack-footprints": "^1.0.1",
-    "trailpack-router": "^1.0.8",
-    "trails": "^1.1.0",
-    "trails-model": "^1.0.0",
+    "trailpack-footprints": "v2-latest",
+    "trailpack-router": "v2-latest",
+    "trails": "v2-latest",
     "sqlite3": "^3.1.8",
     "trailpack-sequelize": "^1.1.1"
   }
