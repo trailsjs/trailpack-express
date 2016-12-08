@@ -39,9 +39,9 @@ describe('express options', () => {
   })
 
   describe('Should serve static file', () => {
-    it('should return file on GET /node_modules/trails-policy/index.js', done => {
+    it('should return file on GET /node_modules/trails/policy.js', done => {
       request
-        .get('/node_modules/trails-policy/index.js')
+        .get('/node_modules/trails/policy.js')
         .expect(200)
         .end((err, res) => {
           if (!err) {

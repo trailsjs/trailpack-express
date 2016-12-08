@@ -51,8 +51,6 @@ const App = {
     },
     main: {
       packs: [
-        smokesignals.Trailpack,
-        require('trailpack-core'),
         require('trailpack-sequelize'),
         require('trailpack-footprints'),
         require('trailpack-router'),
