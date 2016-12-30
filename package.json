@@ -1,6 +1,6 @@
 {
   "name": "trailpack-express",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Express.js Trailpack. This pack binds the routes compiled in trailpack-router to a Express 4 or 5 Server.",
   "main": "index.js",
   "scripts": {
@@ -43,7 +43,7 @@
     "lodash": "^4.17.2",
     "method-override": "^2.3.6",
     "methods": "^1.1.2",
-    "trailpack": "v2-latest"
+    "trailpack": "^2.1.0"
   },
   "eslintConfig": {
     "extends": "trails"
@@ -57,13 +57,13 @@
     "mocha": "^3.2.0",
     "npm": "^3.10.10",
     "pug": "^2.0.0-beta6",
-    "smokesignals": "v2-latest",
+    "smokesignals": "^2.1.1",
     "supertest": "^2.0.1",
-    "trailpack-footprints": "v2-latest",
-    "trailpack-router": "v2-latest",
-    "trails": "v2-latest",
+    "trailpack-footprints": "^2.0.0",
+    "trailpack-router": "^2.1.0",
+    "trails": "^2.0.0",
     "sqlite3": "^3.1.8",
-    "trailpack-sequelize": "^1.1.1"
+    "trailpack-sequelize": "^2.0.0"
   },
   "publishConfig": {
     "tag": "next"
