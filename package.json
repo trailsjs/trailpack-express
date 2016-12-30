@@ -43,7 +43,7 @@
     "lodash": "^4.17.2",
     "method-override": "^2.3.6",
     "methods": "^1.1.2",
-    "trailpack": "^2.1.0"
+    "trailpack-webserver": "^2.0.0"
   },
   "eslintConfig": {
     "extends": "trails"
