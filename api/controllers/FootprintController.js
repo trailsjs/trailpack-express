@@ -1,6 +1,15 @@
 'use strict'
 const Controller = require('trails/controller')
 
+const manageErrors = (app, error) => {
+  app.log.error(error)
+  if (app.env.NODE_ENV != 'production') {
+    app.log.warn('this payload error is return for development purpose only and will be only log on production')
+    return error
+  }
+  return new Error()
+}
+
 /**
  * Footprint Controller
  *
@@ -26,7 +35,7 @@ module.exports = class FootprintController extends Controller {
           res.status(404).json(error)
         }
         else {
-          res.boom.wrap(error)
+          res.status(500).send(res.boom.wrap(manageErrors(this.app, error), 500))
         }
       })
   }
@@ -54,7 +63,7 @@ module.exports = class FootprintController extends Controller {
         res.status(404).json(error)
       }
       else {
-        res.boom.wrap(error)
+        res.status(500).send(res.boom.wrap(manageErrors(this.app, error), 500))
       }
     })
 
@@ -86,7 +95,7 @@ module.exports = class FootprintController extends Controller {
         res.status(404).json(error)
       }
       else {
-        res.boom.wrap(error)
+        res.status(500).send(res.boom.wrap(manageErrors(this.app, error), 500))
       }
     })
 
@@ -115,7 +124,7 @@ module.exports = class FootprintController extends Controller {
         res.status(404).json(error)
       }
       else {
-        res.boom.wrap(error)
+        res.status(500).send(res.boom.wrap(manageErrors(this.app, error), 500))
       }
     })
   }
@@ -134,7 +143,7 @@ module.exports = class FootprintController extends Controller {
           res.status(404).json(error)
         }
         else {
-          res.boom.wrap(error)
+          res.status(500).send(res.boom.wrap(manageErrors(this.app, error), 500))
         }
       })
 
@@ -168,7 +177,7 @@ module.exports = class FootprintController extends Controller {
         res.status(404).json(error)
       }
       else {
-        res.boom.wrap(error)
+        res.status(500).send(res.boom.wrap(manageErrors(this.app, error), 500))
       }
     })
   }
@@ -201,7 +210,7 @@ module.exports = class FootprintController extends Controller {
         res.status(404).json(error)
       }
       else {
-        res.boom.wrap(error)
+        res.status(500).send(res.boom.wrap(manageErrors(this.app, error), 500))
       }
     })
   }
@@ -234,7 +243,7 @@ module.exports = class FootprintController extends Controller {
         res.status(404).json(error)
       }
       else {
-        res.boom.wrap(error)
+        res.status(500).send(res.boom.wrap(manageErrors(this.app, error), 500))
       }
     })
   }
