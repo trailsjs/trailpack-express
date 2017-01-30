@@ -43,7 +43,7 @@
     "lodash": "^4.17.2",
     "method-override": "^2.3.6",
     "methods": "^1.1.2",
-    "trailpack-webserver": "^2.0.0"
+    "trailpack": "^2.1.1"
   },
   "eslintConfig": {
     "extends": "trails"
@@ -53,10 +53,10 @@
     "eslint": "^3.11.1",
     "pre-commit": "^1.1.3",
     "eslint-config-trails": "^2",
-    "express": "^4.14.0",
+    "express": "^4.14.1",
     "mocha": "^3.2.0",
     "npm": "^3.10.10",
-    "pug": "^2.0.0-beta6",
+    "pug": "^2.0.0-beta9",
     "smokesignals": "^2.1.1",
     "supertest": "^2.0.1",
     "trailpack-footprints": "^2.0.0",
