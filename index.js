@@ -58,7 +58,10 @@ module.exports = class Express extends ServerTrailpack {
   }
 
   unload() {
-    if (_.isArray(lib.Server.nativeServer)) {
+    if (lib.Server.nativeServer === null) {
+      return
+    }
+    else if (_.isArray(lib.Server.nativeServer)) {
       lib.Server.nativeServer.forEach(server => {
         server.close()
       })
