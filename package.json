@@ -1,6 +1,6 @@
 {
   "name": "trailpack-express",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Express.js Trailpack. This pack binds the routes compiled in trailpack-router to a Express 4 or 5 Server.",
   "main": "index.js",
   "scripts": {
