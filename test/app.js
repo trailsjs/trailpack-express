@@ -255,7 +255,7 @@ const App = {
       path: '/node_modules',
       handler: {
         directory: {
-          path: 'node_modules'
+          path: 'node_modules/trails'
         }
       }
     },{
