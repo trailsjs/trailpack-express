@@ -1,6 +1,6 @@
 {
   "name": "trailpack-express",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Express.js Trailpack. This pack binds the routes compiled in trailpack-router to a Express 4 or 5 Server.",
   "main": "index.js",
   "scripts": {
@@ -43,7 +43,7 @@
     "lodash": "^4.17.4",
     "method-override": "^2.3.10",
     "methods": "^1.1.2",
-    "trailpack": "^2.1.2"
+    "trailpack": "^2.1.3"
   },
   "eslintConfig": {
     "extends": "trails"
