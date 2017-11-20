@@ -92,6 +92,9 @@ The hostname of the server.
 #### `cache`
 The number of seconds to cache flat files on disk being served by Express
 
+#### `externalConfig`
+external configuration for your express app (can be used for configuring letsencrypt)
+
 #### `ssl`
 SSL options (`key`, `cert` or `pfx`) to allow set https protocol
 

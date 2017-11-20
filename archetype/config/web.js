@@ -66,11 +66,6 @@ module.exports = {
   cache: 31557600000,
 
   /**
-   * The host to bind the web server to
-   */
-  //host: process.env.HOST || 'localhost',
-
-  /**
    * The port to bind the web server to
    */
   port: process.env.PORT || 3000,
@@ -92,6 +87,16 @@ module.exports = {
   },
   */
 
+  /**
+   * External configuration
+   * Must return a promise with the native http/https server instance
+   * @return Promise
+   */
+  /*
+  externalConfig: (trailsApp, expressApp) => {
+
+  },
+  */
   /**
    * SSL options
    * Cert and key or pfx to create HTTPS server

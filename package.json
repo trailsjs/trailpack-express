@@ -51,8 +51,8 @@
   "devDependencies": {
     "boom": "^4.3.1",
     "eslint": "^3.19.0",
-    "express": "^4.16.2",
     "eslint-config-trails": "^2.0.8",
+    "express": "^4.16.2",
     "mocha": "^3.2.0",
     "npm": "^3.10.10",
     "pre-commit": "^1.1.3",
