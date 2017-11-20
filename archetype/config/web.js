@@ -66,11 +66,6 @@ module.exports = {
   cache: 31557600000,
 
   /**
-   * The host to bind the web server to
-   */
-  //host: process.env.HOST || 'localhost',
-
-  /**
    * The port to bind the web server to
    */
   port: process.env.PORT || 3000,
@@ -94,9 +89,23 @@ module.exports = {
 
   /**
    * SSL options
-   * Cert and key or pfx to create HTTPS server
+   * Cert and key or pfx to create HTTPS server and/or a letsencrypt configuration (@see https://git.daplie.com/Daplie/greenlock-express)
    */
   /*
+  letsencrypt: {
+    server: 'staging', // Set to https://acme-v01.api.letsencrypt.org/directory in production
+    approveDomains: (opts, certs, cb) => {
+      if (certs) {
+        // change domain list here
+        opts.domains = ['domain.com']
+      } else {
+        // change default email to accept agreement
+        opts.email = 'email@domain.com'
+        opts.agreeTos = true
+      }
+      cb(null, { options: opts, certs: certs })
+    }
+  },
   ssl: {
     key: fs.readFileSync('path/to/private.key'),
     cert: fs.readFileSync('path/to/certificate.pem')

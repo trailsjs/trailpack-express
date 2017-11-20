@@ -39,6 +39,7 @@
     "cors": "^2.8.4",
     "express-boom": "^1.0.0",
     "express-session": "^1.15.6",
+    "greenlock": "^2.1.17",
     "joi": "^10.4.1",
     "lodash": "^4.17.4",
     "method-override": "^2.3.10",
@@ -51,8 +52,8 @@
   "devDependencies": {
     "boom": "^4.3.1",
     "eslint": "^3.19.0",
-    "express": "^4.16.2",
     "eslint-config-trails": "^2.0.8",
+    "express": "^4.16.2",
     "mocha": "^3.2.0",
     "npm": "^3.10.10",
     "pre-commit": "^1.1.3",

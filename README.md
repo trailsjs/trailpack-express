@@ -92,6 +92,9 @@ The hostname of the server.
 #### `cache`
 The number of seconds to cache flat files on disk being served by Express
 
+#### `letsencrypt`
+letsencrypt option for greenlock (see https://git.daplie.com/Daplie/node-greenlock) for more information
+
 #### `ssl`
 SSL options (`key`, `cert` or `pfx`) to allow set https protocol
 
