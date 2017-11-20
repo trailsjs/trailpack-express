@@ -39,7 +39,6 @@
     "cors": "^2.8.4",
     "express-boom": "^1.0.0",
     "express-session": "^1.15.6",
-    "greenlock": "^2.1.17",
     "joi": "^10.4.1",
     "lodash": "^4.17.4",
     "method-override": "^2.3.10",
