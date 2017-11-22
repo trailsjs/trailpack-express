@@ -14,7 +14,7 @@ describe('express options', () => {
   })
 
   describe('Should use CORS', () => {
-    it('should have CORS headers informations', done => {
+    it('should have CORS headers information', done => {
       request
         .get('/default/info')
         .expect('access-control-allow-origin', '*')
@@ -23,7 +23,7 @@ describe('express options', () => {
           done(err)
         })
     })
-    it('should have CORS headers informations for specific route', done => {
+    it('should have CORS headers information for specific route', done => {
       request
         .get('/')
         .expect(200)
@@ -146,5 +146,4 @@ describe('express options', () => {
         })
     })
   })
-
 })
