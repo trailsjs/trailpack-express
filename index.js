@@ -1,6 +1,3 @@
-/**
- * Created by jaumard on 16/12/2015.
- */
 'use strict'
 
 const lib = require('./lib')
@@ -30,6 +27,7 @@ module.exports = class Express extends ServerTrailpack {
       return Promise.reject(
         new Error('config.web.express is absent, please npm install your express version (4 or 5) and uncomment the line under config.web.express'))
     }
+
     return Promise.all([
       lib.Validator.validateWebConfig(this.app.config.get('web'))
     ])

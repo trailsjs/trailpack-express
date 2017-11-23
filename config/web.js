@@ -1,3 +1,4 @@
+/* eslint no-process-env: 0 */
 'use strict'
 
 const bodyParser = require('body-parser')
@@ -32,7 +33,7 @@ module.exports = {
       const accept = req.get('accept') || ''
 
       // respond with html page
-      if (accept.indexOf('html') != -1 && req.app.get('view engine') && !req.wantsJSON) {
+      if (accept.indexOf('html') !== -1 && req.app.get('view engine') && !req.wantsJSON) {
         res.render('404', {
           url: req.url,
           error: req.error
@@ -70,7 +71,7 @@ module.exports = {
         req.log.error(error)
         const accept = req.get('accept') || ''
         // respond with html page
-        if (accept.indexOf('html') != -1 && req.app.get('view engine') && !req.wantsJSON) {
+        if (accept.indexOf('html') !== -1 && req.app.get('view engine') && !req.wantsJSON) {
           res.render(error.statusCode, {
             url: req.url,
             error: error

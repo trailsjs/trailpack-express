@@ -8,7 +8,7 @@ const Joi = require('joi')
 const App = {
   pkg: {
     name: 'express-trailpack-test',
-    version: '1.0.0'
+    version: '3.0.0'
   },
   api: Api,
   config: {

@@ -58,7 +58,9 @@
     "testExpress4": "export EXPRESS_VERSION=latest;mocha",
     "testExpress5": "export EXPRESS_VERSION=5.0.0-alpha.2;mocha"
   },
-  "pre-commit": [],
+  "pre-commit": [
+    
+  ],
   "eslintConfig": {
     "extends": "trails"
   },
