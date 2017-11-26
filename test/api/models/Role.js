@@ -11,7 +11,7 @@ module.exports = class Role extends Model {
 
   static config(app, Sequelize) {
     return {
-      //More informations about supported models options here : http://docs.sequelizejs.com/en/latest/docs/models-definition/#configuration
+      //More information about supported models options here : http://docs.sequelizejs.com/en/latest/docs/models-definition/#configuration
       options: {
         classMethods: {
           //If you need associations, put them here

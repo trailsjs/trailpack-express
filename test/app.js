@@ -12,19 +12,17 @@ const App = {
   },
   api: Api,
   config: {
-    database: {
-      stores: {
-        sqlitedev: {
-          database: 'dev',
-          storage: './.tmp/dev.sqlite',
-          host: '127.0.0.1',
-          dialect: 'sqlite'
-        }
-      },
-      models: {
-        defaultStore: 'sqlitedev',
-        migrate: 'drop'
+    stores: {
+      sqlitedev: {
+        database: 'dev',
+        storage: './.tmp/dev.sqlite',
+        host: '127.0.0.1',
+        dialect: 'sqlite'
       }
+    },
+    models: {
+      defaultStore: 'sqlitedev',
+      migrate: 'drop'
     },
     footprints: {
       controllers: {
@@ -298,6 +296,9 @@ const App = {
         },
         path: 'test/views'
       }
+    },
+    log: {
+      logger: new smokesignals.Logger('debug')
     }
   }
 }

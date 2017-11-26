@@ -1,5 +1,5 @@
 'use strict'
-const Policy = require('trails/lib/policy')
+const Policy = require('trails/lib/Policy')
 
 const Boom = require('boom')
 /**

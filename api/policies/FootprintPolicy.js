@@ -1,7 +1,7 @@
 'use strict'
 
 const _ = require('lodash')
-const Policy = require('trails/lib/policy')
+const Policy = require('trails/lib/Policy')
 
 /**
  * Footprint Policy

@@ -1,5 +1,5 @@
 'use strict'
-const Controller = require('trails/lib/controller')
+const Controller = require('trails/lib/Controller')
 
 const manageErrors = (app, error) => {
   app.log.error(error)

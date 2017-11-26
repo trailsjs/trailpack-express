@@ -8,6 +8,7 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
 
 before(done => {
   const exVersion = process.env.EXPRESS_VERSION || pkg.devDependencies.express.replace('^', '')
+
   global.app = new TrailsApp(require('./app'))
 
   npm.load({
@@ -15,9 +16,10 @@ before(done => {
   }, err => {
     if (err) return done(err)
       // catch errors
-    npm.commands.install([`express@${exVersion}`], (er, data) => {
+    npm.commands.install([`express@${exVersion}`], (err, data) => {
       // log the error or data
-      if (er) return done(er)
+      if (err) return done(err)
+
       global.app.start().then(() => {
         done()
       }).catch(err => {

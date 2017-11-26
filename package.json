@@ -48,9 +48,9 @@
     "smokesignals": "^3",
     "sqlite3": "^3.1.13",
     "supertest": "^2.0.1",
-    "trailpack-footprints": "^3.0.0",
+    "trailpack-footprints": "^3",
     "trailpack-router": "^3",
-    "trailpack-sequelize": "^2.0.0",
+    "trailpack-sequelize": "^3",
     "trails": "^3"
   },
   "scripts": {
@@ -59,7 +59,7 @@
     "testExpress5": "export EXPRESS_VERSION=5.0.0-alpha.2;mocha"
   },
   "pre-commit": [
-    
+
   ],
   "eslintConfig": {
     "extends": "trails"
