@@ -9,6 +9,68 @@ describe('FootprintController', () => {
     request = supertest('http://localhost:3000/api/v1')
   })
 
+  describe('#ignored model', () => {
+    it('should not insert a record', done => {
+      request
+        .post('/ignored')
+        .send({
+          name: 'createtest1'
+        })
+        .expect(403)
+        .end((err, res) => {
+          assert.equal(res.body.message, 'errors.footprints.forbidden')
+          assert.equal(res.body.error, 'Forbidden')
+          done(err)
+        })
+    })
+    it('should not find', done => {
+      request
+        .get('/ignored/' + userId)
+        .expect(403)
+        .end((err, res) => {
+          assert.equal(res.body.message, 'errors.footprints.forbidden')
+          assert.equal(res.body.error, 'Forbidden')
+          done(err)
+        })
+    })
+    it('should not update', done => {
+      request
+        .put('/ignored/' + userId)
+        .send({
+          name: 'updatetest2'
+        })
+        .expect(403)
+        .end((err, res) => {
+          assert.equal(res.body.message, 'errors.footprints.forbidden')
+          assert.equal(res.body.error, 'Forbidden')
+          done(err)
+        })
+    })
+    it('should not destroy', done => {
+      request
+        .del('/ignored/' + userId)
+        .expect(403)
+        .end((err, res) => {
+          assert.equal(res.body.message, 'errors.footprints.forbidden')
+          assert.equal(res.body.error, 'Forbidden')
+          done(err)
+        })
+    })
+    it('should not insert an associated record', done => {
+      request
+        .post('/ignored/' + userId + '/roles')
+        .send({
+          name: 'associatedroletest1'
+        })
+        .expect(403)
+        .end((err, res) => {
+          assert.equal(res.body.message, 'errors.footprints.forbidden')
+          assert.equal(res.body.error, 'Forbidden')
+          done(err)
+        })
+    })
+  })
+
   describe('#create', () => {
     it('should insert a record', done => {
       request

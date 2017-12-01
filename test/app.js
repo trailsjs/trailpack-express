@@ -31,7 +31,7 @@ const App = {
         ignore: ['DefaultController', 'ViewController', 'StandardController']
       },
       models: {
-
+        ignore: ['Ignored'],
         actions: {
           create: true,
           createWithId: true,
