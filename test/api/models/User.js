@@ -1,6 +1,6 @@
 'use strict'
 
-const Model = require('trails/lib/model')
+const Model = require('trails/lib/Model')
 
 /**
  * User
