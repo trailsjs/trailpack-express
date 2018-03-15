@@ -1,6 +1,6 @@
 'use strict'
 const Service = require('trails/lib/Service')
-  /**
+/**
    * @module DefaultService
    *
    * @description Default Service included with a new Trails app

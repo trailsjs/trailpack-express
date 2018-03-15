@@ -3,14 +3,21 @@
 const npm = require('npm')
 const TrailsApp = require('trails')
 const pkg = require('../package')
-  //Allow self signed certificate
+//Allow self signed certificate
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
 
 before(done => {
   const exVersion = process.env.EXPRESS_VERSION || pkg.devDependencies.express.replace('^', '')
 
   global.app = new TrailsApp(require('./app'))
-
+  global.app.start().then(() => {
+    done()
+  }).catch(err => {
+    global.app.stop().then(() => {
+      done(err)
+    }).catch(done)
+  })
+  /*
   npm.load({
     loaded: false
   }, err => {
@@ -28,7 +35,7 @@ before(done => {
         }).catch(done)
       })
     })
-  })
+  })*/
 })
 
 after(() => {

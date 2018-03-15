@@ -29,11 +29,11 @@ module.exports = class Express extends ServerTrailpack {
         new Error('config.web.express is absent, please npm install your express version (4 or 5) and uncomment the line under config.web.express'))
     }
 
-    // console.log('express',typeof this.app.config.get('web.express'))
-    //
-    // return Promise.all([
-    //   lib.Validator.validateWebConfig(this.app.config.get('web'))
-    // ])
+    console.log('express', typeof this.app.config.get('web.express'))
+
+    return Promise.all([
+      lib.Validator.validateWebConfig(this.app.config.get('web'))
+    ])
   }
 
   configure () {

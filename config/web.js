@@ -77,7 +77,7 @@ module.exports = {
             error: error
           }, (err, html) => {
             if (err) {
-              req.log.error(`Error sending page ${error.statusCode}, maybe you don\'t have a ${error.statusCode}.html file`, err)
+              req.log.error(`Error sending page ${error.statusCode}, maybe you don't have a ${error.statusCode}.html file`, err)
               res.type('txt').send(error.message)
             }
             else {
