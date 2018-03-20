@@ -10,14 +10,14 @@ describe('express policies', () => {
   })
   describe('Default', () => {
     describe('success', () => {
-      it('should return {app: \'1.0.0\'} on GET /default/policySuccess', (done) => {
+      it('should return {app: \'3.0.0\'} on GET /default/policySuccess', (done) => {
         request
           .get('/default/policySuccess')
           .expect(200)
           .end((err, res) => {
             if (!err) {
               const data = res.body
-              assert.deepEqual(data, {app: '1.0.0'})
+              assert.deepEqual(data, { app: '3.0.0' })
             }
             done(err)
           })

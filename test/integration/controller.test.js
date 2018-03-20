@@ -18,7 +18,7 @@ describe('express controllers', () => {
             done(err)
           })
       })
-      it('should return {app: \'1.0.0\'} on GET /default/info', (done) => {
+      it('should return {app: \'3.0.0\'} on GET /default/info', (done) => {
         request
           .get('/default/info')
           .expect(200)
@@ -26,7 +26,7 @@ describe('express controllers', () => {
             if (!err) {
               const data = res.body
               assert.deepEqual(data, {
-                app: '1.0.0'
+                app: '3.0.0'
               })
               done(err)
             }
@@ -68,7 +68,7 @@ describe('express controllers', () => {
     })
   })
   describe('StandardController', () => {
-    it.skip('should return {app: \'1.0.0\'} on GET /standard/info', (done) => {
+    it.skip('should return {app: \'3.0.0\'} on GET /standard/info', (done) => {
       request
         .get('/standard/info')
         .expect(200)
@@ -76,7 +76,7 @@ describe('express controllers', () => {
           if (!err) {
             const data = res.body
             assert.deepEqual(data, {
-              app: '1.0.0'
+              app: '3.0.0'
             })
           }
           done(err)

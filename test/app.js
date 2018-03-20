@@ -8,23 +8,21 @@ const Joi = require('joi')
 const App = {
   pkg: {
     name: 'express-trailpack-test',
-    version: '1.0.0'
+    version: '3.0.0'
   },
   api: Api,
   config: {
-    database: {
-      stores: {
-        sqlitedev: {
-          database: 'dev',
-          storage: './.tmp/dev.sqlite',
-          host: '127.0.0.1',
-          dialect: 'sqlite'
-        }
-      },
-      models: {
-        defaultStore: 'sqlitedev',
-        migrate: 'drop'
+    stores: {
+      sqlitedev: {
+        database: 'dev',
+        storage: './.tmp/dev.sqlite',
+        host: '127.0.0.1',
+        dialect: 'sqlite'
       }
+    },
+    models: {
+      defaultStore: 'sqlitedev',
+      migrate: 'drop'
     },
     footprints: {
       controllers: {
@@ -93,15 +91,24 @@ const App = {
     }, {
       method: ['GET'],
       path: '/default/policySuccess',
-      handler: 'DefaultController.policySuccess'
+      handler: 'DefaultController.policySuccess',
+      config: {
+        pre: ['Default.success']
+      }
     }, {
       method: ['GET'],
       path: '/default/policyFail',
-      handler: 'DefaultController.policyFail'
+      handler: 'DefaultController.policyFail',
+      config: {
+        pre: ['Default.fail']
+      }
     }, {
       method: ['GET'],
       path: '/default/policyIntercept',
-      handler: 'DefaultController.policyIntercept'
+      handler: 'DefaultController.policyIntercept',
+      config: {
+        pre: ['Default.intercept']
+      }
     }, {
       method: 'GET',
       path: '/',
@@ -258,7 +265,7 @@ const App = {
           path: 'node_modules/trails'
         }
       }
-    },{
+    }, {
       method: 'GET',
       path: '/default/routeConfig',
       handler: 'DefaultController.routeConfig',
@@ -269,17 +276,6 @@ const App = {
         }
       }
     }],
-    policies: {
-      DefaultController: {
-        policyFail: ['Default.fail'],
-        policySuccess: ['Default.success'],
-        policyIntercept: ['Default.intercept']
-      },
-      StandardController: {
-        info: ['Standard.continue'],
-        intercept: ['Standard.fail']
-      }
-    },
     web: {
       express: require('express'),
       init: (trailsApp, expressApp) => {
@@ -298,6 +294,9 @@ const App = {
         },
         path: 'test/views'
       }
+    },
+    log: {
+      logger: new smokesignals.Logger('debug')
     }
   }
 }

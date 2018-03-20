@@ -141,7 +141,7 @@ describe('express route validation', () => {
           .set('accept', 'application/json')
           .set('requiredheader', 'valid')
 
-        .expect(400)
+          .expect(400)
           .end((err, res) => {
 
             assert.deepEqual(res.body.validation.key, ['wrongParam'])

@@ -40,7 +40,7 @@ describe('FootprintController', () => {
           assert.equal(validError.code, 'E_VALIDATION')
           assert.equal(validError.errors.length, 1)
           assert.equal(validError.errors[0].path, 'name')
-          assert.equal(validError.errors[0].message, 'name cannot be null')
+          assert.equal(validError.errors[0].message, 'User.name cannot be null')
           assert.equal(validError.errors[0].type, 'notNull Violation')
           done(err)
         })

@@ -1,6 +1,6 @@
 'use strict'
-const Controller = require('trails/controller')
-  /**
+const Controller = require('trails/lib/Controller')
+/**
    * @module DefaultController
    *
    * @description Default Controller included with a new Trails app

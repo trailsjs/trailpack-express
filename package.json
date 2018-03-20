@@ -1,20 +1,17 @@
 {
   "name": "trailpack-express",
-  "version": "2.0.7",
+  "version": "3.0.0",
   "description": "Express.js Trailpack. This pack binds the routes compiled in trailpack-router to a Express 4 or 5 Server.",
-  "main": "index.js",
-  "scripts": {
-    "test": "eslint . && mocha && npm run testExpress4 && npm run testExpress5",
-    "testExpress4": "export EXPRESS_VERSION=latest;mocha",
-    "testExpress5": "export EXPRESS_VERSION=5.0.0-alpha.2;mocha"
-  },
-  "pre-commit": [
-    "test"
+  "homepage": "https://github.com/trailsjs/trailpack-express#readme",
+  "author": "Jimmy Aumard <jimmy.aumard@gmail.com>",
+  "contributors": [
+    {
+      "name": "Scott Wyatt",
+      "email": "scottwyatt86@gmail.com",
+      "url": "https://github.com/scott-wyatt"
+    }
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jaumard/trailpack-express.git"
-  },
+  "main": "index.js",
   "keywords": [
     "trails",
     "express",
@@ -25,47 +22,58 @@
     "webserver",
     "trailpack"
   ],
-  "author": "Jimmy Aumard <jimmy.aumard@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/jaumard/trailpack-express/issues"
-  },
-  "homepage": "https://github.com/jaumard/trailpack-express#readme",
   "dependencies": {
-    "body-parser": "^1.17.1",
-    "compression": "^1.6.2",
-    "consolidate": "^0.14.5",
+    "body-parser": "^1.18.2",
+    "compression": "^1.7.2",
+    "consolidate": "^0.15.0",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",
-    "express-boom": "^1.0.0",
+    "express-boom": "^2.0.0",
     "express-session": "^1.15.6",
     "joi": "^10.4.1",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.5",
     "method-override": "^2.3.10",
     "methods": "^1.1.2",
-    "trailpack": "^2.1.3"
+    "trailpack": "^3"
   },
+  "devDependencies": {
+    "boom": "^7.2.0",
+    "eslint": "^4.18.2",
+    "eslint-config-trails": "^3",
+    "express": "^4.16.3",
+    "mocha": "^5.0.4",
+    "npm": "^5.7.1",
+    "pre-commit": "^1.2.2",
+    "pug": "^2.0.1",
+    "smokesignals": "^3",
+    "sqlite3": "^4.0.0",
+    "supertest": "^3.0.0",
+    "trailpack-footprints": "^3",
+    "trailpack-router": "^3",
+    "trailpack-sequelize": "^3.1.0",
+    "trails": "^3.2.1"
+  },
+  "scripts": {
+    "test": "eslint . && mocha && npm run testExpress4 && npm run testExpress5",
+    "testExpress4": "export EXPRESS_VERSION=latest;mocha",
+    "testExpress5": "export EXPRESS_VERSION=5.0.0-alpha.2;mocha"
+  },
+  "pre-commit": [],
   "eslintConfig": {
     "extends": "trails"
   },
-  "devDependencies": {
-    "boom": "^4.3.1",
-    "eslint": "^3.19.0",
-    "eslint-config-trails": "^2.0.8",
-    "express": "^4.16.2",
-    "mocha": "^3.2.0",
-    "npm": "^3.10.10",
-    "pre-commit": "^1.1.3",
-    "pug": "^2.0.0-rc.4",
-    "smokesignals": "^2.1.1",
-    "sqlite3": "^3.1.13",
-    "supertest": "^2.0.1",
-    "trailpack-footprints": "^2.0.0",
-    "trailpack-router": "^2.1.1",
-    "trailpack-sequelize": "^2.0.0",
-    "trails": "^2.0.2"
-  },
   "publishConfig": {
     "tag": "next"
-  }
+  },
+  "engines": {
+    "node": ">= 7.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:trailsjs/trailpack-express.git"
+  },
+  "bugs": {
+    "url": "https://github.com/trailsjs/trailpack-express/issues"
+  },
+  "license": "MIT"
 }

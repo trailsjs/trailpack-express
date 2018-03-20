@@ -14,7 +14,7 @@ describe('express options', () => {
   })
 
   describe('Should use CORS', () => {
-    it('should have CORS headers informations', done => {
+    it('should have CORS headers information', done => {
       request
         .get('/default/info')
         .expect('access-control-allow-origin', '*')
@@ -23,15 +23,15 @@ describe('express options', () => {
           done(err)
         })
     })
-    it('should have CORS headers informations for specific route', done => {
+    it('should have CORS headers information for specific route', done => {
       request
         .get('/')
         .expect(200)
         .end((err, res) => {
           if (!err) {
             assert(res.headers['access-control-allow-origin'])
-              //FIXME update trailpack-router to have origin as string only
-              //assert.equal(res.headers['access-control-allow-origin'], 'http://trailsjs.io')
+            //FIXME update trailpack-router to have origin as string only
+            //assert.equal(res.headers['access-control-allow-origin'], 'http://trailsjs.io')
           }
           done(err)
         })
@@ -39,9 +39,9 @@ describe('express options', () => {
   })
 
   describe('Should serve static file', () => {
-    it('should return file on GET /node_modules/trails/policy.js', done => {
+    it('should return file on GET /node_modules/trails/index.js', done => {
       request
-        .get('/node_modules/policy.js')
+        .get('/node_modules/index.js')
         .expect(200)
         .end((err, res) => {
           if (!err) {
@@ -110,7 +110,7 @@ describe('express options', () => {
   })
 
   describe('Should start with HTTPS/SSL on port 3030', () => {
-    it('should return {app: \'1.0.0\'} on GET /default/info', done => {
+    it('should return {app: \'3.0.0\'} on GET /default/info', done => {
       request
         .get('/default/info')
         .expect(200)
@@ -118,7 +118,7 @@ describe('express options', () => {
           if (!err) {
             const data = res.body
             assert.deepEqual(data, {
-              app: '1.0.0'
+              app: '3.0.0'
             })
           }
           done(err)
@@ -146,5 +146,4 @@ describe('express options', () => {
         })
     })
   })
-
 })
