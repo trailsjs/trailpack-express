@@ -60,17 +60,25 @@ module.exports = class Express extends ServerTrailpack {
   }
 
   unload() {
+    if (lib.Server.nativeServer.listening) {
+      this.closeServer()
+    }
+    else {
+      this.app.on('webserver:http:ready', () => this.closeServer())
+    }
+  }
+
+  closeServer() {
     if (lib.Server.nativeServer === null) {
       return
     }
-    else if (_.isArray(lib.Server.nativeServer)) {
-      lib.Server.nativeServer.forEach(server => {
-        server.close()
-      })
+
+    let servers = lib.Server.nativeServer
+    if (!_.isArray(lib.Server.nativeServer)) {
+      servers = [servers]
     }
-    else {
-      lib.Server.nativeServer.close()
-    }
+
+    servers.forEach(server => server.close())
   }
 
   constructor(app) {
